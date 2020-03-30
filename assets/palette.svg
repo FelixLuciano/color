@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 576">
+  <path id="background" fill="#111" d="M0 0h736v576H0V0z"/>
+  <g id="color-pink">
+    <path fill="#F29" d="M544 384h128v128H544V384z"/>
+    <path fill="#D28" d="M640 480h32v32h-32v-32z"/>
+    <path fill="#B27" d="M608 480h32v32h-32v-32z"/>
+    <path fill="#926" d="M576 480h32v32h-32v-32z"/>
+    <path fill="#725" d="M544 480h32v32h-32v-32z"/>
+    <path fill="#F4A" d="M544 384h32v32h-32v-32z"/>
+    <path fill="#F6B" d="M576 384h32v32h-32v-32z"/>
+    <path fill="#F8C" d="M608 384h32v32h-32v-32z"/>
+    <path fill="#FAD" d="M640 384h32v32h-32v-32z"/>
+  </g>
+  <g id="color-magenta">
+    <path fill="#F2F" d="M384 384h128v128H384V384z"/>
+    <path fill="#727" d="M384 480h32v32h-32v-32z"/>
+    <path fill="#929" d="M416 480h32v32h-32v-32z"/>
+    <path fill="#B2B" d="M448 480h32v32h-32v-32z"/>
+    <path fill="#D2D" d="M480 480h32v32h-32v-32z"/>
+    <path fill="#F4F" d="M384 384h32v32h-32v-32z"/>
+    <path fill="#F6F" d="M416 384h32v32h-32v-32z"/>
+    <path fill="#F8F" d="M448 384h32v32h-32v-32z"/>
+    <path fill="#FAF" d="M480 384h32v32h-32v-32z"/>
+  </g>
+  <g id="color-purple">
+    <path fill="#92F" d="M224 384h128v128H224V384z"/>
+    <path fill="#627" d="M224 480h32v32h-32v-32z"/>
+    <path fill="#729" d="M256 480h32v32h-32v-32z"/>
+    <path fill="#82B" d="M288 480h32v32h-32v-32z"/>
+    <path fill="#A2D" d="M320 480h32v32h-32v-32z"/>
+    <path fill="#A2F" d="M224 384h32v32h-32v-32z"/>
+    <path fill="#B4F" d="M256 384h32v32h-32v-32z"/>
+    <path fill="#C6F" d="M288 384h32v32h-32v-32z"/>
+    <path fill="#D8F" d="M320 384h32v32h-32v-32z"/>
+  </g>
+  <g id="color-blue">
+    <path fill="#22F" d="M64 384h128v128H64V384z"/>
+    <path fill="#227" d="M64 480h32v32H64v-32z"/>
+    <path fill="#229" d="M96 480h32v32H96v-32z"/>
+    <path fill="#22B" d="M128 480h32v32h-32v-32z"/>
+    <path fill="#22D" d="M160 480h32v32h-32v-32z"/>
+    <path fill="#44F" d="M64 384h32v32H64v-32z"/>
+    <path fill="#66F" d="M96 384h32v32H96v-32z"/>
+    <path fill="#88F" d="M128 384h32v32h-32v-32z"/>
+    <path fill="#AAF" d="M160 384h32v32h-32v-32z"/>
+  </g>
+  <g id="color-sky">
+    <path fill="#29F" d="M544 224h128v128H544V224z"/>
+    <path fill="#257" d="M544 320h32v32h-32v-32z"/>
+    <path fill="#269" d="M576 320h32v32h-32v-32z"/>
+    <path fill="#27B" d="M608 320h32v32h-32v-32z"/>
+    <path fill="#28D" d="M640 320h32v32h-32v-32z"/>
+    <path fill="#4AF" d="M544 224h32v32h-32v-32z"/>
+    <path fill="#6BF" d="M576 224h32v32h-32v-32z"/>
+    <path fill="#8CF" d="M608 224h32v32h-32v-32z"/>
+    <path fill="#ADF" d="M640 224h32v32h-32v-32z"/>
+  </g>
+  <g id="color-cyan">
+    <path fill="#2FF" d="M384 224h128v128H384V224z"/>
+    <path fill="#277" d="M384 320h32v32h-32v-32z"/>
+    <path fill="#299" d="M416 320h32v32h-32v-32z"/>
+    <path fill="#2BB" d="M448 320h32v32h-32v-32z"/>
+    <path fill="#2DD" d="M480 320h32v32h-32v-32z"/>
+    <path fill="#4FF" d="M384 224h32v32h-32v-32z"/>
+    <path fill="#6FF" d="M416 224h32v32h-32v-32z"/>
+    <path fill="#8FF" d="M448 224h32v32h-32v-32z"/>
+    <path fill="#AFF" d="M480 224h32v32h-32v-32z"/>
+  </g>
+  <g id="color-teal">
+    <path fill="#2F9" d="M224 224h128v128H224V224z"/>
+    <path fill="#276" d="M224 320h32v32h-32v-32z"/>
+    <path fill="#297" d="M256 320h32v32h-32v-32z"/>
+    <path fill="#2B8" d="M288 320h32v32h-32v-32z"/>
+    <path fill="#2DA" d="M320 320h32v32h-32v-32z"/>
+    <path fill="#2FA" d="M224 224h32v32h-32v-32z"/>
+    <path fill="#4FB" d="M256 224h32v32h-32v-32z"/>
+    <path fill="#6FC" d="M288 224h32v32h-32v-32z"/>
+    <path fill="#8FD" d="M320 224h32v32h-32v-32z"/>
+  </g>
+  <g id="color-green">
+    <path fill="#2F2" d="M64 224h128v128H64V224z"/>
+    <path fill="#272" d="M64 320h32v32H64v-32z"/>
+    <path fill="#292" d="M96 320h32v32H96v-32z"/>
+    <path fill="#2B2" d="M128 320h32v32h-32v-32z"/>
+    <path fill="#2D2" d="M160 320h32v32h-32v-32z"/>
+    <path fill="#4F4" d="M64 224h32v32H64v-32z"/>
+    <path fill="#6F6" d="M96 224h32v32H96v-32z"/>
+    <path fill="#8F8" d="M128 224h32v32h-32v-32z"/>
+    <path fill="#AFA" d="M160 224h32v32h-32v-32z"/>
+  </g>
+  <g id="color-lime">
+    <path fill="#9F2" d="M544 64h128v128H544V64z"/>
+    <path fill="#572" d="M544 160h32v32h-32v-32z"/>
+    <path fill="#692" d="M576 160h32v32h-32v-32z"/>
+    <path fill="#7B2" d="M608 160h32v32h-32v-32z"/>
+    <path fill="#8D2" d="M640 160h32v32h-32v-32z"/>
+    <path fill="#AF4" d="M544 64h32v32h-32V64z"/>
+    <path fill="#BF6" d="M576 64h32v32h-32V64z"/>
+    <path fill="#CF8" d="M608 64h32v32h-32V64z"/>
+    <path fill="#DFA" d="M640 64h32v32h-32V64z"/>
+  </g>
+  <g id="color-yellow">
+    <path fill="#FF2" d="M384 64h128v128H384V64z"/>
+    <path fill="#772" d="M384 160h32v32h-32v-32z"/>
+    <path fill="#992" d="M416 160h32v32h-32v-32z"/>
+    <path fill="#BB2" d="M448 160h32v32h-32v-32z"/>
+    <path fill="#DD2" d="M480 160h32v32h-32v-32z"/>
+    <path fill="#FF4" d="M384 64h32v32h-32V64z"/>
+    <path fill="#FF6" d="M416 64h32v32h-32V64z"/>
+    <path fill="#FF8" d="M448 64h32v32h-32V64z"/>
+    <path fill="#FFA" d="M480 64h32v32h-32V64z"/>
+  </g>
+  <g id="color-orange">
+    <path fill="#F92" d="M224 64h128v128H224V64z"/>
+    <path fill="#762" d="M224 160h32v32h-32v-32z"/>
+    <path fill="#972" d="M256 160h32v32h-32v-32z"/>
+    <path fill="#B82" d="M288 160h32v32h-32v-32z"/>
+    <path fill="#DA2" d="M320 160h32v32h-32v-32z"/>
+    <path fill="#FA3" d="M224 64h32v32h-32V64z"/>
+    <path fill="#FB4" d="M256 64h32v32h-32V64z"/>
+    <path fill="#FC6" d="M288 64h32v32h-32V64z"/>
+    <path fill="#FD8" d="M320 64h32v32h-32V64z"/>
+  </g>
+  <g id="color-red">
+    <path fill="#F22" d="M64 64h128v128H64V64z"/>
+    <path fill="#722" d="M64 160h32v32H64v-32z"/>
+    <path fill="#922" d="M96 160h32v32H96v-32z"/>
+    <path fill="#B22" d="M128 160h32v32h-32v-32z"/>
+    <path fill="#D22" d="M160 160h32v32h-32v-32z"/>
+    <path fill="#F44" d="M64 64h32v32H64V64z"/>
+    <path fill="#F66" d="M96 64h32v32H96V64z"/>
+    <path fill="#F88" d="M128 64h32v32h-32V64z"/>
+    <path fill="#FAA" d="M160 64h32v32h-32V64z"/>
+  </g>
+</svg>

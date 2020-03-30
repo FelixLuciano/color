@@ -1,0 +1,140 @@
+:root {
+  --color-black: #000;
+  --color-dark: #111;
+
+  --color-gray: #777;
+  --color-gray-lighten-5: #222;
+  --color-gray-lighten-4: #333;
+  --color-gray-lighten-3: #444;
+  --color-gray-lighten-2: #555;
+  --color-gray-lighten-1: #666;
+  --color-gray-darken-1: #888;
+  --color-gray-darken-2: #999;
+  --color-gray-darken-3: #AAA;
+  --color-gray-darken-4: #BBB;
+  --color-gray-darken-5: #CCC;
+  --color-gray-darken-6: #DDD;
+
+  --color-light: #EEE;
+  --color-white: #FFF;
+
+  --color-red: #F22;
+  --color-red-darken-4: #722;
+  --color-red-darken-3: #922;
+  --color-red-darken-2: #B22;
+  --color-red-darken-1: #D22;
+  --color-red-lighten-1: #F44;
+  --color-red-lighten-2: #F66;
+  --color-red-lighten-3: #F88;
+  --color-red-lighten-4: #FAA;
+
+  --color-orange: #F92;
+  --color-orange-darken-4: #762;
+  --color-orange-darken-3: #972;
+  --color-orange-darken-2: #B82;
+  --color-orange-darken-1: #DA2;
+  --color-orange-lighten-1: #FA3;
+  --color-orange-lighten-2: #FB4;
+  --color-orange-lighten-3: #FC6;
+  --color-orange-lighten-4: #FD8;
+
+  --color-yellow: #FF2;
+  --color-yellow-darken-4: #772;
+  --color-yellow-darken-3: #992;
+  --color-yellow-darken-2: #BB2;
+  --color-yellow-darken-1: #DD2;
+  --color-yellow-lighten-1: #FF4;
+  --color-yellow-lighten-2: #FF6;
+  --color-yellow-lighten-3: #FF8;
+  --color-yellow-lighten-4: #FFA;
+
+  --color-lime: #9F2;
+  --color-lime-darken-4: #572;
+  --color-lime-darken-3: #692;
+  --color-lime-darken-2: #7B2;
+  --color-lime-darken-1: #8D2;
+  --color-lime-lighten-1: #AF4;
+  --color-lime-lighten-2: #BF6;
+  --color-lime-lighten-3: #CF8;
+  --color-lime-lighten-4: #DFA;
+
+  --color-green: #2F2;
+  --color-green-darken-4: #272;
+  --color-green-darken-3: #292;
+  --color-green-darken-2: #2B2;
+  --color-green-darken-1: #2D2;
+  --color-green-lighten-1: #4F4;
+  --color-green-lighten-2: #6F6;
+  --color-green-lighten-3: #8F8;
+  --color-green-lighten-4: #AFA;
+
+  --color-teal: #2F9;
+  --color-teal-darken-4: #276;
+  --color-teal-darken-3: #297;
+  --color-teal-darken-2: #2B8;
+  --color-teal-darken-1: #2DA;
+  --color-teal-lighten-1: #2FA;
+  --color-teal-lighten-2: #4FB;
+  --color-teal-lighten-3: #6FC;
+  --color-teal-lighten-4: #8FD;
+
+  --color-cyan: #2FF;
+  --color-cyan-darken-4: #277;
+  --color-cyan-darken-3: #299;
+  --color-cyan-darken-2: #2BB;
+  --color-cyan-darken-1: #2DD;
+  --color-cyan-lighten-1: #4FF;
+  --color-cyan-lighten-2: #6FF;
+  --color-cyan-lighten-3: #8FF;
+  --color-cyan-lighten-4: #AFF;
+
+  --color-sky: #29F;
+  --color-sky-darken-4: #257;
+  --color-sky-darken-3: #269;
+  --color-sky-darken-2: #27B;
+  --color-sky-darken-1: #28D;
+  --color-sky-lighten-1: #4AF;
+  --color-sky-lighten-2: #6BF;
+  --color-sky-lighten-3: #8CF;
+  --color-sky-lighten-4: #ADF;
+
+  --color-blue: #22F;
+  --color-blue-darken-4: #227;
+  --color-blue-darken-3: #229;
+  --color-blue-darken-2: #22B;
+  --color-blue-darken-1: #22D;
+  --color-blue-lighten-1: #44F;
+  --color-blue-lighten-2: #66F;
+  --color-blue-lighten-3: #88F;
+  --color-blue-lighten-4: #AAF;
+
+  --color-purple: #92F;
+  --color-purple-darken-4: #627;
+  --color-purple-darken-3: #729;
+  --color-purple-darken-2: #82B;
+  --color-purple-darken-1: #A2D;
+  --color-purple-lighten-1: #A2F;
+  --color-purple-lighten-2: #B4F;
+  --color-purple-lighten-3: #C6F;
+  --color-purple-lighten-4: #D8F;
+
+  --color-magenta: #F2F;
+  --color-magenta-darken-4: #727;
+  --color-magenta-darken-3: #929;
+  --color-magenta-darken-2: #B2B;
+  --color-magenta-darken-1: #D2D;
+  --color-magenta-lighten-1: #F4F;
+  --color-magenta-lighten-2: #F6F;
+  --color-magenta-lighten-3: #F8F;
+  --color-magenta-lighten-4: #FAF;
+
+  --color-pink: #F29;
+  --color-pink-darken-4: #D28;
+  --color-pink-darken-3: #B27;
+  --color-pink-darken-2: #926;
+  --color-pink-darken-1: #725;
+  --color-pink-lighten-1: #F4A;
+  --color-pink-lighten-2: #F6B;
+  --color-pink-lighten-3: #F8C;
+  --color-pink-lighten-4: #FAD;
+}
