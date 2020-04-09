@@ -1,0 +1,104 @@
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #111;
+  color: #FFF;
+  font-family: "Lato", sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+header, footer {
+  line-height: 64px;
+  padding: 0 1rem;
+}
+
+svg {
+  margin-right: .2em;
+  vertical-align: middle;
+}
+
+header a {
+  color: #FFF;
+  font-size: 1.5rem;
+  line-height: 1em;
+  text-decoration: none;
+}
+
+main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(15rem, 1fr));
+  grid-template-rows: repeat(4, auto);
+  grid-gap: 0.5rem;
+  overflow: auto;
+}
+
+article {
+  display: grid;
+}
+article::before {
+  content: "";
+  padding-bottom: 100%;
+  display: block;
+  grid-area: 1 / 1 / 2 / 2;
+}
+article > div {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+article > div > div {
+  background-color: var(--color);
+  color: #000;
+  font-size: .9em;
+  font-weight: bold;
+  display: grid;
+  place-items: center;
+}
+article > div > div:first-child {
+  grid-column: 1 / 5;
+  grid-row: 1 / 5;
+}
+article > div > div:nth-child(2) {
+  grid-column: 1;
+  grid-row: 1;
+}
+article > div > div:nth-child(3) {
+  grid-column: 2;
+  grid-row: 1;
+}
+article > div > div:nth-child(4) {
+  grid-column: 3;
+  grid-row: 1;
+}
+article > div > div:nth-child(5) {
+  grid-column: 4;
+  grid-row: 1;
+}
+article > div > div:nth-child(6) {
+  grid-column: 1;
+  grid-row: 4;
+}
+article > div > div:nth-child(7) {
+  grid-column: 2;
+  grid-row: 4;
+}
+article > div > div:nth-child(8) {
+  grid-column: 3;
+  grid-row: 4;
+}
+article > div > div:nth-child(9) {
+  grid-column: 4;
+  grid-row: 4;
+}
+
+footer {
+  font-size: .8em;
+}

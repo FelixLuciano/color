@@ -142,10 +142,10 @@ magenta:
 
 pink:
   default: '#F29'
-  darken-4: '#D28'
-  darken-3: '#B27'
-  darken-2: '#926'
-  darken-1: '#725'
+  darken-4: '#725'
+  darken-3: '#926'
+  darken-2: '#B27'
+  darken-1: '#D28'
   lighten-1: '#F4A'
   lighten-2: '#F6B'
   lighten-3: '#F8C'
