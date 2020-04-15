@@ -1,5 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 576">
-  <path id="background" fill="#111" d="M0 0h736v576H0V0z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 736">
+  <path id="background" d="M0 0h736v736H0V0z" fill="#111"/>
+  <g id="color-bluegray">
+    <path fill="#001" d="M320 642h32v32h-32z"/>
+    <path fill="#012" d="M288 642h32v32h-32z"/>
+    <path fill="#123" d="M256 642h32v32h-32z"/>
+    <path fill="#234" d="M224 642h32v32h-32z"/>
+    <path fill="#345" d="M224 610h32v32h-32z"/>
+    <path fill="#456" d="M256 610h32v32h-32z"/>
+    <path fill="#567" d="M288 610h32v32h-32z"/>
+    <path fill="#678" d="M320 610h32v32h-32z"/>
+    <path fill="#789" d="M320 578h32v32h-32z"/>
+    <path fill="#89A" d="M288 578h32v32h-32z"/>
+    <path fill="#9AB" d="M256 578h32v32h-32z"/>
+    <path fill="#ABC" d="M224 578h32v32h-32z"/>
+    <path fill="#BCD" d="M224 546h32v32h-32z"/>
+    <path fill="#CDE" d="M256 546h32v32h-32z"/>
+    <path fill="#DEF" d="M288 546h32v32h-32z"/>
+    <path fill="#EFF" d="M320 546h32v32h-32z"/>
+  </g>
+  <g id="color-gray">
+    <path fill="#000" d="M160 640h32v32h-32z"/>
+    <path fill="#111" d="M128 640h32v32h-32z"/>
+    <path fill="#222" d="M96 640h32v32H96z"/>
+    <path fill="#333" d="M64 640h32v32H64z"/>
+    <path fill="#444" d="M64 608h32v32H64z"/>
+    <path fill="#555" d="M96 608h32v32H96z"/>
+    <path fill="#666" d="M128 608h32v32h-32z"/>
+    <path fill="#777" d="M160 608h32v32h-32z"/>
+    <path fill="#888" d="M160 576h32v32h-32z"/>
+    <path fill="#999" d="M128 576h32v32h-32z"/>
+    <path fill="#AAA" d="M96 576h32v32H96z"/>
+    <path fill="#BBB" d="M64 576h32v32H64z"/>
+    <path fill="#CCC" d="M64 544h32v32H64z"/>
+    <path fill="#DDD" d="M96 544h32v32H96z"/>
+    <path fill="#EEE" d="M128 544h32v32h-32z"/>
+    <path fill="#FFF" d="M160 544h32v32h-32z"/>
+  </g>
   <g id="color-pink">
     <path fill="#F29" d="M544 384h128v128H544V384z"/>
     <path fill="#D28" d="M640 480h32v32h-32v-32z"/>

@@ -137,4 +137,21 @@
   --color-pink-lighten-2: #F6B;
   --color-pink-lighten-3: #F8C;
   --color-pink-lighten-4: #FAD;
+
+  --color-bluegray: #789;
+  --color-bluegray-darken-8: #001;
+  --color-bluegray-darken-7: #012;
+  --color-bluegray-darken-6: #123;
+  --color-bluegray-darken-5: #234;
+  --color-bluegray-darken-4: #345;
+  --color-bluegray-darken-3: #456;
+  --color-bluegray-darken-2: #567;
+  --color-bluegray-darken-1: #678;
+  --color-bluegray-lighten-1: #89A;
+  --color-bluegray-lighten-2: #9AB;
+  --color-bluegray-lighten-3: #ABC;
+  --color-bluegray-lighten-4: #BCD;
+  --color-bluegray-lighten-5: #CDE;
+  --color-bluegray-lighten-6: #DEF;
+  --color-bluegray-lighten-7: #EFF;
 }
