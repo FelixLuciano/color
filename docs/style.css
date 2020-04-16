@@ -5,7 +5,8 @@ body {
   padding: 0;
   background-color: #111;
   color: #FFF;
-  font-family: "Lato", sans-serif;
+  /* font-family: "Lato", sans-serif; */
+  font-family: 'Manrope', sans-serif;
 }
 
 *, *:before, *:after {
@@ -22,22 +23,21 @@ body {
 }
 
 header, footer {
+  font-size: 1.5rem;
   line-height: 64px;
   padding: 0 1rem;
 }
 
-svg {
+header svg {
   margin-right: .4em;
   vertical-align: middle;
 }
-svg circle {
+header svg circle {
   transition: cx 300ms cubic-bezier(0, 0, .2, 1), r 200ms cubic-bezier(0, 0, .2, 1);
 }
 
 header a {
   color: #FFF;
-  font-size: 1.5rem;
-  line-height: 1em;
   text-decoration: none;
 }
 header a:hover {
