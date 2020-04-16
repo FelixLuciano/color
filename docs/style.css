@@ -12,14 +12,26 @@ body {
   box-sizing: border-box;
 }
 
+::selection {
+  background-color: #FFF;
+  color: #000;
+}
+::-moz-selection {
+  background-color: #FFF;
+  color: #000;
+}
+
 header, footer {
   line-height: 64px;
   padding: 0 1rem;
 }
 
 svg {
-  margin-right: .2em;
+  margin-right: .4em;
   vertical-align: middle;
+}
+svg circle {
+  transition: cx 300ms cubic-bezier(0, 0, .2, 1), r 200ms cubic-bezier(0, 0, .2, 1);
 }
 
 header a {
@@ -30,6 +42,13 @@ header a {
 }
 header a:hover {
   text-decoration: underline;
+}
+header a:hover svg circle, header a:active svg circle {
+  cx: 32;
+  mix-blend-mode: lighten;
+}
+header a:active svg circle {
+  r: 12;
 }
 
 main {
@@ -49,13 +68,21 @@ article::before {
   display: block;
   grid-area: 1 / 1 / 2 / 2;
 }
+article ::selection {
+  background-color: #000;
+  color: #FFF;
+}
+
+article ::-moz-selection {
+  background-color: #000;
+  color: #FFF;
+}
 article > div {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   grid-area: 1 / 1 / 2 / 2;
 }
-
 article > div > div {
   background-color: var(--color);
   color: #000;

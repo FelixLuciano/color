@@ -3,18 +3,18 @@ black: '#000'
 dark: '#111'
 
 gray:
-  default: '#777'
-  lighten-5: '#222'
-  lighten-4: '#333'
-  lighten-3: '#444'
-  lighten-2: '#555'
-  lighten-1: '#666'
-  darken-1: '#888'
-  darken-2: '#999'
-  darken-3: '#AAA'
-  darken-4: '#BBB'
-  darken-5: '#CCC'
-  darken-6: '#DDD'
+  default: '#888'
+  lighten-6: '#222'
+  lighten-5: '#333'
+  lighten-4: '#444'
+  lighten-3: '#555'
+  lighten-2: '#666'
+  lighten-1: '#777'
+  darken-1: '#999'
+  darken-2: '#AAA'
+  darken-3: '#BBB'
+  darken-4: '#CCC'
+  darken-5: '#DDD'
 
 light: '#EEE'
 white: '#FFF'
@@ -32,14 +32,14 @@ red:
 
 orange:
   default: '#F92'
-  darken-4: '#762'
-  darken-3: '#972'
-  darken-2: '#B82'
-  darken-1: '#DA2'
-  lighten-1: '#FA3'
-  lighten-2: '#FB4'
-  lighten-3: '#FC6'
-  lighten-4: '#FD8'
+  darken-4: '#752'
+  darken-3: '#962'
+  darken-2: '#B72'
+  darken-1: '#D82'
+  lighten-1: '#FA4'
+  lighten-2: '#FB6'
+  lighten-3: '#FC8'
+  lighten-4: '#FDA'
 
 yellow:
   default: '#FF2'
@@ -76,14 +76,14 @@ green:
 
 teal:
   default: '#2F9'
-  darken-4: '#276'
-  darken-3: '#297'
-  darken-2: '#2B8'
-  darken-1: '#2DA'
-  lighten-1: '#2FA'
-  lighten-2: '#4FB'
-  lighten-3: '#6FC'
-  lighten-4: '#8FD'
+  darken-4: '#275'
+  darken-3: '#296'
+  darken-2: '#2B7'
+  darken-1: '#2D8'
+  lighten-1: '#4FA'
+  lighten-2: '#6FB'
+  lighten-3: '#8FC'
+  lighten-4: '#AFD'
 
 cyan:
   default: '#2FF'
@@ -96,7 +96,7 @@ cyan:
   lighten-3: '#8FF'
   lighten-4: '#AFF'
 
-sky:
+lightblue:
   default: '#29F'
   darken-4: '#257'
   darken-3: '#269'
@@ -120,14 +120,14 @@ blue:
 
 purple:
   default: '#92F'
-  darken-4: '#627'
-  darken-3: '#729'
-  darken-2: '#82B'
-  darken-1: '#A2D'
-  lighten-1: '#A2F'
-  lighten-2: '#B4F'
-  lighten-3: '#C6F'
-  lighten-4: '#D8F'
+  darken-4: '#527'
+  darken-3: '#629'
+  darken-2: '#72B'
+  darken-1: '#82D'
+  lighten-1: '#A4F'
+  lighten-2: '#B6F'
+  lighten-3: '#C8F'
+  lighten-4: '#DAF'
 
 magenta:
   default: '#F2F'
