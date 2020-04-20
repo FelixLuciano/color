@@ -19,7 +19,7 @@ new Vue({
         blue: `#00${b}`,
         mix: `#${r}${g}${b}`
       }
-    }
+    },
   },
   
   methods: {
@@ -28,6 +28,24 @@ new Vue({
     },
     lim (val, min, max) {
       return Math.min(Math.max(val, min), max)
+    },
+    rand (min, max) {
+      return Math.round(Math.random() * (max - min) + min)
+    },
+    randomize () {
+      let count = 0
+
+      const randomize = () => {
+        count++
+        
+        this.red = this.rand(0, 15)
+        this.green = this.rand(0, 15)
+        this.blue = this.rand(0, 15)
+
+        if (count < 10)
+          requestAnimationFrame(randomize)
+      }
+      randomize()
     }
   },
 

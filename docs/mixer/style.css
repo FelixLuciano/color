@@ -71,13 +71,14 @@ main {
 section {
   display: grid;
   place-items: center;
-  grid-gap: 2rem
+  grid-gap: 1.5rem
 }
 
 strong {
   color: #EEE;
-  font-size: 2rem;
+  font-size: 2.25rem;
   letter-spacing: 0.2rem;
+  font-family: monospace;
 }
 
 div {
@@ -87,13 +88,16 @@ div {
   transition: background-color 100ms;
 }
 main section > div {
-  width: 200px;
-  height: 200px;
-  border: 2px solid #222;
+  width: 12rem;
+  height: 12rem;
+  border: 2px solid rgba(255,255,255,.1);
 }
 main section article > div {
-  width: 100px;
-  height: 100px;
+  width: 6rem;
+  height: 6rem;
+}
+main section article > div:nth-child(1), main section article > div:nth-child(2) {
+  border-right: 1px solid rgba(255, 255, 255,.1);
 }
 main section article > div:nth-child(1) {
   z-index: 2;
@@ -105,12 +109,27 @@ main section article > div:nth-child(2) {
 article {
   display: grid;
   margin: 0;
-  grid-template-columns: repeat(2, 60px) 100px;
+  grid-template-columns: repeat(2, 3.5rem) 6rem;
+}
+
+p {
+  margin: 0;
+  text-align: center;
 }
 
 em {
   color: #EEE;
   font-size: .8em;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: none;
+  color: #FFF;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 footer {
