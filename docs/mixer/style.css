@@ -6,6 +6,9 @@ body {
   background-color: #111;
   color: #FFF;
   font-family: 'Manrope', sans-serif;
+  display: grid;
+  place-items: center;
+  grid-gap: 1rem
 }
 
 *, *:before, *:after {
@@ -22,9 +25,13 @@ body {
 }
 
 header, footer {
+  width: 100%;
   font-size: 1.5rem;
   line-height: 64px;
   padding: 0 1rem;
+}
+header {
+  align-self: start;
 }
 
 header svg {
@@ -56,46 +63,57 @@ header a + a {
 }
 
 main {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(15rem, 1fr));
-  grid-gap: 0.5rem;
-  overflow: auto;
-}
-
-article {
-  display: grid;
-}
-article::before {
-  content: "";
-  padding-bottom: 100%;
-  display: block;
-  grid-area: 1 / 1 / 2 / 2;
-}
-article ::selection {
-  background-color: #000;
-  color: #FFF;
-}
-
-article ::-moz-selection {
-  background-color: #000;
-  color: #FFF;
-}
-article > div {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-area: 1 / 1 / 2 / 2;
-}
-article > div > div {
-  background-color: var(--color);
-  color: #000;
-  font-size: .9em;
-  font-weight: bold;
+  height: 100%;
   display: grid;
   place-items: center;
 }
 
+section {
+  display: grid;
+  place-items: center;
+  grid-gap: 2rem
+}
+
+strong {
+  color: #EEE;
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+}
+
+div {
+  background-color: var(--color);
+  border-radius: 50%;
+  cursor: n-resize;
+  transition: background-color 100ms;
+}
+main section > div {
+  width: 200px;
+  height: 200px;
+  border: 2px solid #222;
+}
+main section article > div {
+  width: 100px;
+  height: 100px;
+}
+main section article > div:nth-child(1) {
+  z-index: 2;
+}
+main section article > div:nth-child(2) {
+  z-index: 1;
+}
+
+article {
+  display: grid;
+  margin: 0;
+  grid-template-columns: repeat(2, 60px) 100px;
+}
+
+em {
+  color: #EEE;
+  font-size: .8em;
+}
+
 footer {
   font-size: .8em;
+  align-self: end;
 }
