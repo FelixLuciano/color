@@ -35,62 +35,40 @@ new Vue({
   directives: {
     slider: {
       bind (el, { value:key }, { context:$vue }) {
-        function init (event_0) {
-          event_0.preventDefault()
+        const hammertime = new Hammer(el)
 
-          const oldVal = key === 'mix' ? {
+        let oldVal = null
+
+        hammertime.get('pan').set({ threshold: 0 });
+
+        hammertime.on('panstart', event => {
+          oldVal = key === 'light' ? {
             red: $vue.red,
             green: $vue.green,
             blue: $vue.blue
           } : $vue[key]
+        })
 
-          function event(event) {
-            if (event.target === el )
-              handler(event, event_0)
+        hammertime.on('pan', (event) => {
+          event.preventDefault()
+          
+          const val = Math.round($vue.lim(event.deltaY / 15, -15, 15))
+
+          const newVal = key === 'light' ? {
+            red: $vue.lim(oldVal.red - val, 0, 15),
+            green: $vue.lim(oldVal.green - val, 0, 15),
+            blue: $vue.lim(oldVal.blue - val, 0, 15)
+          } : $vue.lim(oldVal - val, 0, 15)
+          
+          if (key === 'light') {
+            $vue.$set($vue, 'red', newVal.red)
+            $vue.$set($vue, 'green', newVal.green)
+            $vue.$set($vue, 'blue', newVal.blue)
           }
-      
-          function handler (e, e0) {
-            const { pageY } = e.type === 'touchmove' ? e.changedTouches[0] : e
-            const { pageY:pageY_0 } = e0.type === 'touchstart' ? e0.changedTouches[0] : e0
+          else $vue.$set($vue, key, newVal)
+        })
 
-            const length = pageY_0 - pageY
-            const val = Math.round($vue.lim(length / 15, -15, 15))
-
-            const newVal = key === 'mix' ? {
-              red: $vue.lim(oldVal.red + val, 0, 15),
-              green: $vue.lim(oldVal.green + val, 0, 15),
-              blue: $vue.lim(oldVal.blue + val, 0, 15)
-            } : $vue.lim(oldVal + val, 0, 15)
-            
-            if (key === 'mix') {
-              $vue.$set($vue, 'red', newVal.red)
-              $vue.$set($vue, 'green', newVal.green)
-              $vue.$set($vue, 'blue', newVal.blue)
-            }
-            else $vue.$set($vue, key, newVal)
-          }
-
-          // Mouse
-          function mouseHandlerOff () {
-            window.removeEventListener('mousemove', event, false)
-            window.removeEventListener('mouseup', mouseHandlerOff, false)
-          }
-
-          window.addEventListener('mousemove', event, false)
-          window.addEventListener('mouseup', mouseHandlerOff, false)
-
-          // Touch
-          function touchHandlerOff () {
-            window.removeEventListener('touchmove', event, false)
-            window.removeEventListener('touchend', touchHandlerOff, false)
-          }
-
-          window.addEventListener('touchmove', event, false)
-          window.addEventListener('touchend', touchHandlerOff, false)
-        }
-
-        el.addEventListener('mousedown', init)
-        el.addEventListener('touchstart', init)
+        el.addEventListener('touchstart', event => event.preventDefault())
       }
     }
   }

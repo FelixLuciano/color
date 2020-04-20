@@ -4,13 +4,15 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>tri mixer- 3 characters hexadecimal color picker</title>
+  <meta name=theme-color content=#111111>
+  <title>tri mixer - 3 characters hexadecimal color picker</title>
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2275%22 cy=%2250%22 r=%2225%22 fill=%22%2322F%22></circle><circle cx=%2250%22 cy=%2250%22 r=%2225%22 fill=%22%232F2%22></circle><circle cx=%2225%22 cy=%2250%22 r=%2225%22 fill=%22%23F22%22></circle></svg>">
   <link rel="stylesheet" href="./style.css">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js" integrity="sha256-ngFW3UnAN0Tnm76mDuu7uUtYEcG3G5H1+zioJw3t+68=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" integrity="sha256-eVNjHw5UeU0jUqPPpZHAkU1z4U+QFBBY488WvueTm88=" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -31,7 +33,7 @@
     <section>
       <strong title='Color hex code'>{{ color.mix }}</strong>
 
-      <div :style="{'--color': color.mix}" v-slider="'mix'" title="Adjust brightness"></div>
+      <div :style="{'--color': color.mix}" v-slider="'light'" title="Adjust brightness"></div>
 
       <article>
         <div :style="{'--color': color.red}" v-slider="'red'" title="Adjust Red"></div>
