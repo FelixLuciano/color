@@ -30,23 +30,42 @@
   
   
   <main>
-    <section>
-      <strong title='Color hex code'>{{ color.mix }}</strong>
 
-      <div :style="{'--color': color.mix}" v-slider="'light'" title="Adjust brightness"></div>
+    <section>
+      <strong title='Color hex code'>{{ colorHex.mix }}</strong>
+
+      <div :style="colorStyle" v-slider="'light'" title="Adjust brightness"></div>
 
       <article>
-        <div :style="{'--color': color.red}" v-slider="'red'" title="Adjust Red"></div>
-        <div :style="{'--color': color.green}" v-slider="'green'" title="Adjust Green"></div>
-        <div :style="{'--color': color.blue}" v-slider="'blue'" title="Adjust Blue"></div>
+        <div :style="{'--color': colorHex.red}" v-slider="'red'" title="Adjust Red"></div>
+        <div :style="{'--color': colorHex.green}" v-slider="'green'" title="Adjust Green"></div>
+        <div :style="{'--color': colorHex.blue}" v-slider="'blue'" title="Adjust Blue"></div>
       </article>
 
       <p>
-        <em>Drag up/down to adjust</em>
+        <em>Slide up/down to adjust</em>
         <br>
         <button @click='randomize'>Randomize</button>
       </p>
     </section>
+
+    <aside>
+      <article>
+        <button v-for="color, i in myColors" @click="setColor(color)" v-press @press="removeColor(i)" :style="getColorStyle(color)" :title="'Open color ' + getColorHex(color).mix">{{ getColorHex(color).mix }}</button>
+
+        <button @click="saveColor" title="Save color">
+          <svg width="16" height="16">
+            <rect x="7" width="2" height="16" fill="#FFF"></rect>
+            <rect y="7" width="16" height="2" fill="#FFF"></rect>
+          </svg>
+        </button>
+
+        <div v-for="_ in emptySlots"></div>
+      </article>
+      
+      <em>Press hold to delete</em>
+    </aside>
+
   </main>
 
 
