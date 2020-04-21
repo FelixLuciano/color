@@ -6,6 +6,9 @@ body {
   background-color: #111;
   color: #FFF;
   font-family: 'Manrope', sans-serif;
+  grid-template-rows: 64px auto 64px;
+  display: grid;
+  place-items: center;
 }
 
 *, *:before, *:after {
@@ -21,39 +24,55 @@ body {
   color: #000;
 }
 
-header, footer {
-  font-size: 1.5rem;
-  line-height: 64px;
-  padding: 0 1rem;
+
+a {
+  color: #FFF;
 }
 
-header svg {
+
+body > header, footer {
+  width: 100%;
+  line-height: 4rem;
+  padding: 0 1rem;
+}
+body > header {
+  font-size: 1.5rem;
+  align-self: start;
+}
+body > footer {
+  font-size: .8em;
+  align-self: end;
+}
+
+
+body > header svg {
   margin-right: .4em;
   margin-bottom: .1em;
   vertical-align: middle;
 }
-header svg circle {
+body > header svg circle {
   transition: cx 300ms cubic-bezier(0, 0, .2, 1), r 200ms cubic-bezier(0, 0, .2, 1);
 }
 
-header a {
+body > header a {
   color: #FFF;
   text-decoration: none;
 }
-header a:hover {
+body > header a:hover {
   text-decoration: underline;
 }
-header a:hover svg circle, header a:active svg circle {
+body > header a:hover svg circle, header a:active svg circle {
   cx: 32;
   mix-blend-mode: lighten;
 }
-header a:active svg circle {
+body > header a:active svg circle {
   r: 12;
 }
-header a + a {
+body > header a + a {
   font-size: .8em;
   float: right;
 }
+
 
 main {
   width: 100%;
@@ -94,8 +113,4 @@ article > div > div {
   font-weight: bold;
   display: grid;
   place-items: center;
-}
-
-footer {
-  font-size: .8em;
 }

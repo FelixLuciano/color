@@ -25,6 +25,10 @@ body {
 }
 
 
+a {
+  color: #FFF;
+}
+
 em {
   color: #EEE;
   font-size: .8em;
@@ -64,9 +68,7 @@ body > header svg {
 body > header svg circle {
   transition: cx 300ms cubic-bezier(0, 0, .2, 1), r 200ms cubic-bezier(0, 0, .2, 1);
 }
-
 body > header a {
-  color: #FFF;
   text-decoration: none;
 }
 body > header a:hover {
