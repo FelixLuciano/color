@@ -1,16 +1,16 @@
 {
     "name": "tri",
     "short_name": "tri",
-	"description" : "3 characters hexadecimal color palette",
-	"lang" : "English",
+    "description" : "3 characters hexadecimal color palette",
+    "lang" : "English",
     "icons": [
         {
-            "src": "/tri/icons/android-chrome-192x192.png",
+            "src": "/tri/docs/icons/android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "/tri/icons/android-chrome-512x512.png",
+            "src": "/tri/docs/icons/android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
@@ -19,5 +19,5 @@
     "background_color": "#111111",
     "start_url": "https://felixluciano.github.io/tri/",
     "display": "standalone",
-	"orientation" : "any"
+    "orientation" : "any"
 }
