@@ -33,7 +33,7 @@
     ],
     "theme_color": "#111111",
     "background_color": "#111111",
-    "start_url": "https://felixluciano.github.io/tri/mixer/",
+    "start_url": "https://felixluciano.github.io/tri/",
     "display": "standalone",
     "orientation" : "any"
 }
