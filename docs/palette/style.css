@@ -6,31 +6,31 @@ main {
   overflow: auto;
 }
 
-article {
+main > article {
   display: grid;
 }
-article::before {
+main > article::before {
   content: "";
   padding-bottom: 100%;
   display: block;
   grid-area: 1 / 1 / 2 / 2;
 }
-article ::selection {
+main > article ::selection {
   background-color: #000;
   color: #FFF;
 }
 
-article ::-moz-selection {
+main > article ::-moz-selection {
   background-color: #000;
   color: #FFF;
 }
-article > div {
+main > article > div {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
   grid-area: 1 / 1 / 2 / 2;
 }
-article > div > div {
+main > article > div > div {
   background-color: var(--color);
   color: #000;
   font-size: .9em;

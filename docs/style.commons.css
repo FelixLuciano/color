@@ -6,7 +6,7 @@ body {
   background-color: #111;
   color: #FFF;
   font-family: 'Manrope', sans-serif;
-  grid-template-rows: 64px auto 64px;
+  grid-template-rows: 64px auto 48px;
   display: grid;
   place-items: center;
 }
@@ -25,8 +25,8 @@ body {
 }
 
 
-a {
-  color: #FFF;
+a, a:active, a:visited {
+  color: currentColor;
 }
 
 em {
@@ -40,32 +40,33 @@ button {
   padding: 0;
   border: none;
   background: none;
-  color: #FFF;
+  color: currentColor;
   cursor: pointer;
 }
 
 
 body > header, footer {
   width: 100%;
-  line-height: 4rem;
   padding: 0 1rem;
 }
 body > header {
   font-size: 1.5rem;
+  line-height: 4rem;
   align-self: start;
 }
 body > footer {
   font-size: .8em;
+  line-height: 3rem;
   align-self: end;
 }
 
 
-body > header svg {
+body > header a:first-child svg {
   margin-right: .4em;
   margin-bottom: .1em;
   vertical-align: middle;
 }
-body > header svg circle {
+body > header a:first-child svg circle {
   transition: cx 300ms cubic-bezier(0, 0, .2, 1), r 200ms cubic-bezier(0, 0, .2, 1);
 }
 body > header a {
@@ -74,14 +75,17 @@ body > header a {
 body > header a:hover {
   text-decoration: underline;
 }
-body > header a:hover svg circle, header a:active svg circle {
+
+body > header a:first-child:hover svg circle,
+body > header a:first-child:active svg circle {
   cx: 32;
   mix-blend-mode: lighten;
 }
-body > header a:active svg circle {
+body > header a:first-child:active svg circle {
   r: 12;
 }
-body > header a + a {
+
+body > header a:nth-child(2) {
   font-size: .8em;
   float: right;
 }

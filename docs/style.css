@@ -49,7 +49,8 @@ main > section > article div {
   width: 6rem;
   height: 6rem;
 }
-main > section > article div:nth-child(1), main > section > article div:nth-child(2) {
+main > section > article div:nth-child(1),
+main > section > article div:nth-child(2) {
   border-right: 1px solid rgba(255, 255, 255,.1);
 }
 main > section > article div:nth-child(1) {
@@ -63,19 +64,19 @@ main > section > p {
   margin: 0;
   text-align: center;
 }
-section > p > button {
+main > section > p > button {
   text-decoration: underline;
 }
 
 
-aside {
+main > aside {
   padding-right: 1.4rem;
   text-align: center;
   display: grid;
   grid-gap: .4rem;
 }
 
-aside > article {
+main > aside > article {
   width: 100%;
   display: grid;
   grid-gap: .2em;
@@ -85,7 +86,7 @@ aside > article {
   justify-content: start;
   overflow: auto;
 }
-aside > article button {
+main > aside > article button {
   width: 4rem;
   height: 4rem;
   background-color: var(--color);
@@ -94,7 +95,7 @@ aside > article button {
   font-weight: bold;
   font-family: monospace;
 }
-aside > article button:last-of-type {
+main > aside > article button:last-of-type {
   width: 3rem;
   height: 3rem;
   margin: .5rem;
@@ -102,11 +103,11 @@ aside > article button:last-of-type {
   border: none;
   font-size: 1.5em;
 }
-aside > article button:last-of-type svg {
+main > aside > article button:last-of-type svg {
   margin-top: .2em;
 }
 
-aside > article div {
+main > aside > article div {
   width: 1.5rem;
   height: 1.5rem;
   margin: 1.25rem;
