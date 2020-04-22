@@ -1,116 +1,115 @@
-body {
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  background-color: #111;
-  color: #FFF;
-  font-family: 'Manrope', sans-serif;
-  grid-template-rows: 64px auto 64px;
-  display: grid;
-  place-items: center;
-}
-
-*, *:before, *:after {
-  box-sizing: border-box;
-}
-
-::selection {
-  background-color: #FFF;
-  color: #000;
-}
-::-moz-selection {
-  background-color: #FFF;
-  color: #000;
-}
-
-
-a {
-  color: #FFF;
-}
-
-
-body > header, footer {
-  width: 100%;
-  line-height: 4rem;
-  padding: 0 1rem;
-}
-body > header {
-  font-size: 1.5rem;
-  align-self: start;
-}
-body > footer {
-  font-size: .8em;
-  align-self: end;
-}
-
-
-body > header svg {
-  margin-right: .4em;
-  margin-bottom: .1em;
-  vertical-align: middle;
-}
-body > header svg circle {
-  transition: cx 300ms cubic-bezier(0, 0, .2, 1), r 200ms cubic-bezier(0, 0, .2, 1);
-}
-
-body > header a {
-  color: #FFF;
-  text-decoration: none;
-}
-body > header a:hover {
-  text-decoration: underline;
-}
-body > header a:hover svg circle, header a:active svg circle {
-  cx: 32;
-  mix-blend-mode: lighten;
-}
-body > header a:active svg circle {
-  r: 12;
-}
-body > header a + a {
-  font-size: .8em;
-  float: right;
-}
-
-
 main {
-  width: 100%;
+  max-width: 100%;
+  height: 100%;
   display: grid;
-  grid-template-columns: repeat(4, minmax(15rem, 1fr));
-  grid-gap: 0.5rem;
+  grid-template-columns: 32rem 18rem;
+  align-content: center;
   overflow: auto;
 }
-
-article {
-  display: grid;
-}
-article::before {
-  content: "";
-  padding-bottom: 100%;
-  display: block;
-  grid-area: 1 / 1 / 2 / 2;
-}
-article ::selection {
-  background-color: #000;
-  color: #FFF;
+@media (max-width: 50rem) {
+  main {
+    grid-template-columns: calc(100vw - 2rem) 18rem;
+  }
 }
 
-article ::-moz-selection {
-  background-color: #000;
-  color: #FFF;
-}
-article > div {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-area: 1 / 1 / 2 / 2;
-}
-article > div > div {
-  background-color: var(--color);
-  color: #000;
-  font-size: .9em;
-  font-weight: bold;
+main > section {
+  width: 100%;
   display: grid;
   place-items: center;
+  grid-gap: 1.5rem;
+  place-self: center;
+}
+
+main > section > strong {
+  color: #EEE;
+  font-size: 2.25rem;
+  letter-spacing: 0.2rem;
+  font-family: monospace;
+}
+
+main > section div {
+  background-color: var(--color);
+  border-radius: 50%;
+  cursor: n-resize;
+  transition: background-color 100ms;
+}
+main > section > div {
+  width: 12rem;
+  height: 12rem;
+  border: 2px solid transparent;
+}
+
+main > section > article {
+  display: grid;
+  margin: 0;
+  grid-template-columns: repeat(2, 3.5rem) 6rem;
+}
+
+main > section > article div {
+  width: 6rem;
+  height: 6rem;
+}
+main > section > article div:nth-child(1), main > section > article div:nth-child(2) {
+  border-right: 1px solid rgba(255, 255, 255,.1);
+}
+main > section > article div:nth-child(1) {
+  z-index: 2;
+}
+main > section > article div:nth-child(2) {
+  z-index: 1;
+}
+
+main > section > p {
+  margin: 0;
+  text-align: center;
+}
+section > p > button {
+  text-decoration: underline;
+}
+
+
+aside {
+  padding-right: 1.4rem;
+  text-align: center;
+  display: grid;
+  grid-gap: .4rem;
+}
+
+aside > article {
+  width: 100%;
+  display: grid;
+  grid-gap: .2em;
+  grid-template-rows: repeat(6, 4rem);
+  grid-auto-flow: column;
+  align-content: start;
+  justify-content: start;
+  overflow: auto;
+}
+aside > article button {
+  width: 4rem;
+  height: 4rem;
+  background-color: var(--color);
+  border: 1px solid transparent;
+  border-radius: 50%;
+  font-weight: bold;
+  font-family: monospace;
+}
+aside > article button:last-of-type {
+  width: 3rem;
+  height: 3rem;
+  margin: .5rem;
+  background-color: #444;
+  border: none;
+  font-size: 1.5em;
+}
+aside > article button:last-of-type svg {
+  margin-top: .2em;
+}
+
+aside > article div {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 1.25rem;
+  background-color: #222;
+  border-radius: 50%;
 }

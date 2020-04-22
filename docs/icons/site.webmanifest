@@ -1,7 +1,7 @@
 {
     "name": "tri",
     "short_name": "tri",
-    "description" : "3 characters hexadecimal color palette",
+    "description" : "3 characters hexadecimal color system",
     "categories": ["utilities", "productivity", "entertainment"],
     "lang" : "en-US",
     "dir": "ltr",

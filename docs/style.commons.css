@@ -1,0 +1,87 @@
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: #111;
+  color: #FFF;
+  font-family: 'Manrope', sans-serif;
+  grid-template-rows: 64px auto 64px;
+  display: grid;
+  place-items: center;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: #FFF;
+  color: #000;
+}
+::-moz-selection {
+  background-color: #FFF;
+  color: #000;
+}
+
+
+a {
+  color: #FFF;
+}
+
+em {
+  color: #EEE;
+  font-size: .8em;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #FFF;
+  cursor: pointer;
+}
+
+
+body > header, footer {
+  width: 100%;
+  line-height: 4rem;
+  padding: 0 1rem;
+}
+body > header {
+  font-size: 1.5rem;
+  align-self: start;
+}
+body > footer {
+  font-size: .8em;
+  align-self: end;
+}
+
+
+body > header svg {
+  margin-right: .4em;
+  margin-bottom: .1em;
+  vertical-align: middle;
+}
+body > header svg circle {
+  transition: cx 300ms cubic-bezier(0, 0, .2, 1), r 200ms cubic-bezier(0, 0, .2, 1);
+}
+body > header a {
+  text-decoration: none;
+}
+body > header a:hover {
+  text-decoration: underline;
+}
+body > header a:hover svg circle, header a:active svg circle {
+  cx: 32;
+  mix-blend-mode: lighten;
+}
+body > header a:active svg circle {
+  r: 12;
+}
+body > header a + a {
+  font-size: .8em;
+  float: right;
+}

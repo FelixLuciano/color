@@ -3,8 +3,12 @@
 
 ### INTRODUCTION
 
-**tri** is 3 hexadecimal characters color palette.
+**tri** is a 3 hexadecimal characters color system.
 
-### COLORS
+### APP
+
+![tri app](assets/app.svg)
+
+### COLOR PALETTE
 
 ![Color palette](assets/palette.svg)
