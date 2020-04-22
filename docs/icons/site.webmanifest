@@ -2,7 +2,9 @@
     "name": "tri",
     "short_name": "tri",
     "description" : "3 characters hexadecimal color palette",
-    "lang" : "English",
+    "categories": ["utilities", "productivity", "entertainment"],
+    "lang" : "en-US",
+    "dir": "ltr",
     "icons": [
         {
             "src": "/tri/icons/android-chrome-192x192.png",
