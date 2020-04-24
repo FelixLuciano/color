@@ -16,13 +16,13 @@
   <link async rel="apple-touch-icon" sizes="180x180" href="/tri/icons/apple-touch-icon.png">
   <link async rel="icon" type="image/png" sizes="32x32" href="/tri/icons/favicon-32x32.png">
   <link async rel="icon" type="image/png" sizes="16x16" href="/tri/icons/favicon-16x16.png">
-  <link async rel="manifest" href="/tri/icons/site.webmanifest">
+  <link async rel="preload manifest" href="/tri/icons/site.webmanifest">
   <link async rel="mask-icon" href="/tri/icons/safari-pinned-tab.svg" color="#111111">
   <link async rel="shortcut icon" href="/tri/icons/favicon.ico">
 
-  <link rel="stylesheet" href="./style.commons.css">
-  <link rel="stylesheet" href="./style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap" rel="stylesheet">
+  <link async rel="stylesheet" href="./style.commons.css">
+  <link async rel="stylesheet" href="./style.css">
+  <link async rel="preconnect stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js" integrity="sha256-ngFW3UnAN0Tnm76mDuu7uUtYEcG3G5H1+zioJw3t+68=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" integrity="sha256-eVNjHw5UeU0jUqPPpZHAkU1z4U+QFBBY488WvueTm88=" crossorigin="anonymous"></script>
@@ -55,7 +55,7 @@
         @keyup.down="addColor('light', -1)"
         @keyup.ctrl.down="setColor('light', 0)"
         title="Adjust brightness"
-        tabindex='1'
+        tabindex='0'
       ></div>
 
       <article>
@@ -68,7 +68,7 @@
           @keyup.down="addColor(tone, -1)"
           @keyup.ctrl.down="setColor(tone, 0)"
           :title="`Adjust ${tone}`"
-          tabindex='1'
+          tabindex='0'
           ></div>
         </template>
       </article>
