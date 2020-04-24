@@ -30,14 +30,14 @@ new Vue({
 
   watch: {
     myColors (val) {
-      window.localStorage.setItem('myColors', val.join('|'))
+      window.localStorage.setItem('myColors', val.join('|') )
     }
   },
 
 
   created () {
     const myColors = window.localStorage.getItem('myColors')
-
+    
     if (myColors)
       this.myColors = myColors.split(/\|/g).map(a => a.split(/\,/g).map(a => parseInt(a)))
 
@@ -59,9 +59,7 @@ new Vue({
     },
 
     getColorHex (color) {
-      const r = this.numToHex(color[0])
-      const g = this.numToHex(color[1])
-      const b = this.numToHex(color[2])
+      const [ r, g, b ] = color.map(c => c.toString(16).toUpperCase())
       
       return {
         red: `#${r}00`,
@@ -71,23 +69,48 @@ new Vue({
       }
     },
 
+    setColor (tone, value) {
+      if (tone === 'light') {
+        this.setColor('red', value)
+        this.setColor('green', value)
+        this.setColor('blue', value)
+      }
+      else if (tone === 'color') this.color = value
+      else this.color[tone] = Math.min(Math.max(value, 0), 15)
+    },
+
+    addColor (tone, amount, base) {
+      if (tone === 'light') {
+        if (base === undefined) base = this.color
+        
+        this.addColor('red', amount, base.red)
+        this.addColor('green', amount, base.green)
+        this.addColor('blue', amount, base.blue)
+      }
+      else {
+        if (base === undefined) base = this.color[tone]
+
+        this.setColor(tone, base + amount)
+      }
+    },
+
     randomize () {
       (function randomize (count = 0) {
-        this.color = {
-          red: this.rand(0, 15),
-          green: this.rand(0, 15),
-          blue: this.rand(0, 15)
-        }
+        this.setColor('color', {
+          red: Math.round(Math.random() * 15),
+          green: Math.round(Math.random() * 15),
+          blue: Math.round(Math.random() * 15)
+        })
 
         if (count < 8)
           requestAnimationFrame(() => randomize.call(this, count + 1))
       }).call(this)
     },
 
-    setColor ([ red, green, blue ]) {
-      this.color = { red, green, blue }
+    openColor ([ red, green, blue ]) {
+      this.setColor('color', { red, green, blue })
 
-      document.querySelector('main').scrollTo({
+      this.$refs.main.scrollTo({
         left: 0,
         behavior: 'smooth'
       })
@@ -97,16 +120,6 @@ new Vue({
     },
     removeColor (index) {
       this.$delete(this.myColors, index)
-    },
-
-    numToHex (num) {
-      return num.toString(16).toUpperCase()
-    },
-    lim (val, min, max) {
-      return Math.min(Math.max(val, min), max)
-    },
-    rand (min, max) {
-      return Math.round(Math.random() * (max - min) + min)
     }
   },
 
@@ -116,25 +129,20 @@ new Vue({
       bind (el, { value:key }, { context:$vue }) {
         const hammertime = new Hammer(el)
 
-        let oldVal = null
+        let base = null
 
         hammertime.get('pan').set({ threshold: 0 });
 
-        hammertime.on('panstart', () => oldVal = Object.assign({}, $vue.color))
+        hammertime.on('panstart', () => {
+          base = key === 'light' ? Object.assign({}, $vue.color) : $vue.color[key]
+        })
 
         hammertime.on('pan', (event) => {
           event.preventDefault()
           
-          const val = Math.round($vue.lim(event.deltaY / 20, -15, 15))
+          const val = -Math.round(event.deltaY / 20)
 
-          const newVal = key === 'light' ? {
-            red: $vue.lim(oldVal.red - val, 0, 15),
-            green: $vue.lim(oldVal.green - val, 0, 15),
-            blue: $vue.lim(oldVal.blue - val, 0, 15)
-          } : $vue.lim(oldVal[key] - val, 0, 15)
-          
-          if (key === 'light') $vue.$set($vue, 'color', newVal)
-          else $vue.$set($vue.color, key, newVal)
+          $vue.addColor(key, val, base)
         })
 
         el.addEventListener('touchstart', event => event.preventDefault())
@@ -145,17 +153,11 @@ new Vue({
       bind (el, binding, vnode) {
         const hammertime = new Hammer(el)
 
-        function emit (vnode, name, data) {
+        hammertime.on('pressup', (event) => {
           const handlers = (vnode.data && vnode.data.on) || (vnode.componentOptions && vnode.componentOptions.listeners)
 
-          if (handlers && handlers[name])
-            handlers[name].fns(data)
-        }
-
-        hammertime.get('press').set({ time: 450 });
-
-        hammertime.on('pressup', (event) => {
-          emit(vnode, 'press', event)
+          if (handlers && handlers['press'])
+            handlers['press'].fns(event)
         })
       }
     }

@@ -42,17 +42,35 @@
   </header>
   
   
-  <main>
+  <main ref='main'>
 
     <section>
       <strong title='Color hex code'>{{ colorHex.mix }}</strong>
 
-      <div :style="colorStyle" v-slider="'light'" title="Adjust brightness"></div>
+      <div
+        :style="colorStyle"
+        v-slider="'light'"
+        @keyup.up="addColor('light', 1)"
+        @keyup.ctrl.up="setColor('light', 15)"
+        @keyup.down="addColor('light', -1)"
+        @keyup.ctrl.down="setColor('light', 0)"
+        title="Adjust brightness"
+        tabindex='1'
+      ></div>
 
       <article>
-        <div :style="{'--color': colorHex.red}" v-slider="'red'" title="Adjust Red"></div>
-        <div :style="{'--color': colorHex.green}" v-slider="'green'" title="Adjust Green"></div>
-        <div :style="{'--color': colorHex.blue}" v-slider="'blue'" title="Adjust Blue"></div>
+        <template v-for="tone in ['red', 'green', 'blue']">
+          <div
+          :style="{'--color': colorHex[tone]}"
+          v-slider="tone"
+          @keyup.up="addColor(tone, 1)"
+          @keyup.ctrl.up="setColor(tone, 15)"
+          @keyup.down="addColor(tone, -1)"
+          @keyup.ctrl.down="setColor(tone, 0)"
+          :title="`Adjust ${tone}`"
+          tabindex='1'
+          ></div>
+        </template>
       </article>
 
       <p>
@@ -64,7 +82,19 @@
 
     <aside>
       <article>
-        <button v-for="color, i in myColors" @click="setColor(color)" v-press @press="removeColor(i)" :style="getColorStyle(color)" :title="'Open color ' + getColorHex(color).mix">{{ getColorHex(color).mix }}</button>
+
+        <template v-for="color, i in myColors">
+          <button
+            @click="openColor(color)"
+            v-press @press="removeColor(i)"
+            @keyup.ctrl.space="removeColor(i)"
+            :style="getColorStyle(color)"
+            :title="'Open color ' + getColorHex(color).mix"
+            :key="i"
+          >
+            {{ getColorHex(color).mix }}
+          </button>
+        </template>
 
         <button @click="saveColor" title="Save color">
           <svg width="16" height="16">

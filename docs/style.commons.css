@@ -11,7 +11,9 @@ body {
   place-items: center;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -25,7 +27,9 @@ body {
 }
 
 
-a, a:active, a:visited {
+a,
+a:active,
+a:visited {
   color: currentColor;
 }
 
