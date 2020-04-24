@@ -18,12 +18,6 @@ new Vue({
 
     colorStyle () {
       return this.getColorStyle([this.color.red, this.color.green, this.color.blue])
-    },
-
-    emptySlots () {
-      const { length } = this.myColors
-
-      return Math.max(5, 23 - 6 * Math.floor(length / 6)) - length % 6
     }
   },
 

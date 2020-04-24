@@ -79,6 +79,7 @@ main > aside {
 main > aside > article {
   width: 100%;
   display: grid;
+  background: radial-gradient(#222 24%, transparent 26%) -.1rem -.1rem / 4.2rem 4.2rem repeat local;
   grid-gap: .2em;
   grid-template-rows: repeat(6, 4rem);
   grid-auto-flow: column;
@@ -105,12 +106,4 @@ main > aside > article button:last-of-type {
 }
 main > aside > article button:last-of-type svg {
   margin-top: .2em;
-}
-
-main > aside > article div {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin: 1.25rem;
-  background-color: #222;
-  border-radius: 50%;
 }
