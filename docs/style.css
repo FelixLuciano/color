@@ -15,15 +15,15 @@ main {
 main > section {
   width: 100%;
   display: grid;
-  place-items: center;
   grid-gap: 1.5rem;
+  place-items: center;
   place-self: center;
 }
 
 main > section > strong {
   color: #EEE;
-  font-size: 2.25rem;
-  letter-spacing: 0.2rem;
+  font-size: 2.25em;
+  letter-spacing: 0.2em;
   font-family: monospace;
 }
 
@@ -80,7 +80,7 @@ main > aside > article {
   width: 100%;
   display: grid;
   background: radial-gradient(#222 24%, transparent 26%) -.1rem -.1rem / 4.2rem 4.2rem repeat local;
-  grid-gap: .2em;
+  grid-gap: .2rem;
   grid-template-rows: repeat(6, 4rem);
   grid-auto-flow: column;
   align-content: start;
@@ -102,8 +102,9 @@ main > aside > article button:last-of-type {
   margin: .5rem;
   background-color: #444;
   border: none;
-  font-size: 1.5em;
 }
 main > aside > article button:last-of-type svg {
-  margin-top: .2em;
+  width: 1rem;
+  height: 1rem;
+  margin-top: .2rem;
 }
