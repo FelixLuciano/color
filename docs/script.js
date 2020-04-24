@@ -96,7 +96,7 @@ new Vue({
           blue: Math.round(Math.random() * 15)
         })
 
-        if (count < 8)
+        if (count < 8 && requestAnimationFrame)
           requestAnimationFrame(() => randomize.call(this, count + 1))
       }).call(this)
     },
