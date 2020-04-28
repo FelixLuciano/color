@@ -39,6 +39,14 @@ main > section > div {
   border: 2px solid transparent;
 }
 
+main > section > p > em svg, main > aside > em svg {
+  width: 1.5em;
+  height: 1.5em;
+  margin-bottom: -.3em;
+  margin-left: .2em;
+  fill: currentcolor;
+}
+
 main > section > article {
   display: grid;
   margin: 0;
@@ -104,7 +112,8 @@ main > aside > article button:last-of-type {
   border: none;
 }
 main > aside > article button:last-of-type svg {
-  width: 1rem;
-  height: 1rem;
-  margin-top: .2rem;
+  width: 24px;
+  height: 24px;
+  margin-top: .3rem;
+  fill: currentcolor;
 }
