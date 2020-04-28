@@ -110,3 +110,11 @@ body > header a:nth-child(2) {
   font-size: .8em;
   float: right;
 }
+
+body > header a:nth-child(2) svg {
+  width: 1.25em;
+  height: 1.25em;
+  margin-bottom: -.2em;
+  margin-left: .3em;
+  fill: currentcolor;
+}
