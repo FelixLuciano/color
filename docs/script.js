@@ -85,17 +85,15 @@ new Vue({
       this.transitionColor(color)
     },
 
-    transitionColor ([ red, green, blue ]) {
-      const redAmount = -Math.sign(this.color[0] - red)
-      const greenAmount = -Math.sign(this.color[1] - green)
-      const blueAmount = -Math.sign(this.color[2] - blue)
+    transitionColor (color) {
+      const [ red, green, blue ] = this.color.map((v, i) => -Math.sign(v - color[i]))
 
-      this.addColor('red', redAmount)
-      this.addColor('green', greenAmount)
-      this.addColor('blue', blueAmount)
+      this.addColor('red', red)
+      this.addColor('green', green)
+      this.addColor('blue', blue)
 
-      if (redAmount || greenAmount || blueAmount)
-        this.$frameRequest = requestAnimationFrame(() => this.transitionColor([ red, green, blue ]))
+      if (red || green || blue)
+        this.$frameRequest = requestAnimationFrame(() => this.transitionColor(color))
     },
 
     randomize () {
