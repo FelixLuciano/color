@@ -2,22 +2,19 @@ new Vue({
   el: 'main',
   
   data: {
-    color: {
-      red: 15,
-      green: 15,
-      blue: 15
-    },
-    myColors: []
+    color: [ 15, 15, 15 ],
+    myColors: [],
+    $frameRequest: null
   },
   
 
   computed: {
     colorHex () {
-      return this.getColorHex([this.color.red, this.color.green, this.color.blue])
+      return this.getColorHex(this.color)
     },
 
     colorStyle () {
-      return this.getColorStyle([this.color.red, this.color.green, this.color.blue])
+      return this.getColorStyle(this.color)
     }
   },
 
@@ -64,45 +61,53 @@ new Vue({
     },
 
     setColor (tone, value) {
-      if (tone === 'light') {
-        this.setColor('red', value)
-        this.setColor('green', value)
-        this.setColor('blue', value)
-      }
-      else if (tone === 'color') this.color = value
-      else this.color[tone] = Math.min(Math.max(value, 0), 15)
+      if (tone === 'color') this.animateColor(value)
+      else this.$set(this.color, this.getColorKey(tone), Math.min(Math.max(value, 0), 15))
     },
 
     addColor (tone, amount, base) {
       if (tone === 'light') {
         if (base === undefined) base = this.color
         
-        this.addColor('red', amount, base.red)
-        this.addColor('green', amount, base.green)
-        this.addColor('blue', amount, base.blue)
+        this.addColor('red', amount, base[0])
+        this.addColor('green', amount, base[1])
+        this.addColor('blue', amount, base[2])
       }
       else {
-        if (base === undefined) base = this.color[tone]
-
+        if (base === undefined) base = this.color[this.getColorKey(tone)]
         this.setColor(tone, base + amount)
       }
     },
 
-    randomize () {
-      (function randomize (count = 0) {
-        this.setColor('color', {
-          red: Math.round(Math.random() * 15),
-          green: Math.round(Math.random() * 15),
-          blue: Math.round(Math.random() * 15)
-        })
 
-        if (count < 8 && requestAnimationFrame)
-          requestAnimationFrame(() => randomize.call(this, count + 1))
-      }).call(this)
+    animateColor (color) {
+      cancelAnimationFrame(this.$frameRequest)
+      this.transitionColor(color)
     },
 
-    openColor ([ red, green, blue ]) {
-      this.setColor('color', { red, green, blue })
+    transitionColor ([ red, green, blue ]) {
+      const redAmount = -Math.sign(this.color[0] - red)
+      const greenAmount = -Math.sign(this.color[1] - green)
+      const blueAmount = -Math.sign(this.color[2] - blue)
+
+      this.addColor('red', redAmount)
+      this.addColor('green', greenAmount)
+      this.addColor('blue', blueAmount)
+
+      if (redAmount || greenAmount || blueAmount)
+        this.$frameRequest = requestAnimationFrame(() => this.transitionColor([ red, green, blue ]))
+    },
+
+    randomize () {
+      this.setColor('color', [
+        Math.round(Math.random() * 15),
+        Math.round(Math.random() * 15),
+        Math.round(Math.random() * 15)
+      ])
+    },
+
+    openColor (color) {
+      this.setColor('color', color)
 
       this.$refs.main.scrollTo({
         left: 0,
@@ -110,10 +115,15 @@ new Vue({
       })
     },
     saveColor () {
-      this.myColors.push([this.color.red, this.color.green, this.color.blue])
+      this.myColors.push([ ...this.color ])
     },
     removeColor (index) {
       this.$delete(this.myColors, index)
+    },
+
+
+    getColorKey (name) {
+      return ({ red: 0, green: 1, blue: 2 })[name]
     }
   },
 
@@ -128,7 +138,7 @@ new Vue({
         hammertime.get('pan').set({ threshold: 0 });
 
         hammertime.on('panstart', () => {
-          base = key === 'light' ? Object.assign({}, $vue.color) : $vue.color[key]
+          base = key === 'light' ? Object.assign({}, $vue.color) : $vue.color[$vue.getColorKey(key)]
         })
 
         hammertime.on('pan', (event) => {

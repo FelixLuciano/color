@@ -31,7 +31,6 @@ main > section div {
   background-color: var(--color);
   border-radius: 50%;
   cursor: n-resize;
-  transition: background-color 100ms;
 }
 main > section > div {
   width: 12rem;
