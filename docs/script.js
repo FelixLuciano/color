@@ -119,6 +119,18 @@ new Vue({
       this.$delete(this.myColors, index)
     },
 
+    horzScroll (event) {
+      const target = this.$refs.main
+
+      const positive = target.scrollLeft < target.scrollWidth - target.clientWidth && event.deltaY > 0
+      const negative = target.scrollLeft > 0 && event.deltaY < 0
+
+      if (positive || negative) {
+        event.preventDefault()
+        target.scrollLeft += event.deltaY
+      }
+    },
+
 
     getColorKey (name) {
       return ({ red: 0, green: 1, blue: 2 })[name]
