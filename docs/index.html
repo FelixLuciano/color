@@ -49,7 +49,7 @@
   <main ref='main' @wheel='horzScroll'>
 
     <section>
-      <strong title='Color hex code'>{{ colorHex.mix }}</strong>
+      <strong title='Color hex code' v-text='colorHex.mix'>#FFF</strong>
 
       <div
         :style="colorStyle"

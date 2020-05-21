@@ -97,7 +97,7 @@ main > aside > article {
 main > aside > article button {
   width: 4rem;
   height: 4rem;
-  background-color: var(--color);
+  background-color: var(--color, #FFF);
   border: 1px solid transparent;
   border-radius: 50%;
   font-weight: bold;
