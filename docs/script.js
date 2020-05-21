@@ -121,11 +121,11 @@ new Vue({
 
     horzScroll (event) {
       const target = this.$refs.main
+      
+      const toLeft  = event.deltaY < 0 && target.scrollLeft > 0
+      const toRight = event.deltaY > 0 && target.scrollLeft < target.scrollWidth - target.clientWidth
 
-      const positive = target.scrollLeft < target.scrollWidth - target.clientWidth && event.deltaY > 0
-      const negative = target.scrollLeft > 0 && event.deltaY < 0
-
-      if (positive || negative) {
+      if (toLeft || toRight) {
         event.preventDefault()
         target.scrollLeft += event.deltaY
       }
