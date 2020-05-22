@@ -69,6 +69,11 @@ body > footer {
   line-height: 3rem;
   align-self: end;
 }
+@media (max-width: 25rem) {
+  body > footer span {
+    display: none;
+  }
+}
 
 
 body > header a:first-child svg {
