@@ -3,7 +3,7 @@ new Vue({
   
   data: {
     color: [ 15, 15, 15 ],
-    myColors: new Array(36).fill([15, 13, 2]),
+    myColors: new Array(),
     $frameRequest: null
   },
   
@@ -27,12 +27,12 @@ new Vue({
 
 
   created () {
-    // const myColors = window.localStorage.getItem('myColors')
+    const myColors = window.localStorage.getItem('myColors')
     
-    // if (myColors)
-    //   this.myColors = myColors.split(/\|/g).map(a => a.split(/\,/g).map(a => parseInt(a)))
+    if (myColors)
+      this.myColors = myColors.split(/\|/g).map(a => a.split(/\,/g).map(a => parseInt(a)))
 
-    // else window.localStorage.setItem('myColors', this.myColors)
+    else window.localStorage.setItem('myColors', this.myColors)
   },
   
 
