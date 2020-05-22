@@ -111,8 +111,8 @@ main > aside > article button:last-of-type {
   border: none;
 }
 main > aside > article button:last-of-type svg {
-  width: 24px;
-  height: 24px;
+  width: 1.5rem;
+  height: 1.5rem;
   margin-top: .3rem;
   fill: currentcolor;
 }

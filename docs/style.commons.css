@@ -10,7 +10,7 @@ body {
   background-color: #111;
   color: #FFF;
   font-family: 'Manrope', sans-serif;
-  grid-template-rows: 64px auto 48px;
+  grid-template-rows: 4rem minmax(calc(100vh - 7rem), auto) 3rem;
   display: grid;
   place-items: center;
 }
