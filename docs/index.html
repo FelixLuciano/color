@@ -46,7 +46,7 @@
   </header>
   
   
-  <main ref='main' @wheel='horzScroll'>
+  <main ref='main' v-horz-scroll>
 
     <section>
       <strong title='Color hex code' v-text='colorHex.mix'>#FFF</strong>
@@ -90,7 +90,7 @@
     </section>
 
     <aside>
-      <article>
+      <article v-horz-scroll>
 
         <template v-for="color, i in myColors">
           <button

@@ -3,7 +3,7 @@ new Vue({
   
   data: {
     color: [ 15, 15, 15 ],
-    myColors: [],
+    myColors: new Array(),
     $frameRequest: null
   },
   
@@ -119,18 +119,6 @@ new Vue({
       this.$delete(this.myColors, index)
     },
 
-    horzScroll (event) {
-      const target = this.$refs.main
-      
-      const toLeft  = event.deltaY < 0 && target.scrollLeft > 0
-      const toRight = event.deltaY > 0 && target.scrollLeft < target.scrollWidth - target.clientWidth
-
-      if (toLeft || toRight) {
-        event.preventDefault()
-        target.scrollLeft += event.deltaY
-      }
-    },
-
 
     getColorKey (name) {
       return ({ red: 0, green: 1, blue: 2 })[name]
@@ -139,9 +127,25 @@ new Vue({
 
 
   directives: {
+    horzScroll: {
+      bind (element) {
+        element.addEventListener('wheel', event => {
+          const toLeft  = event.deltaY < 0 && element.scrollLeft > 0
+          const toRight = event.deltaY > 0 && element.scrollLeft < element.scrollWidth - element.clientWidth
+
+          if (toLeft || toRight) {
+            event.preventDefault()
+            event.stopPropagation()
+
+            element.scrollLeft += event.deltaY
+          }
+        })
+      }
+    },
+
     slider: {
-      bind (el, { value:key }, { context:$vue }) {
-        const hammertime = new Hammer(el)
+      bind (element, { value:key }, { context:$vue }) {
+        const hammertime = new Hammer(element)
 
         let base = null
 
@@ -159,13 +163,13 @@ new Vue({
           $vue.addColor(key, val, base)
         })
 
-        el.addEventListener('touchstart', event => event.preventDefault())
+        element.addEventListener('touchstart', event => event.preventDefault())
       }
     },
 
     press: {
-      bind (el, binding, vnode) {
-        const hammertime = new Hammer(el)
+      bind (element, binding, vnode) {
+        const hammertime = new Hammer(element)
 
         hammertime.on('pressup', (event) => {
           const handlers = (vnode.data && vnode.data.on) || (vnode.componentOptions && vnode.componentOptions.listeners)
