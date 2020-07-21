@@ -15,13 +15,22 @@ new Vue({
 
     colorStyle () {
       return this.getColorStyle(this.color)
+    },
+
+    stringifyedColors () {
+      return this.myColors
+        .map(color =>
+          color.map(tone => tone.toString(16))
+            .join('')
+        )
+        .join('')
     }
   },
 
 
   watch: {
-    myColors (val) {
-      window.localStorage.setItem('myColors', val.join('|') )
+    myColors () {
+      window.localStorage.setItem('myColors', this.stringifyedColors)
     }
   },
 
@@ -30,9 +39,14 @@ new Vue({
     const myColors = window.localStorage.getItem('myColors')
     
     if (myColors)
-      this.myColors = myColors.split(/\|/g).map(a => a.split(/\,/g).map(a => parseInt(a)))
+      this.myColors = myColors
+        .match(/.../g)
+        .map(color => 
+          color.match(/./g)
+          .map(tone => parseInt(tone, 16))
+        )
 
-    else window.localStorage.setItem('myColors', this.myColors)
+    else window.localStorage.setItem('myColors', this.stringifyedColors)
   },
   
 

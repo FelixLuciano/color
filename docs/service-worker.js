@@ -13,7 +13,7 @@
 
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
-importScripts("/tri/precache-manifest.59kyd87df4a0nhgj89fs.js");
+importScripts("/tri/precache-manifest.lvuqih6348ugfhk85h4i.js");
 
 workbox.core.setCacheNameDetails({prefix: "tri-cache"});
 
