@@ -9,7 +9,7 @@ const cacheStorage = [
   "https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css",
   "/tri/",
   "/tri/index.html",
-  "/tri/palette",
+  "/tri/palette/",
   "/tri/palette/index.html",
   "/tri/common/style.css",
   "/tri/css/style.css",
