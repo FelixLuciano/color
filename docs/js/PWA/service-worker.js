@@ -5,7 +5,7 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox
 const CACHE = "br.com.lucianofelix.tri"
 const offlineFallbackPage = "https://lucianofelix.com.br/tri/";
 
-importScripts("/docs/js/WPA/precache-manifest.03ea588cf9d1.js")
+importScripts("/tri/js/WPA/precache-manifest.03ea588cf9d1.js")
 
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
