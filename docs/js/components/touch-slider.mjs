@@ -79,7 +79,7 @@ export default {
             modelValue_start = props.modelValue
             keyup_events[event.key]?.(event)
 
-            instance.ctx.$nextTick(() => {
+            nextTick(() => {
                 emit("offset", props.modelValue - modelValue_start)
             })
         }
