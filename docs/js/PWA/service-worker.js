@@ -3,6 +3,7 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js')
 
 const CACHE = "br.com.lucianofelix.tri"
+const offlineFallbackPage = "https://lucianofelix.com.br/tri/";
 
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
@@ -13,6 +14,7 @@ self.addEventListener("message", (event) => {
 self.addEventListener('install', async (event) => {
   event.waitUntil(
     caches.open(CACHE)
+      .then((cache) => cache.add(offlineFallbackPage))
   )
 })
 
