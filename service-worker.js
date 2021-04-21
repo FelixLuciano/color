@@ -2,7 +2,7 @@
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js')
 
-const CACHE = "tri"
+const cacheName = "tri"
 const cacheStorage = [
   "https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.prod.js",
   "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js",
@@ -26,7 +26,7 @@ self.addEventListener("message", (event) => {
 
 self.addEventListener('install', async (event) => {
   event.waitUntil(
-    caches.open(CACHE)
+    caches.open(cacheName)
       .then((cache) => cache.addAll(cacheStorage))
   )
 })
@@ -36,21 +36,16 @@ if (workbox.navigationPreload.isSupported()) {
 }
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.mode === 'navigate') {
-    event.respondWith((async () => {
-      try {
-        const preloadResp = await event.preloadResponse
+  event.respondWith((async () => {
+    const r = await caches.match(event.request)
 
-        if (preloadResp) return preloadResp
+    if (r) return r
 
-        const networkResp = await fetch(event.request)
-        return networkResp
-      } catch (error) {
+    const response = await fetch(event.request)
+    const cache = await caches.open(cacheName)
 
-        const cache = await caches.open(CACHE)
-        const cachedResp = await cache.match(event.request)
-        return cachedResp
-      }
-    })())
-  }
+    cache.put(event.request, response.clone())
+    
+    return response
+  })())
 })
