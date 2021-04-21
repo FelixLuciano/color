@@ -145,9 +145,11 @@
   <script type="module" src="./js/app.js"></script>
 
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/tri/js/PWA/service-worker.js')
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("/tri/js/PWA/service-worker.js", {
+          scope: "https://lucianofelix.com.br/tri/"
+        })
       })
     }
   </script>
