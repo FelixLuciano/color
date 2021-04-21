@@ -63,5 +63,19 @@
       "sizes": "425x755",
       "type": "image/webp"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open Color Mixer",
+      "short_name": "Color Mixer",
+      "description": "Open Color Mixer",
+      "url": "/"
+    },
+    {
+      "name": "Open Color Palette",
+      "short_name": "Color Palette",
+      "description": "Open Color Palette",
+      "url": "/palette"
+    }
   ]
 }
