@@ -7,7 +7,9 @@ const cacheStorage = [
   "https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.prod.js",
   "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js",
   "https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css",
+  "/tri/",
   "/tri/index.html",
+  "/tri/palette/",
   "/tri/palette/index.html",
   "/tri/common/style.css",
   "/tri/css/style.css",
@@ -45,7 +47,7 @@ self.addEventListener('fetch', (event) => {
     const cache = await caches.open(cacheName)
 
     cache.put(event.request, response.clone())
-    
+
     return response
   })())
 })
