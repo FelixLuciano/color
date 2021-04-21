@@ -69,13 +69,25 @@
       "name": "Open Color Mixer",
       "short_name": "Color Mixer",
       "description": "Open Color Mixer",
-      "url": "/"
+      "url": "https://lucianofelix.com.br/tri/",
+      "icons": [
+        {
+          "src": "https://lucianofelix.com.br/tri/assets/icons/shortcut-mixer-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
       "name": "Open Color Palette",
       "short_name": "Color Palette",
       "description": "Open Color Palette",
-      "url": "/palette"
+      "url": "https://lucianofelix.com.br/tri/palette/",
+      "icons": [
+        {
+          "src": "https://lucianofelix.com.br/tri/assets/icons/shortcut-palette-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }
