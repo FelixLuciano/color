@@ -28,7 +28,8 @@ class Storage {
             const legacyStorage = window.localStorage.getItem(legacyName)
 
             if (legacyStorage) {
-                window.localStorage.setItem(this.config.name, legacyStorage)
+                const newStorage = window.localStorage.getItem(this.config.name)
+                window.localStorage.setItem(this.config.name, newStorage + legacyStorage)
                 window.localStorage.removeItem(legacyName)
             }
         }
