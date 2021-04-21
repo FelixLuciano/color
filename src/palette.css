@@ -154,4 +154,21 @@
   --color-bluegray-lighten-5: #CDE;
   --color-bluegray-lighten-6: #DEF;
   --color-bluegray-lighten-7: #EFF;
+
+  --color-warm_gray: #988;
+  --color-warm_gray-darken-8: #100;
+  --color-warm_gray-darken-7: #211;
+  --color-warm_gray-darken-6: #322;
+  --color-warm_gray-darken-5: #433;
+  --color-warm_gray-darken-4: #544;
+  --color-warm_gray-darken-3: #655;
+  --color-warm_gray-darken-2: #766;
+  --color-warm_gray-darken-1: #877;
+  --color-warm_gray-lighten-1: #A99;
+  --color-warm_gray-lighten-2: #BAA;
+  --color-warm_gray-lighten-3: #CBB;
+  --color-warm_gray-lighten-4: #DCC;
+  --color-warm_gray-lighten-5: #EDD;
+  --color-warm_gray-lighten-6: #FEE;
+  --color-warm_gray-lighten-7: #FFE;
 }

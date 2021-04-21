@@ -1,0 +1,129 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css";
+
+/* Defaults */
+
+:root {
+  background-color: #111;
+  color: #FFF;
+  font-size: 16px;
+  font-family: 'Manrope', sans-serif;
+}
+
+::selection {
+  background-color: #FFF;
+  color: #000;
+}
+::-moz-selection {
+  background-color: #FFF;
+  color: #000;
+}
+
+/* Elements */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+a {
+  color: currentColor;
+  text-decoration: underline;
+}
+
+p {
+  padding-bottom: .3rem;
+}
+
+/* Helpers */
+
+@media (max-width: 425px) {
+  .hide-small {
+    display: none;
+  }
+}
+
+/* Layout */
+
+body {
+  grid-template-rows: 4rem minmax(calc(100vh - 7rem), auto) 3rem;
+  grid-template-columns: 100%;
+  display: grid;
+}
+header, footer {
+  width: 100%;
+  padding: 0 1rem;
+}
+header {
+  font-size: 1.5rem;
+  line-height: 4rem;
+  align-self: start;
+}
+footer {
+  font-size: .8em;
+  line-height: 3rem;
+  align-self: end;
+}
+
+#logo {
+  text-decoration: none;
+}
+#logo:hover {
+  text-decoration: underline;
+}
+#logo > svg {
+  width: 4rem;
+  height: 2rem;
+  margin-right: .4em;
+  margin-bottom: .1em;
+  vertical-align: middle;
+  transition: transform 200ms cubic-bezier(0, 0, .2, 1);
+}
+#logo:is(:hover, :active) svg {
+  transform: rotate(45deg);
+}
+#logo:active svg {
+  transform: scale(.75);
+}
+#logo svg circle {
+  transition: transform 200ms cubic-bezier(0, 0, .2, 1);
+}
+#logo:is(:hover, :active) svg circle {
+  mix-blend-mode: lighten;
+}
+#logo:is(:hover, :active) svg :first-child {
+  transform: translateX(-16px)
+}
+#logo:is(:hover, :active) svg :last-child {
+  transform: translateX(16px)
+}
+
+nav {
+  float: right;
+}
+nav > ul {
+  display: flex;
+}
+nav > ul > li + li {
+  margin-left: 1.25rem;
+}
+nav a {
+  font-size: .8em;
+  float: right;
+  text-decoration: none;
+}
+nav a:is(
+  :hover,
+  :active,
+  :visited
+) {
+  text-decoration: underline;
+}
+
+nav a svg {
+  width: 1.25em;
+  height: 1.25em;
+  margin-bottom: -.2em;
+  margin-left: .3em;
+  fill: currentcolor;
+}

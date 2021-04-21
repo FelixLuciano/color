@@ -1,170 +1,188 @@
 ---
-black: '#000'
-dark: '#111'
+black: "#000"
+dark: "#111"
 
 gray:
-  default: '#888'
-  lighten-6: '#222'
-  lighten-5: '#333'
-  lighten-4: '#444'
-  lighten-3: '#555'
-  lighten-2: '#666'
-  lighten-1: '#777'
-  darken-1: '#999'
-  darken-2: '#AAA'
-  darken-3: '#BBB'
-  darken-4: '#CCC'
-  darken-5: '#DDD'
+  default: "#888"
+  lighten-6: "#222"
+  lighten-5: "#333"
+  lighten-4: "#444"
+  lighten-3: "#555"
+  lighten-2: "#666"
+  lighten-1: "#777"
+  darken-1: "#999"
+  darken-2: "#AAA"
+  darken-3: "#BBB"
+  darken-4: "#CCC"
+  darken-5: "#DDD"
 
-light: '#EEE'
-white: '#FFF'
+light: "#EEE"
+white: "#FFF"
 
 red:
-  default: '#F22'
-  darken-4: '#722'
-  darken-3: '#922'
-  darken-2: '#B22'
-  darken-1: '#D22'
-  lighten-1: '#F44'
-  lighten-2: '#F66'
-  lighten-3: '#F88'
-  lighten-4: '#FAA'
+  default: "#F22"
+  darken-4: "#722"
+  darken-3: "#922"
+  darken-2: "#B22"
+  darken-1: "#D22"
+  lighten-1: "#F44"
+  lighten-2: "#F66"
+  lighten-3: "#F88"
+  lighten-4: "#FAA"
 
 orange:
-  default: '#F92'
-  darken-4: '#752'
-  darken-3: '#962'
-  darken-2: '#B72'
-  darken-1: '#D82'
-  lighten-1: '#FA4'
-  lighten-2: '#FB6'
-  lighten-3: '#FC8'
-  lighten-4: '#FDA'
+  default: "#F92"
+  darken-4: "#752"
+  darken-3: "#962"
+  darken-2: "#B72"
+  darken-1: "#D82"
+  lighten-1: "#FA4"
+  lighten-2: "#FB6"
+  lighten-3: "#FC8"
+  lighten-4: "#FDA"
 
 yellow:
-  default: '#FF2'
-  darken-4: '#772'
-  darken-3: '#992'
-  darken-2: '#BB2'
-  darken-1: '#DD2'
-  lighten-1: '#FF4'
-  lighten-2: '#FF6'
-  lighten-3: '#FF8'
-  lighten-4: '#FFA'
+  default: "#FF2"
+  darken-4: "#772"
+  darken-3: "#992"
+  darken-2: "#BB2"
+  darken-1: "#DD2"
+  lighten-1: "#FF4"
+  lighten-2: "#FF6"
+  lighten-3: "#FF8"
+  lighten-4: "#FFA"
 
 lime:
-  default: '#9F2'
-  darken-4: '#572'
-  darken-3: '#692'
-  darken-2: '#7B2'
-  darken-1: '#8D2'
-  lighten-1: '#AF4'
-  lighten-2: '#BF6'
-  lighten-3: '#CF8'
-  lighten-4: '#DFA'
+  default: "#9F2"
+  darken-4: "#572"
+  darken-3: "#692"
+  darken-2: "#7B2"
+  darken-1: "#8D2"
+  lighten-1: "#AF4"
+  lighten-2: "#BF6"
+  lighten-3: "#CF8"
+  lighten-4: "#DFA"
 
 green:
-  default: '#2F2'
-  darken-4: '#272'
-  darken-3: '#292'
-  darken-2: '#2B2'
-  darken-1: '#2D2'
-  lighten-1: '#4F4'
-  lighten-2: '#6F6'
-  lighten-3: '#8F8'
-  lighten-4: '#AFA'
+  default: "#2F2"
+  darken-4: "#272"
+  darken-3: "#292"
+  darken-2: "#2B2"
+  darken-1: "#2D2"
+  lighten-1: "#4F4"
+  lighten-2: "#6F6"
+  lighten-3: "#8F8"
+  lighten-4: "#AFA"
 
 teal:
-  default: '#2F9'
-  darken-4: '#275'
-  darken-3: '#296'
-  darken-2: '#2B7'
-  darken-1: '#2D8'
-  lighten-1: '#4FA'
-  lighten-2: '#6FB'
-  lighten-3: '#8FC'
-  lighten-4: '#AFD'
+  default: "#2F9"
+  darken-4: "#275"
+  darken-3: "#296"
+  darken-2: "#2B7"
+  darken-1: "#2D8"
+  lighten-1: "#4FA"
+  lighten-2: "#6FB"
+  lighten-3: "#8FC"
+  lighten-4: "#AFD"
 
 cyan:
-  default: '#2FF'
-  darken-4: '#277'
-  darken-3: '#299'
-  darken-2: '#2BB'
-  darken-1: '#2DD'
-  lighten-1: '#4FF'
-  lighten-2: '#6FF'
-  lighten-3: '#8FF'
-  lighten-4: '#AFF'
+  default: "#2FF"
+  darken-4: "#277"
+  darken-3: "#299"
+  darken-2: "#2BB"
+  darken-1: "#2DD"
+  lighten-1: "#4FF"
+  lighten-2: "#6FF"
+  lighten-3: "#8FF"
+  lighten-4: "#AFF"
 
 lightblue:
-  default: '#29F'
-  darken-4: '#257'
-  darken-3: '#269'
-  darken-2: '#27B'
-  darken-1: '#28D'
-  lighten-1: '#4AF'
-  lighten-2: '#6BF'
-  lighten-3: '#8CF'
-  lighten-4: '#ADF'
+  default: "#29F"
+  darken-4: "#257"
+  darken-3: "#269"
+  darken-2: "#27B"
+  darken-1: "#28D"
+  lighten-1: "#4AF"
+  lighten-2: "#6BF"
+  lighten-3: "#8CF"
+  lighten-4: "#ADF"
 
 blue:
-  default: '#22F'
-  darken-4: '#227'
-  darken-3: '#229'
-  darken-2: '#22B'
-  darken-1: '#22D'
-  lighten-1: '#44F'
-  lighten-2: '#66F'
-  lighten-3: '#88F'
-  lighten-4: '#AAF'
+  default: "#22F"
+  darken-4: "#227"
+  darken-3: "#229"
+  darken-2: "#22B"
+  darken-1: "#22D"
+  lighten-1: "#44F"
+  lighten-2: "#66F"
+  lighten-3: "#88F"
+  lighten-4: "#AAF"
 
 purple:
-  default: '#92F'
-  darken-4: '#527'
-  darken-3: '#629'
-  darken-2: '#72B'
-  darken-1: '#82D'
-  lighten-1: '#A4F'
-  lighten-2: '#B6F'
-  lighten-3: '#C8F'
-  lighten-4: '#DAF'
+  default: "#92F"
+  darken-4: "#527"
+  darken-3: "#629"
+  darken-2: "#72B"
+  darken-1: "#82D"
+  lighten-1: "#A4F"
+  lighten-2: "#B6F"
+  lighten-3: "#C8F"
+  lighten-4: "#DAF"
 
 magenta:
-  default: '#F2F'
-  darken-4: '#727'
-  darken-3: '#929'
-  darken-2: '#B2B'
-  darken-1: '#D2D'
-  lighten-1: '#F4F'
-  lighten-2: '#F6F'
-  lighten-3: '#F8F'
-  lighten-4: '#FAF'
+  default: "#F2F"
+  darken-4: "#727"
+  darken-3: "#929"
+  darken-2: "#B2B"
+  darken-1: "#D2D"
+  lighten-1: "#F4F"
+  lighten-2: "#F6F"
+  lighten-3: "#F8F"
+  lighten-4: "#FAF"
 
 pink:
-  default: '#F29'
-  darken-4: '#725'
-  darken-3: '#926'
-  darken-2: '#B27'
-  darken-1: '#D28'
-  lighten-1: '#F4A'
-  lighten-2: '#F6B'
-  lighten-3: '#F8C'
-  lighten-4: '#FAD'
+  default: "#F29"
+  darken-4: "#725"
+  darken-3: "#926"
+  darken-2: "#B27"
+  darken-1: "#D28"
+  lighten-1: "#F4A"
+  lighten-2: "#F6B"
+  lighten-3: "#F8C"
+  lighten-4: "#FAD"
 
 bluegray:
-  default: '#789'
-  darken-8: '#001'
-  darken-7: '#012'
-  darken-6: '#123'
-  darken-5: '#234'
-  darken-4: '#345'
-  darken-3: '#456'
-  darken-2: '#567'
-  darken-1: '#678'
-  lighten-1: '#89A'
-  lighten-2: '#9AB'
-  lighten-3: '#ABC'
-  lighten-4: '#BCD'
-  lighten-5: '#CDE'
-  lighten-6: '#DEF'
-  lighten-7: '#EFF'
+  default: "#789"
+  darken-8: "#001"
+  darken-7: "#012"
+  darken-6: "#123"
+  darken-5: "#234"
+  darken-4: "#345"
+  darken-3: "#456"
+  darken-2: "#567"
+  darken-1: "#678"
+  lighten-1: "#89A"
+  lighten-2: "#9AB"
+  lighten-3: "#ABC"
+  lighten-4: "#BCD"
+  lighten-5: "#CDE"
+  lighten-6: "#DEF"
+  lighten-7: "#EFF"
+
+warm_gray:
+  default: "#988"
+  darken-8: "#100"
+  darken-7: "#211"
+  darken-6: "#322"
+  darken-5: "#433"
+  darken-4: "#544"
+  darken-3: "#655"
+  darken-2: "#766"
+  darken-1: "#877"
+  lighten-1: "#A99"
+  lighten-2: "#BAA"
+  lighten-3: "#CBB"
+  lighten-4: "#DCC"
+  lighten-5: "#EDD"
+  lighten-6: "#FEE"
+  lighten-7: "#FFE"
