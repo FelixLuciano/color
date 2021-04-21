@@ -1,4 +1,4 @@
-import { reactive } from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.js"
+import { reactive } from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.prod.js"
 
 class Color {
     constructor (red, green, blue) {

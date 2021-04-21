@@ -1,4 +1,4 @@
-import { getCurrentInstance } from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.js"
+import { getCurrentInstance, nextTick } from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.prod.js"
 
 export default {
     template: `
@@ -33,7 +33,7 @@ export default {
         const instance = getCurrentInstance()
         let modelValue_start
 
-        instance.ctx.$nextTick(() => {
+        nextTick(() => {
             const element = instance.vnode.el
             const hammertime = new Hammer(element)
 
