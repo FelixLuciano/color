@@ -24,7 +24,7 @@ class Storage {
     }
 
     updateLegacy () {
-        for (let legacyName in this.config.legacyNames) {
+        for (let legacyName of this.config.legacyNames) {
             const legacyStorage = window.localStorage.getItem(legacyName)
 
             if (legacyStorage) {
