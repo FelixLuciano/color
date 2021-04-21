@@ -1,6 +1,6 @@
 self.__precacheManifest = [
   { "revision": null, "url": "https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.prod.js" },
-  { "revision": null, "url": "https//cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" },
+  { "revision": null, "url": "https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js" },
   { "revision": null, "url": "https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" },
   { "revision": "03ea588cf9d1", "url": "/tri/index.html" },
   { "revision": "03ea588cf9d1", "url": "/tri/palette/index.html" },

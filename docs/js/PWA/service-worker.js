@@ -1,27 +1,43 @@
-/**
- * Welcome to your Workbox-powered service worker!
- *
- * You'll need to register this file in your web app and you should
- * disable HTTP caching for this file too.
- * See https://goo.gl/nhQhGp
- *
- * The rest of the code is auto-generated. Please don't update this file
- * directly; instead, make changes to your Workbox build configuration
- * and re-run your build process.
- * See https://goo.gl/2aRDsh
- */
+// This is the "Offline page" service worker
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js')
 
-importScripts("/tri/js/PWA/precache-manifest.03ea588cf9d1.js");
+const CACHE = "br.com.lucianofelix.tri"
 
-workbox.core.setCacheNameDetails({prefix: "tri-cache"});
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting()
+  }
+})
 
-/**
- * The workboxSW.precacheAndRoute() method efficiently caches and responds to
- * requests for URLs in the manifest.
- * See https://goo.gl/S9QRab
- */
-self.__precacheManifest = [].concat(self.__precacheManifest || []);
-workbox.precaching.suppressWarnings();
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+self.addEventListener('install', async (event) => {
+  event.waitUntil(
+    caches.open(CACHE)
+  )
+})
+
+if (workbox.navigationPreload.isSupported()) {
+  workbox.navigationPreload.enable()
+}
+
+self.addEventListener('fetch', (event) => {
+  if (event.request.mode === 'navigate') {
+    event.respondWith((async () => {
+      try {
+        const preloadResp = await event.preloadResponse
+
+        if (preloadResp) {
+          return preloadResp
+        }
+
+        const networkResp = await fetch(event.request)
+        return networkResp
+      } catch (error) {
+
+        const cache = await caches.open(CACHE)
+        const cachedResp = await cache.match(offlineFallbackPage)
+        return cachedResp
+      }
+    })())
+  }
+})
