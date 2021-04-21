@@ -41,7 +41,7 @@
   "display": "standalone",
   "orientation": "any",
   "url": "https://lucianofelix.com.br/tri/",
-  "manifestUrl": "https://lucianofelix.com.br/tri/js/PWA/manifest.json",
+  "manifestUrl": "https://lucianofelix.com.br/tri/manifest.json",
   "screenshots": [
     {
       "src": "https://lucianofelix.com.br/tri/assets/screenshots/app-desktop.webp",
