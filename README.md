@@ -25,4 +25,4 @@
 
 [LICENSE](https://github.com/FelixLuciano/tri/blob/master/LICENSE)
 
-Copyright © 2020 Luciano Felix
+Copyright © 2021 Luciano Felix
