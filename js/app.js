@@ -64,21 +64,27 @@ const tri_app = {
       const release = (event2) => {
         event.preventDefault()
         event2.preventDefault()
+
         clearTimeout(hold)
         if (doHold) storage.remove(index)
         else {
           open(index)
           scrollHome()
         }
+
+        window.removeEventListener("mouseup", release)
+        window.removeEventListener("touchend", release)
+        window.removeEventListener("touchmove", onTouchMove)
+      }
+
+      const onTouchMove = () => {
+        window.removeEventListener("touchend", release)
+        window.removeEventListener("mouseup", release)
       }
 
       window.addEventListener("mouseup", release, { once: true })
       window.addEventListener("touchend", release, { once: true })
-
-      window.addEventListener("touchmove", () => {
-        window.removeEventListener("touchend", release)
-        window.removeEventListener("mouseup", release)
-      }, { once: true })
+      window.addEventListener("touchmove", onTouchMove, { once: true })
     }
 
     return {

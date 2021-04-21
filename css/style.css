@@ -22,13 +22,14 @@ button {
 /* Helpers */
 
 .text-small {
-  font-size: .8em;
+  font-size: .9em;
 }
 
 .inline-icon {
-  width: 1.25em;
-  height: 1.25em;
+  width: 1.66em;
+  height: 1.66em;
   margin-left: .2em;
+  margin-top: -.1em;
   fill: currentcolor;
   vertical-align: middle;
 }
@@ -135,7 +136,15 @@ main {
   height: 3rem;
   margin: .5rem;
   background-color: #444;
-  border: none;
+  border: 1px solid transparent;
+  transition: background-color 128ms, border-color 128ms;
+}
+.collection-content-add:hover {
+  background-color: #555;
+}
+.collection-content-add:active {
+  background-color: #333;
+  border-color: #555;
 }
 .collection-content-add svg {
   width: 1.5rem;

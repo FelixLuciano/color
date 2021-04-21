@@ -31,7 +31,7 @@ export default {
 
     setup (props, {emit}) {
         const instance = getCurrentInstance()
-        let modelValue_start
+        let modelValue_start, offset_start
 
         nextTick(() => {
             const element = instance.vnode.el
@@ -39,9 +39,11 @@ export default {
 
             hammertime.get('pan').set({ threshold: 0 })
 
-            hammertime.on('panstart', () => modelValue_start = props.modelValue)
+            hammertime.on('panstart', (event) => {
+                modelValue_start = props.modelValue
+                offset_start = -Math.round(event.deltaY / 20) * props.step
+            })
 
-            let lastOffset
             hammertime.on('pan', (event) => {
                 const offset = -Math.round(event.deltaY / 20) * props.step
                 const newValue = modelValue_start + offset
@@ -50,9 +52,9 @@ export default {
                 event.preventDefault()
                 emit("update:modelValue", clamped)
                 
-                if (lastOffset != offset) {
-                    emit("offset", Math.sign(offset))
-                    lastOffset = offset
+                if (offset_start != offset) {
+                    emit("offset", offset - offset_start)
+                    offset_start = offset
                 }
             })
 

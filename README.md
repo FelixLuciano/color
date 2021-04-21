@@ -1,14 +1,28 @@
-![tri](assets/banner.svg)
+![tri](assets/images/banner.svg)
 
 
-### INTRODUCTION
+## Introduction
 
-**tri** is a 3 hexadecimal characters color system.
+**tri** is a three characters hexadecimal color system.
 
-### APP
+## The app
 
-![tri app](assets/app.svg)
+### Desktop
 
-### COLOR PALETTE
+![tri app](assets/screenshots/app-desktop.webp)
 
-![Color palette](assets/palette.svg)
+![tri app](assets/screenshots/palette-desktop.webp)
+
+### Mobile
+
+![tri app](assets/screenshots/app-mobile.webp)
+
+![tri app](assets/screenshots/palette-mobile.webp)
+
+## Color palette
+
+![Color palette](assets/images/palette.svg)
+
+[LICENSE](https://github.com/FelixLuciano/tri/blob/master/LICENSE)
+
+Copyright © 2020 Luciano Felix
