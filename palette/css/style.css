@@ -1,66 +1,66 @@
 main {
-  width: 100%;
-  overflow: auto;
+	width: 100%;
+	overflow: auto;
 }
 
 main > ul {
-  width: 100%;
-  min-width: 1024px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: max(.35rem, .65vw);
+	width: 100%;
+	min-width: 1024px;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: max(.35rem, .65vw);
 }
 
 main > ul ::selection {
-  background-color: #000;
-  color: #FFF;
+	background-color: #000;
+	color: #FFF;
 }
 main > ul :-moz-selection {
-  background-color: #000;
-  color: #FFF;
+	background-color: #000;
+	color: #FFF;
 }
 
 @media (max-width: 768px) {
-  main > ul {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  main > ul > :nth-child(5) {
-    grid-area: 1/2/2/3;
-  }
-  main > ul > :nth-child(3) {
-    grid-area: 3/1/4/2;
-  }
-  main > ul > :nth-child(4) {
-    grid-area: 4/1/5/2;
-  }
-  main > ul > :nth-child(9) {
-    grid-area: 1/3/2/4;
-  }
-  main > ul > :nth-child(7) {
-    grid-area: 3/2/4/3;
-  }
-  main > ul > :nth-child(8) {
-    grid-area: 4/2/5/3;
-  }
+	main > ul {
+		grid-template-columns: repeat(3, 1fr);
+	}
+	main > ul > :nth-child(5) {
+		grid-area: 1/2/2/3;
+	}
+	main > ul > :nth-child(3) {
+		grid-area: 3/1/4/2;
+	}
+	main > ul > :nth-child(4) {
+		grid-area: 4/1/5/2;
+	}
+	main > ul > :nth-child(9) {
+		grid-area: 1/3/2/4;
+	}
+	main > ul > :nth-child(7) {
+		grid-area: 3/2/4/3;
+	}
+	main > ul > :nth-child(8) {
+		grid-area: 4/2/5/3;
+	}
 }
 
 main > ul > li > div {
-  aspect-ratio: 1 / 1;
+	aspect-ratio: 1 / 1;
 }
 
 main > ul > li > div > ul {
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+	height: 100%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(4, 1fr);
 }
 
 main > ul > li > div > ul > li > div {
-  height: 100%;
-  background-color: var(--color);
-  color: #000;
-  font-size: max(.85em, 1vw);
-  font-weight: bold;
-  display: grid;
-  place-items: center;
+	height: 100%;
+	background-color: var(--color);
+	color: #000;
+	font-size: max(.85em, 1vw);
+	font-weight: bold;
+	display: grid;
+	place-items: center;
 }

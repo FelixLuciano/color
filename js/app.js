@@ -8,105 +8,118 @@ import horizontalScroll from "./components/horizontal-scroll.mjs"
 
 
 const tri_app = {
-  setup () {
-    const color = new Color(15, 15, 15)
-    const hex = computed(() => getHexadecimals(color.rgb))
-    const display = computed(() => getDisplay(color.rgb))
+	setup () {
+		const color = new Color(15, 15, 15)
+		const hex = computed(() => getHexadecimals(color.rgb))
+		const display = computed(() => getDisplay(color.rgb))
 
-    function adjustLight (increment) {
-      color.increment("light", increment)
-    }
+		function adjustLight (increment) {
+			color.increment("light", increment)
+		}
 
-    
-    const matchCode = /.{3}/g
-    const matchChar = /./g
+		let randomizeInterval
+		function randomize ({target}, isTouch = false) {
+			randomizeInterval = setInterval(() => color.randomize(), 200)
 
-    const storage = new Storage({
-      name: "tri_colors",
-      legacyNames : ["myColors"],
-      save (data) {
-        let str = ""
+			if (isTouch) target.addEventListener("touchend", () => stopRandomize(), {once: true})
+			else target.addEventListener("mouseup", () => stopRandomize(), {once: true})
+		}
+		function stopRandomize () {
+			color.randomize()
+			clearInterval(randomizeInterval)
+		}
 
-        for (let color of data)
-          str += color.map(item => item.toString(16)).join("")
+		
+		const matchCode = /.{3}/g
+		const matchChar = /./g
 
-        return str
-      },
-      load (data) {
-        const buffer = []
+		const storage = new Storage({
+			name: "tri_colors",
+			legacyNames : ["myColors"],
+			save (data) {
+				let str = ""
 
-        for (const colorCode of data.match(matchCode)) {
-          const color = colorCode.match(matchChar).map(hex => parseInt(hex, 16))
-  
-          buffer.push(color)
-        }
+				for (let color of data)
+					str += color.map(item => item.toString(16)).join("")
 
-        return buffer
-      }
-    })
+				return str
+			},
+			load (data) {
+				const buffer = []
 
-    function store () {
-      storage.store(color.rgb)
-    }
-    function open (index) {
-      const [red, green, blue] = storage.data[index]
-      color.set('color', {red, green, blue})
-      scrollHome()
-    }
+				for (const colorCode of data.match(matchCode)) {
+					const color = colorCode.match(matchChar).map(hex => parseInt(hex, 16))
+			
+					buffer.push(color)
+				}
 
-    const instance = getCurrentInstance()
-    const scrollHome = () => instance.vnode.el.scrollTo({ left: 0, behavior: 'smooth' })
+				return buffer
+			}
+		})
 
-    function press(index, event) {
-      let doHold = false
-      const hold = setTimeout(() => doHold = true, 450)
+		function store () {
+			storage.store(color.rgb)
+		}
+		function open (index) {
+			const [red, green, blue] = storage.data[index]
+			color.set('color', {red, green, blue})
+			scrollHome()
+		}
 
-      const release = (event2) => {
-        event.preventDefault()
-        event2.preventDefault()
+		const instance = getCurrentInstance()
+		const scrollHome = () => instance.vnode.el.scrollTo({ left: 0, behavior: 'smooth' })
 
-        clearTimeout(hold)
-        if (doHold) storage.remove(index)
-        else {
-          open(index)
-          scrollHome()
-        }
+		function press(index, event) {
+			let doHold = false
+			const hold = setTimeout(() => doHold = true, 450)
 
-        window.removeEventListener("mouseup", release)
-        window.removeEventListener("touchend", release)
-        window.removeEventListener("touchmove", onTouchMove)
-      }
+			const release = (event2) => {
+				event.preventDefault()
+				event2.preventDefault()
 
-      const onTouchMove = () => {
-        window.removeEventListener("touchend", release)
-        window.removeEventListener("mouseup", release)
-      }
+				clearTimeout(hold)
+				if (doHold) storage.remove(index)
+				else {
+					open(index)
+					scrollHome()
+				}
 
-      window.addEventListener("mouseup", release, { once: true })
-      window.addEventListener("touchend", release, { once: true })
-      window.addEventListener("touchmove", onTouchMove, { once: true })
-    }
+				window.removeEventListener("mouseup", release)
+				window.removeEventListener("touchend", release)
+				window.removeEventListener("touchmove", onTouchMove)
+			}
 
-    return {
-      color,
-      hex,
-      display,
-      getHexadecimals,
-      getDisplay,
-      adjustLight,
-      storage,
-      store,
-      press
-    }
-  },
+			const onTouchMove = () => {
+				window.removeEventListener("touchend", release)
+				window.removeEventListener("mouseup", release)
+			}
 
-  components: {
-    "touch-slider": touchSlider
-  },
+			window.addEventListener("mouseup", release, { once: true })
+			window.addEventListener("touchend", release, { once: true })
+			window.addEventListener("touchmove", onTouchMove, { once: true })
+		}
 
-  directives: {
-    horizontalScroll
-  }
+		return {
+			color,
+			randomize,
+			hex,
+			display,
+			getHexadecimals,
+			getDisplay,
+			adjustLight,
+			storage,
+			store,
+			press
+		}
+	},
+
+	components: {
+		"touch-slider": touchSlider
+	},
+
+	directives: {
+		horizontalScroll
+	}
 }
 
 createApp(tri_app).mount("main")
