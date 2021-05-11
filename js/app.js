@@ -29,6 +29,7 @@ const tri_app = {
 		}
 		function stopRandomize () {
 			color.randomize()
+			navigator.vibrate(128)
 			clearInterval(randomizeInterval)
 		}
 
@@ -67,6 +68,7 @@ const tri_app = {
 			const [red, green, blue] = storage.data[index]
 			color.set('color', {red, green, blue})
 			scrollHome()
+			navigator.vibrate(128)
 		}
 
 		const instance = getCurrentInstance()
