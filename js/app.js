@@ -19,7 +19,10 @@ const tri_app = {
 
 		let randomizeInterval
 		function randomize ({target}, isTouch = false) {
-			randomizeInterval = setInterval(() => color.randomize(), 200)
+			randomizeInterval = setInterval(() => {
+				color.randomize()
+				navigator.vibrate(128)
+			} , 200)
 
 			if (isTouch) target.addEventListener("touchend", () => stopRandomize(), {once: true})
 			else target.addEventListener("mouseup", () => stopRandomize(), {once: true})

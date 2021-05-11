@@ -53,6 +53,7 @@ export default {
 				emit("update:modelValue", clamped)
 				
 				if (offset_start != offset) {
+					navigator.vibrate(32)
 					emit("offset", offset - offset_start)
 					offset_start = offset
 				}
