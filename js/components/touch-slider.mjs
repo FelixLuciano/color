@@ -50,14 +50,14 @@ export default {
 				const clamped = clamp(newValue, props.min, props.max)
 
 				event.preventDefault()
-				emit("update:modelValue", clamped)
-
-				if (newValue === clamped)
-					navigator.vibrate(32)
 				
 				if (offset_start != offset) {
+					if (newValue === clamped)
+						navigator.vibrate(32)
+						
+					emit("update:modelValue", clamped)
 					emit("offset", offset - offset_start)
-					offset_start = offset
+						offset_start = offset
 				}
 			})
 
