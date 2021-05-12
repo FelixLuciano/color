@@ -9,6 +9,7 @@ button {
   color: currentColor;
   font-size: 1em;
   cursor: pointer;
+  user-select: none;
 }
 
 /* Components */

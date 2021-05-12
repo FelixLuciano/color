@@ -21,16 +21,22 @@ const tri_app = {
 		function randomize ({target}, isTouch = false) {
 			randomizeInterval = setInterval(() => {
 				color.randomize()
-				navigator.vibrate(128)
+				navigator.vibrate([32, 32, 32, 32, 32, 32])
 			} , 200)
 
-			if (isTouch) target.addEventListener("touchend", () => stopRandomize(), {once: true})
-			else target.addEventListener("mouseup", () => stopRandomize(), {once: true})
+			if (isTouch) {
+				target.addEventListener("touchend", () => stopRandomize(target), {once: true})
+				target.addEventListener("touchcancel", () => stopRandomize(target), {once: true})
+			}
+			else target.addEventListener("mouseup", () => stopRandomize(target), {once: true})
 		}
-		function stopRandomize () {
+		function stopRandomize (target) {
 			color.randomize()
 			navigator.vibrate(128)
 			clearInterval(randomizeInterval)
+			target.removeEventListener("touchend", stopRandomize)
+			target.removeEventListener("touchcancel", stopRandomize)
+			target.removeEventListener("mouseup", stopRandomize)
 		}
 
 		
@@ -63,12 +69,13 @@ const tri_app = {
 
 		function store () {
 			storage.store(color.rgb)
+			navigator.vibrate(64)
 		}
 		function open (index) {
 			const [red, green, blue] = storage.data[index]
 			color.set('color', {red, green, blue})
 			scrollHome()
-			navigator.vibrate(128)
+			navigator.vibrate([50, 28, 50])
 		}
 
 		const instance = getCurrentInstance()
@@ -76,7 +83,11 @@ const tri_app = {
 
 		function press(index, event) {
 			let doHold = false
-			const hold = setTimeout(() => doHold = true, 450)
+			const onHold = () => {
+				doHold = true
+				navigator.vibrate(64)
+			}
+			const hold = setTimeout(onHold, 450)
 
 			const release = (event2) => {
 				event.preventDefault()
@@ -90,18 +101,21 @@ const tri_app = {
 				}
 
 				window.removeEventListener("mouseup", release)
+				window.removeEventListener("touchcancel", release)
 				window.removeEventListener("touchend", release)
-				window.removeEventListener("touchmove", onTouchMove)
+				window.removeEventListener("touchmove", cancel)
 			}
 
-			const onTouchMove = () => {
+			const cancel = () => {
+				window.removeEventListener("touchcancel", release)
 				window.removeEventListener("touchend", release)
 				window.removeEventListener("mouseup", release)
 			}
 
 			window.addEventListener("mouseup", release, { once: true })
+			window.addEventListener("touchcancel", release, { once: true })
 			window.addEventListener("touchend", release, { once: true })
-			window.addEventListener("touchmove", onTouchMove, { once: true })
+			window.addEventListener("touchmove", cancel, { once: true })
 		}
 
 		return {
