@@ -1,10 +1,12 @@
 export default {
-	created (element) {
+	created(element) {
 		let lastTrigger = 0
 
-		element.addEventListener('wheel', event => {
-			const toLeft	= event.deltaY < 0 && element.scrollLeft > 0
-			const toRight = event.deltaY > 0 && element.scrollLeft < element.scrollWidth - element.clientWidth
+		element.addEventListener("wheel", (event) => {
+			const toLeft = event.deltaY < 0 && element.scrollLeft > 0
+			const toRight =
+				event.deltaY > 0 &&
+				element.scrollLeft < element.scrollWidth - element.clientWidth
 			const now = new Date().getTime()
 
 			if (toLeft || toRight) {
