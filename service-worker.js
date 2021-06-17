@@ -47,50 +47,27 @@ self.addEventListener("install", function(event) {
 		const cache = await caches.open(CACHE_NAME)
 		// Setting {cache: "reload"} in the new request will ensure that the response
 		// isn"t fulfilled from the HTTP cache i.e., it will be from the network.
-		for (let content of CACHE_CONTENT)
-			await cache.add(new Request(content, {cache: "reload"}))
+		for (let resource of CACHE_CONTENT) {
+			console.log(`[Service Worker] Caching resource: ${resource}`)
+			await cache.add(new Request(resource, {cache: "reload"}))
+		}
 	})())
 
 	self.skipWaiting()
 })
 
-self.addEventListener("activate", (event) => {
-	console.log("[ServiceWorker] Activate")
-
-	event.waitUntil((async () => {
-		// Enable navigation preload if it"s supported.
-		// See https://developers.google.com/web/updates/2017/02/navigation-preload
-		if ("navigationPreload" in self.registration)
-			await self.registration.navigationPreload.enable()
-	})())
-  
-	// Tell the active service worker to take control of the page immediately.
-	self.clients.claim()
-})
-
 self.addEventListener("fetch", async function(event) {
-	// console.log("[Service Worker] Fetch", event.request.url)
+	console.log(`[Service Worker] Fetching resource: ${event.request.url}`)
 	if (event.request.mode === "navigate") {
-		const cache = await caches.open(CACHE_NAME)
+		if (request) return request
 
-		event.respondWith((async () => {
-			try {
-				const preloadResponse = await event.preloadResponse
+		const response = await fetch(event.request)
+		const cache = await caches.open(cacheName)
 
-				if (preloadResponse)
-					return preloadResponse
-		
-				const networkResponse = await fetch(event.request)
-				cache.put(event.request, networkResponse.clone())
-				
-				return networkResponse
-			}
-			catch (error) {
-				console.log("[Service Worker] Fetch failed returning from cache instead.", error)
-		
-				const cachedResponse = await cache.match(event.request)
-				return cachedResponse
-			}
-		})())
+		console.log(`[Service Worker] Caching new resource: ${event.request.url}`)
+
+		cache.put(event.request, response.clone())
+
+		return response
 	}
 })
