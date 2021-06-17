@@ -1,4 +1,4 @@
-![tri](assets/images/banner.svg)
+![tri](assets/images/artistic-banner.svg)
 
 
 ## Introduction
