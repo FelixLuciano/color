@@ -110,7 +110,7 @@ main {
 .main-slider-wraper > .touch-slider {
 	width: 12rem;
 	height: 12rem;
-	border: 2px solid transparent;
+	border: 1px solid transparent;
 }
 
 .small-slider-wraper {
@@ -122,13 +122,18 @@ main {
 .small-slider-wraper > .touch-slider {
 	width: 6rem;
 	height: 6rem;
-	border-right: 1px solid rgba(255, 255, 255, .1);
+	border: 1px solid;
 }
 .small-slider-wraper .touch-slider:nth-child(1) {
+	border-color: #F00C;
 	z-index: 2;
 }
 .small-slider-wraper .touch-slider:nth-child(2) {
+	border-color: #0F0C;
 	z-index: 1;
+}
+.small-slider-wraper .touch-slider:nth-child(3) {
+	border-color: #00FC;
 }
 
 .mixer-info-wraper {

@@ -1,4 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 987 610">
+  <style>
+    @keyframes rot {
+      to{transform:rotate(360deg);}
+    }
+    .rot {
+      animation: rot 13s linear infinite;
+      transform-origin: center;
+    }
+    .rot.rev {
+      animation-direction: reverse;
+    }
+    .rot.fast {
+      animation-duration: 8s;
+    }
+  </style>
   <defs>
     <filter id="blur">
       <feGaussianBlur stdDeviation="55"/>
@@ -33,18 +48,24 @@
   </g>
   <g id="background-color_blur" filter="url(#blur)">
     <rect width="987" height="610" fill="#EEE"/>
-    <circle cx="392.61" cy="363.25" r="188.5" fill="#22F"/>
-    <circle cx="594.39" cy="363.25" r="188.5" fill="#2F2"/>
-    <circle cx="493.5" cy="188.5" r="188.5" fill="#F22"/>
-    <circle cx="328.52" cy="209.75" r="114.5" fill="#F2F"/>
-    <circle cx="493.5" cy="495.5" r="114.5" fill="#2FF"/>
-    <circle cx="658.48" cy="209.75" r="114.5" fill="#FF2"/>
-    <circle cx="377" cy="103.22" r="72" fill="#F29"/>
-    <circle cx="260.5" cy="305" r="72" fill="#92F"/>
-    <circle cx="377" cy="506.78" r="72" fill="#29F"/>
-    <circle cx="610" cy="506.78" r="72" fill="#2F9"/>
-    <circle cx="726.5" cy="305" r="72" fill="#9F2"/>
-    <circle cx="610" cy="103.22" r="72" fill="#F92"/>
+    <g class="rot">
+        <circle cx="392.61" cy="363.25" r="188.5" fill="#22F"/>
+        <circle cx="594.39" cy="363.25" r="188.5" fill="#2F2"/>
+        <circle cx="493.5" cy="188.5" r="188.5" fill="#F22"/>
+    </g>
+    <g class="rot rev">
+      <circle cx="328.52" cy="209.75" r="114.5" fill="#F2F"/>
+      <circle cx="493.5" cy="495.5" r="114.5" fill="#2FF"/>
+      <circle cx="658.48" cy="209.75" r="114.5" fill="#FF2"/>
+    </g>
+    <g class="rot fast">
+      <circle cx="377" cy="103.22" r="72" fill="#F29"/>
+      <circle cx="260.5" cy="305" r="72" fill="#92F"/>
+      <circle cx="377" cy="506.78" r="72" fill="#29F"/>
+      <circle cx="610" cy="506.78" r="72" fill="#2F9"/>
+      <circle cx="726.5" cy="305" r="72" fill="#9F2"/>
+      <circle cx="610" cy="103.22" r="72" fill="#F92"/>
+    </g>
     <use xlink:href="#mask" fill="#777"/>
   </g>
   <g id="type">
