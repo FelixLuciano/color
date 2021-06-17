@@ -1,5 +1,3 @@
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js")
-
 const CACHE_NAME = "tri"
 const CACHE_CONTENT = [
 	"https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.prod.js",
