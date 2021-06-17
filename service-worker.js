@@ -1,11 +1,11 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js')
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js")
 
-const cacheName = "tri"
-const contentToCache = [
+const CACHE_NAME = "tri"
+const CACHE_CONTENT = [
 	"https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.prod.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css",
-	"https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap",
+	"https://fonts.googleapis.com/css2?family=Manrope:wght@400700&display=swap",
 
 	"https://lucianofelix.com.br/tri/assets/icons/favicon.ico",
 	"https://lucianofelix.com.br/tri/assets/icons/favicon-16x16.png",
@@ -41,33 +41,58 @@ const contentToCache = [
 	"https://lucianofelix.com.br/tri/palette/css/style.css",
 ]
 
-self.addEventListener('install', (event) => {
-	console.log('[Service Worker] Install')
+
+self.addEventListener("install", function(event) {
+	console.log("[ServiceWorker] Install")
 
 	event.waitUntil((async () => {
-		const cache = await caches.open(cacheName)
-
-		console.log('[Service Worker] Caching all: app shell and content')
-
-		await cache.addAll(contentToCache)
+		const cache = await caches.open(CACHE_NAME)
+		// Setting {cache: "reload"} in the new request will ensure that the response
+		// isn"t fulfilled from the HTTP cache i.e., it will be from the network.
+		for (let content of CACHE_CONTENT)
+			await cache.add(new Request(content, {cache: "reload"}))
 	})())
+
+	self.skipWaiting()
 })
 
-self.addEventListener('fetch', (event) => {
-	event.respondWith((async () => {
-		const request = await caches.match(event.request)
+self.addEventListener("activate", (event) => {
+	console.log("[ServiceWorker] Activate")
 
-		console.log(`[Service Worker] Fetching resource: ${event.request.url}`)
-
-		if (request) return request
-
-		const response = await fetch(event.request)
-		const cache = await caches.open(cacheName)
-
-		console.log(`[Service Worker] Caching new resource: ${event.request.url}`)
-
-		cache.put(event.request, response.clone())
-
-		return response
+	event.waitUntil((async () => {
+		// Enable navigation preload if it"s supported.
+		// See https://developers.google.com/web/updates/2017/02/navigation-preload
+		if ("navigationPreload" in self.registration)
+			await self.registration.navigationPreload.enable()
 	})())
+  
+	// Tell the active service worker to take control of the page immediately.
+	self.clients.claim()
+})
+
+self.addEventListener("fetch", function(event) {
+	// console.log("[Service Worker] Fetch", event.request.url)
+	if (event.request.mode === "navigate") {
+		const cache = await caches.open(CACHE_NAME)
+
+		event.respondWith((async () => {
+			try {
+				const preloadResponse = await event.preloadResponse
+
+				if (preloadResponse)
+					return preloadResponse
+		
+				const networkResponse = await fetch(event.request)
+				cache.put(event.request, networkResponse.clone())
+				
+				return networkResponse
+			}
+			catch (error) {
+				console.log("[Service Worker] Fetch failed returning from cache instead.", error)
+		
+				const cachedResponse = await cache.match(event.request)
+				return cachedResponse
+			}
+		})())
+	}
 })

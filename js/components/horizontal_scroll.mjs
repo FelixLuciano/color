@@ -10,17 +10,19 @@ export default {
 			const now = new Date().getTime()
 
 			if (toLeft || toRight) {
-				event.preventDefault()
+				// event.preventDefault()
 				event.stopPropagation()
 
 				element.scrollLeft += event.deltaY
 				lastTrigger = now
 			} else if (now - lastTrigger < 350) {
-				event.preventDefault()
+				// event.preventDefault()
 				event.stopPropagation()
 
 				lastTrigger = now
 			}
+		}, {
+			passive: true
 		})
 	}
 }
