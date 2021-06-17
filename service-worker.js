@@ -27,9 +27,11 @@ const CACHE_CONTENT = [
 	"https://lucianofelix.com.br/tri/css/style.css",
 	"https://lucianofelix.com.br/tri/js/app.js",
 	"https://lucianofelix.com.br/tri/js/components/color.mjs",
-	"https://lucianofelix.com.br/tri/js/components/horizontal-scroll.mjs",
+	"https://lucianofelix.com.br/tri/js/components/horizontal_scroll.mjs",
+	"https://lucianofelix.com.br/tri/js/components/icons.mjs",
+	"https://lucianofelix.com.br/tri/js/components/responsive_pointer.mjs",
 	"https://lucianofelix.com.br/tri/js/components/storage.mjs",
-	"https://lucianofelix.com.br/tri/js/components/touch-slider.mjs",
+	"https://lucianofelix.com.br/tri/js/components/touch_slider.mjs",
 	"https://lucianofelix.com.br/tri/js/components/utils.mjs",
 
 	"https://lucianofelix.com.br/tri/palette/",

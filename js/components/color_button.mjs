@@ -5,7 +5,7 @@ import {
 } from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.1.1/vue.esm-browser.prod.js"
 
 import { deleteIcon } from "./icons.mjs"
-import responsivePointer from "./Responsive_pointer.mjs"
+import responsivePointer from "./responsive_pointer.mjs"
 import { getHexadecimals, getDisplay } from "./utils.mjs"
 
 export default {
