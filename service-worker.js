@@ -70,7 +70,7 @@ self.addEventListener("activate", (event) => {
 	self.clients.claim()
 })
 
-self.addEventListener("fetch", function(event) {
+self.addEventListener("fetch", async function(event) {
 	// console.log("[Service Worker] Fetch", event.request.url)
 	if (event.request.mode === "navigate") {
 		const cache = await caches.open(CACHE_NAME)
