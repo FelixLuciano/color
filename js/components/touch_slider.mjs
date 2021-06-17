@@ -1,4 +1,4 @@
-import { h } from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.prod.js"
+import { h } from "https://cdnjs.cloudflare.com/ajax/libs/vue/3.1.1/vue.esm-browser.prod.js"
 
 import ResponsivePointer from "./Responsive_pointer.mjs"
 import { clamp } from "./utils.mjs"

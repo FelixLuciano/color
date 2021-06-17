@@ -1,9 +1,7 @@
 const CACHE_NAME = "tri"
 const CACHE_CONTENT = [
-	"https://cdnjs.cloudflare.com/ajax/libs/vue/3.0.11/vue.esm-browser.prod.js",
-	"https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js",
+	"https://cdnjs.cloudflare.com/ajax/libs/vue/3.1.1/vue.esm-browser.prod.js",
 	"https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css",
-	"https://fonts.googleapis.com/css2?family=Manrope:wght@400700&display=swap",
 
 	"https://lucianofelix.com.br/tri/assets/icons/favicon.ico",
 	"https://lucianofelix.com.br/tri/assets/icons/favicon-16x16.png",
