@@ -84,6 +84,16 @@
 				<input x-model="color.blue" type="range" min="0" max="1" :step="1/16" title="amount of blue">
 			</section>
 
+			<div x-ref="color" class="grid__item col-2 color" :class="{dark: color.brightness < .35}"
+				:style="{'--color': color.hex}">
+				<h2 class="color__title">
+					color
+				</h2>
+				<input x-model="color.hex" type="text" maxlength="7" class="font-mono">
+			</div>
+		</article>
+
+		<article class="half grid">
 			<section class="grid__item color" :style="{'--color': hue.hex}">
 				<h3 class="color__title">
 					hue
@@ -105,16 +115,6 @@
 				</h3>
 				<input x-model="color.brightness" type="range" min="0" max="1" :step="1/100" title="color brightness">
 			</section>
-		</article>
-
-		<article class="half grid">
-			<div x-ref="color" class="grid__item col-2 color" :class="{dark: color.brightness < .35}"
-				:style="{'--color': color.hex}">
-				<h2 class="color__title">
-					color
-				</h2>
-				<input x-model="color.hex" type="text" maxlength="7" class="font-mono">
-			</div>
 
 			<section class="grid__item color" :class="{dark: complementary.brightness < .35}"
 				:style="{'--color': complementary.hex}">

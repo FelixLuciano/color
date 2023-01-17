@@ -13,13 +13,16 @@ class Color {
         }
         this.transition = null
 
-        this.updateHsbAndHexFromRgb()
+        this.updateHsvAndHexFromRgb()
     }
 
     get vector() {
         return this.state.rgb
     }
     set vector(values) {
+        if (values.length != 3)
+            throw new Error(`Cannot set vector to ${values} as it does not have 3 values`)
+
         const dR = (values[0] - this.state.rgb[0]) / 10
         const dG = (values[1] - this.state.rgb[1]) / 10
         const dB = (values[2] - this.state.rgb[2]) / 10
@@ -35,7 +38,7 @@ class Color {
             else
                 this.state.rgb = values
 
-            this.updateHsbAndHexFromRgb()
+            this.updateHsvAndHexFromRgb()
         }
 
         cancelAnimationFrame(this.transition)
@@ -48,7 +51,7 @@ class Color {
     set red(value) {
         this.state.rgb[0] = parseFloat(value)
 
-        this.updateHsbAndHexFromRgb()
+        this.updateHsvAndHexFromRgb()
     }
 
     get green() {
@@ -57,7 +60,7 @@ class Color {
     set green(value) {
         this.state.rgb[1] = parseFloat(value)
 
-        this.updateHsbAndHexFromRgb()
+        this.updateHsvAndHexFromRgb()
     }
 
     get blue() {
@@ -66,7 +69,7 @@ class Color {
     set blue(value) {
         this.state.rgb[2] = parseFloat(value)
 
-        this.updateHsbAndHexFromRgb()
+        this.updateHsvAndHexFromRgb()
     }
 
     get hex() {
@@ -80,76 +83,82 @@ class Color {
         return this.state.hue
     }
     set hue(value) {
-        this.setHSb(parseInt(value), this.state.saturation, this.state.brightness)
+        this.setHSv(parseInt(value), this.state.saturation, this.state.brightness)
     }
 
     get saturation() {
         return this.state.saturation
     }
     set saturation(value) {
-        this.setHSb(this.state.hue, parseFloat(value), this.state.brightness)
+        this.setHSv(this.state.hue, parseFloat(value), this.state.brightness)
     }
 
     get brightness() {
         return this.state.brightness
     }
     set brightness(value) {
-        this.setHSb(this.state.hue, this.state.saturation, parseFloat(value))
+        this.setHSv(this.state.hue, this.state.saturation, parseFloat(value))
     }
 
-    updateHsbAndHexFromRgb() {
+    updateHsvAndHexFromRgb() {
         const [r, g, b] = this.vector
         const cmax = Math.max(r, g, b)
         const cmin = Math.min(r, g, b)
         const delta = (cmax - cmin)
 
         let h
-        if (delta == 0) h = 0
-        else if (cmax == r) h = ((g - b) / delta) % 6
-        else if (cmax == g) h = (b - r) / delta + 2
-        else h = (r - g) / delta + 4
+        if (delta === 0) h = this.state.hue / 60
+        else if (cmax === r) h = (g - b) / delta + (g < b ? 6 : 0)
+        else if (cmax === g) h = (b - r) / delta + 2
+        else if (cmax === b) h = (r - g) / delta + 4
 
-        if (h < 0) h += 6
-        if (h == 0 && this.state.hue > 0) h = 6
+        if (h == 0 && this.state.hue > 240) h = 6
 
         this.state.hue = h * 60
-        this.state.brightness = (cmax + cmin) / 2
-        this.state.saturation = delta == 0 ? 0 : delta / (1 - Math.abs(2 * this.state.brightness - 1))
+        this.state.saturation = cmax == 0 ? 0 : delta / cmax
+        this.state.brightness = cmax
         this.state.hex = '#' + this.vector.map(value => parseInt(value * 15).toString(16).toUpperCase()).join('')
     }
 
-    setHSb(h, s, l) {
-        this.state = Color.fromHsb(h, s, l).state
+    setHSv(h, s, l) {
+        this.state = Color.fromHsv(h, s, l).state
     }
 
     static fromHex(hex) {
-        if (!hex.match(/^#([\da-f]{3}){1,2}$/i)) {
-            throw new Error(`${hex} is not a valid hexadecimal color code. Please enter a valid code in the format #RRGGBB or #RGB.`)
-        }
-
         const size = hex.length === 7 ? 2 : 1
         const matches = hex.match(new RegExp(`[\\da-f]{${size}}`, 'gi'))
         const base = hex.length === 7 ? 256 : 15
+
+        if (!matches || matches.length !== 3) throw new Error('Invalid hex code')
+
         const [r, g, b] = matches.map((match) => parseInt(match, 16) / base)
 
         return new Color(r, g, b)
     }
 
-    static fromHsb(h, s, b) {
-        const c = s * (1 - Math.abs(2 * b - 1))
-        const x = c * (1 - Math.abs(h / 60 % 2 - 1))
-        const m = b - (c / 2)
+    static fromHsv(h, s, b) {
+        // Check for invalid values of saturation and brightness
+        if (s < 0 || s > 1) throw new Error("Invalid saturation")
+        if (b < 0 || b > 1) throw new Error("Invalid brightness")
 
-        let rgb
-        if (h < 60 || h >= 360) rgb = [c, x, 0]
-        else if (h < 120) rgb = [x, c, 0]
-        else if (h < 180) rgb = [0, c, x]
-        else if (h < 240) rgb = [0, x, c]
-        else if (h < 300) rgb = [x, 0, c]
-        else if (h < 360) rgb = [c, 0, x]
-        rgb = rgb.map(c => Math.round((c + m) * 16, 0) / 16)
+        // Calculate the chroma, hue shift, and the secondary color
+        const c = s * b
+        const h_ = h / 60
+        const x = c * (1- Math.abs(h_ % 2 - 1))
+        const m = b - c
+
+        // Calculate the RGB values for the color
+        let rgb = (
+            h_ >= 6 || h_ < 1 ? [c, x, 0] :
+            h_ >= 1 && h_ < 2 ? [x, c, 0] :
+            h_ >= 2 && h_ < 3 ? [0, c, x] :
+            h_ >= 3 && h_ < 4 ? [0, x, c] :
+            h_ >= 4 && h_ < 5 ? [x, 0, c] :
+            h_ >= 5 && h_ < 6 ? [c, 0, x] : undefined
+        ).map(c => c + m)
+
+        // Create the color object and set the HSv values
         const color = new Color(...rgb)
-
         color.state.hue = h
         color.state.saturation = s
         color.state.brightness = b
@@ -193,19 +202,23 @@ function picker() {
             return new Color(0, 0, this.color.blue)
         },
         get hue() {
-            return Color.fromHsb(this.color.hue, 1, .5)
+            return Color.fromHsv(this.color.hue, 1, 1)
         },
         get saturation() {
-            return Color.fromHsb(this.color.hue, this.color.saturation, .5)
+            return Color.fromHsv(this.color.hue, this.color.saturation, .5 + this.color.saturation / 2)
         },
         get brightness() {
-            return Color.fromHsb(0, 0, this.color.brightness)
+            return Color.fromHsv(0, 0, this.color.brightness)
         },
         get complementary() {
-            return Color.fromHsb(Math.round((this.color.hue + 180 + 30) % 360), this.color.saturation, this.color.brightness)
+            const hue = (this.color.hue + 180 + 43) % 360
+
+            return Color.fromHsv(hue, this.color.saturation, this.color.brightness)
         },
         get complementary2() {
-            return Color.fromHsb(Math.round((this.color.hue + 180 - 30) % 360), this.color.saturation, this.color.brightness)
+            const hue = (this.color.hue + 180 - 43) % 360
+
+            return Color.fromHsv(hue, this.color.saturation, this.color.brightness)
         },
         get storage() {
             return this.$storage.map(item => Color.fromHex(item))
