@@ -1,5 +1,5 @@
-import Alpine from 'https://unpkg.com/alpinejs@3/dist/module.esm.js'
-import persist from 'https://unpkg.com/@alpinejs/persist@3/dist/module.esm.js'
+import Alpine from 'alpinejs'
+import persist from '@alpinejs/persist'
 
 
 class Color {
@@ -202,6 +202,9 @@ function picker() {
             return Color.fromHsb(0, 0, this.color.brightness)
         },
         get complementary() {
+            return Color.fromHsb(Math.round((this.color.hue + 180 + 30) % 360), this.color.saturation, this.color.brightness)
+        },
+        get complementary2() {
             return Color.fromHsb(Math.round((this.color.hue + 180 - 30) % 360), this.color.saturation, this.color.brightness)
         },
         get storage() {

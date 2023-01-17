@@ -15,13 +15,13 @@ main {
 	margin: auto;
 	padding: 0;
 	color: #111;
-	font-size: 4rem;
+	font-size: 3.5rem;
 	line-height: .65em;
 	text-align: center;
-	font-weight: bold;
+	font-weight: 550;
 	position: absolute;
 	top: 0;
-	left: -.1em;
+	left: -.06em;
 }
 .palette > ul {
 	height: 100%;
@@ -38,7 +38,9 @@ main {
 	min-width: 4.5rem;
 	padding: 10%;
 	background-color: var(--color);
-	font-weight: bold;
+	font-size: 1.5rem;
+	font-family: 'Azeret Mono', sans-serif;
+	font-weight: 600;
 	display: flex;
 	justify-content: end;
 	align-items: end;
@@ -46,7 +48,6 @@ main {
 .palette__item--large {
 	grid-area: span 4 / span 2;
 	padding: 5% !important;
-	font-size: 1.5em;
 }
 .palette__item--darken {
 	color: #FFF;

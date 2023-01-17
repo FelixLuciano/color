@@ -9,11 +9,18 @@
 	<link async rel="shortcut icon" href="./favicon.svg">
 	<meta name="theme-color" content="#111">
 
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap">
+	<link rel="preconnect" href="https://api.fontshare.com">
+	<link rel="preconnect" href="https://unpkg.com">
+	<link href="https://api.fontshare.com/v2/css?f[]=azeret-mono@1&f[]=chillax@1&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="./globals.css">
 	<link rel="stylesheet" href="./style.css">
 
+	<script type="importmap">
+		{ "imports": {
+			"alpinejs": "https://unpkg.com/alpinejs@3/dist/module.esm.js",
+			"@alpinejs/persist": "https://unpkg.com/@alpinejs/persist@3/dist/module.esm.js"
+		} }
+	</script>
 	<script type="module" src="./script.mjs"></script>
 </head>
 
@@ -106,7 +113,7 @@
 				<h2 class="color__title">
 					color
 				</h2>
-				<input x-model="color.hex" type="text" maxlength="7">
+				<input x-model="color.hex" type="text" maxlength="7" class="font-mono">
 			</div>
 
 			<section class="grid__item color" :class="{dark: complementary.brightness < .35}"
@@ -114,7 +121,16 @@
 				<h3 class="color__title">
 					complementary
 				</h3>
-				<button @click="selectColor(complementary)" x-text="complementary.hex"
+				<button @click="selectColor(complementary)" x-text="complementary.hex" class="font-mono"
+					title="selects the complementary of current color"></button>
+			</section>
+
+			<section class="grid__item color" :class="{dark: complementary2.brightness < .35}"
+				:style="{'--color': complementary2.hex}">
+				<h3 class="color__title">
+					complementary
+				</h3>
+				<button @click="selectColor(complementary2)" x-text="complementary2.hex" class="font-mono"
 					title="selects the complementary of current color"></button>
 			</section>
 
@@ -123,13 +139,14 @@
 				<h3 class="color__title">
 					random
 				</h3>
-				<button @click="selectRandomColor()" x-text="randomColor.hex" title="selects a random color"></button>
+				<button @click="selectRandomColor()" x-text="randomColor.hex" class="font-mono"
+					title="selects a random color"></button>
 			</section>
 		</article>
 
 		<div class="divider"></div>
 
-		<article class="grid grid--large grid--gap" :class="{dark: color.brightness < .35}">
+		<article class="grid grid--large" :class="{dark: color.brightness < .35}">
 			<div class="grid__item col-1 color" :class="{dark: color.brightness < .35}" :style="{'--color': color.hex}">
 				<h2 class="color__title">
 					storage
@@ -140,7 +157,7 @@
 
 			<template x-for="item in storage">
 				<section class="grid__item color" :class="{dark: item.brightness < .35}" :style="{'--color': item.hex}">
-					<h3 x-text="item.hex" class="color__title"></h3>
+					<h3 x-text="item.hex" class="color__title font-mono"></h3>
 					<button @click="selectColor(item)" title="selects this color">select</button>
 				</section>
 			</template>

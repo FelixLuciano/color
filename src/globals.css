@@ -2,7 +2,8 @@
   background-color: #111;
   color: #FFF;
   font-size: max(16px, 1vw);
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Chillax', sans-serif;
+  font-weight: 400;
 }
 
 ::selection {
@@ -25,6 +26,10 @@ a {
 
 /* Helpers */
 
+.font-mono {
+  font-family: 'Azeret Mono', sans-serif !important;
+}
+
 @media (max-width: 425px) {
   .hide-small {
     display: none;
@@ -43,7 +48,6 @@ body {
 
 header {
   width: 100%;
-  /* border-bottom: 1px dotted #333; */
   font-size: 1.5rem;
   line-height: 6rem;
   display: flex;
@@ -115,15 +119,14 @@ header {
 header > h1 {
   margin: 0;
   font-size: .75em;
-  font-weight: normal;
+  font-weight: 600;
   line-height: inherit;
-  font-weight: semibold;
 }
 header > h1:before {
   content: "/";
   padding-right: 1.5rem;
   color: #777;
-  font-weight: normal;
+  font-weight: 500;
 }
 
 nav {
@@ -138,6 +141,7 @@ nav > ul {
   justify-content: end;
 }
 nav > ul > li {
+  font-weight: 450;
 }
 nav a {
   font-size: .8em;

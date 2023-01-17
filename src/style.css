@@ -1,15 +1,9 @@
 main {
 	color: #111;
-    font-size: 4vw;
     display: flex;
     flex-wrap: wrap;
     align-content: start;
     gap: 0;
-}
-@media (min-width: 70rem) {
-    main {
-        font-size: 2vw;
-    }
 }
 
 main > * {
@@ -17,7 +11,7 @@ main > * {
     position: relative;
 }
 main > .divider {
-    height: 4rem;
+    height: 3rem;
 }
 @media (min-width: 64rem) {
     main > .half {
@@ -31,20 +25,18 @@ main > .divider {
 }
 .grid--large {
     grid-template-columns: repeat(6, 1fr);
-    font-size: .66em;
-}
-.grid.grid--gap {
-    /* gap: 1em; */
+    font-size: 1rem;
 }
 @media (min-width: 70rem) {
     .grid--large {
-        grid-template-columns: repeat(8, 1fr);
-        font-size: 1em;
+        grid-template-columns: repeat(9, 1fr);
+        font-size: .8em;
     }
 }
 .grid > .col-2 {
-    grid-column-end: span 2;
-    grid-row-end: span 2;
+    grid-column-end: span 3;
+    grid-row-end: span 1;
+    aspect-ratio: 3 / 1;
 }
 .grid__item {
     aspect-ratio: 1 / 1;
@@ -54,22 +46,28 @@ main > .divider {
 
 .color {
     background-color: var(--color, #888);
-    font-weight: bold;
+    font-weight: 600;
     line-height: 1em;
     transition: background-color 256ms;
 }
 .color.dark {
     color: #EEE;
 }
+.color:not(.dark) ::selection {
+    background-color: #000;
+    color: #FFF;
+}
 
 .color__title {
     max-width: 100%;
-	margin: auto;
+    margin: -.25em 0 0 -.03em;
 	padding: 0;
-	font-size: 1.5em;
+    padding-right: .6em;
+	font-size: 3em;
+	font-weight: 550;
 	line-height: 1.3em;
     word-wrap: break-word;
-	font-weight: bold;
+    transition: color 250ms;
 }
 
 .color > input, .color > button {
@@ -79,7 +77,6 @@ main > .divider {
     padding: 0;
     color: inherit;
     font-size: inherit;
-    font-family: monospace;
     font-weight: inherit;
     text-align: right;
     position: absolute;
@@ -88,11 +85,12 @@ main > .divider {
     background-color: transparent;
 }
 .color > input[type="text"] {
-    width: 94%;
+    width: 98%;
     height: 94%;
-    margin: 3%;
-    padding-top: 80%;
-    font-size: 2em;
+    margin: 1%;
+    padding-top: 3.5em;
+    padding-right: .1em;
+    font-size: 3em;
 }
 .color > input[type="range"] {
     width: 80%;
@@ -107,8 +105,9 @@ main > .divider {
     height: 94%;
     margin: 3%;
     padding-top: 75%;
+    font-size: 1.5em;
     cursor: pointer;
 }
 .color:has(> button:hover) {
-    text-decoration: dashed underline;
+    text-decoration-line: underline;
 }

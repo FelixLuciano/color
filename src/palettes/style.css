@@ -1,7 +1,8 @@
 main {
+	padding: .5rem 0 1rem 0;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	gap: 2rem;
+	gap: 1.5rem 1rem;
 	color: #000;
 }
 
@@ -12,13 +13,13 @@ main {
 .palette > h2 {
 	margin: 0;
 	padding: 0;
+	margin-bottom: -.3em;
 	font-size: 2rem;
 	line-height: 1em;
-	font-weight: semibold;
+	font-weight: 550;
 	color: #FFF;
 }
 .palette > ul {
-	height: 100%;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -26,6 +27,7 @@ main {
 	grid-template-rows: repeat(1, 1fr);
 	grid-template-columns: repeat(5, 1fr);
 	grid-auto-flow: column;
+	transform: rotate(-3deg);
 }
 .palette > ul > li {
 	width: 100%;
@@ -33,11 +35,17 @@ main {
 	min-width: 3.75rem;
 	padding: 10%;
 	background-color: var(--color);
-	font-weight: bold;
+	font-family: 'Azeret Mono', sans-serif !important;
+	font-weight: 600;
 	display: flex;
 	justify-content: end;
 	align-items: end;
+	transform: scale(100.75%);
 }
 .palette > ul > li.dark {
 	color: #FFF;
+}
+.palette > ul > li:not(.dark)::selection {
+    background-color: #000;
+    color: #FFF;
 }
