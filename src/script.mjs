@@ -8,8 +8,8 @@ class Color {
             rgb: [r, g, b],
             hex: null,
             hue: null,
-            saturation: null,
-            brightness: null,
+            chroma: null,
+            light: null,
         }
         this.transition = null
 
@@ -83,21 +83,21 @@ class Color {
         return this.state.hue
     }
     set hue(value) {
-        this.setHSv(parseInt(value), this.state.saturation, this.state.brightness)
+        this.setHSv(parseInt(value), this.state.chroma, this.state.light)
     }
 
-    get saturation() {
-        return this.state.saturation
+    get chroma() {
+        return this.state.chroma
     }
-    set saturation(value) {
-        this.setHSv(this.state.hue, parseFloat(value), this.state.brightness)
+    set chroma(value) {
+        this.setHSv(this.state.hue, parseFloat(value), this.state.light)
     }
 
-    get brightness() {
-        return this.state.brightness
+    get light() {
+        return this.state.light
     }
-    set brightness(value) {
-        this.setHSv(this.state.hue, this.state.saturation, parseFloat(value))
+    set light(value) {
+        this.setHSv(this.state.hue, this.state.chroma, parseFloat(value))
     }
 
     updateHsvAndHexFromRgb() {
@@ -115,8 +115,8 @@ class Color {
         if (h == 0 && this.state.hue > 240) h = 6
 
         this.state.hue = h * 60
-        this.state.saturation = cmax == 0 ? 0 : delta / cmax
-        this.state.brightness = cmax
+        this.state.chroma = cmax == 0 ? 0 : delta / cmax
+        this.state.light = cmax
         this.state.hex = '#' + this.vector.map(value => parseInt(value * 15).toString(16).toUpperCase()).join('')
     }
 
@@ -137,9 +137,9 @@ class Color {
     }
 
     static fromHsv(h, s, b) {
-        // Check for invalid values of saturation and brightness
-        if (s < 0 || s > 1) throw new Error("Invalid saturation")
-        if (b < 0 || b > 1) throw new Error("Invalid brightness")
+        // Check for invalid values of chroma and light
+        if (s < 0 || s > 1) throw new Error("Invalid chroma")
+        if (b < 0 || b > 1) throw new Error("Invalid light")
 
         // Calculate the chroma, hue shift, and the secondary color
         const c = s * b
@@ -160,8 +160,8 @@ class Color {
         // Create the color object and set the HSv values
         const color = new Color(...rgb)
         color.state.hue = h
-        color.state.saturation = s
-        color.state.brightness = b
+        color.state.chroma = s
+        color.state.light = b
 
         return color
     }
@@ -204,21 +204,21 @@ function picker() {
         get hue() {
             return Color.fromHsv(this.color.hue, 1, 1)
         },
-        get saturation() {
-            return Color.fromHsv(this.color.hue, this.color.saturation, .5 + this.color.saturation / 2)
+        get chroma() {
+            return Color.fromHsv(this.color.hue, this.color.chroma, .5 + this.color.chroma / 2)
         },
-        get brightness() {
-            return Color.fromHsv(0, 0, this.color.brightness)
+        get light() {
+            return Color.fromHsv(0, 0, this.color.light)
         },
         get complementary() {
             const hue = (this.color.hue + 180 + 43) % 360
 
-            return Color.fromHsv(hue, this.color.saturation, this.color.brightness)
+            return Color.fromHsv(hue, this.color.chroma, this.color.light)
         },
         get complementary2() {
             const hue = (this.color.hue + 180 - 43) % 360
 
-            return Color.fromHsv(hue, this.color.saturation, this.color.brightness)
+            return Color.fromHsv(hue, this.color.chroma, this.color.light)
         },
         get storage() {
             return this.$storage.map(item => Color.fromHex(item))

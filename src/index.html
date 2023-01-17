@@ -63,28 +63,28 @@
 				controls
 			</h2>
 
-			<section class="grid__item color" :class="{dark: red.brightness < .35}" :style="{'--color': red.hex}">
+			<section class="grid__item color" :class="{dark: red.light < .35}" :style="{'--color': red.hex}">
 				<h3 class="color__title">
 					red
 				</h3>
 				<input x-model="color.red" type="range" min="0" max="1" :step="1/16" title="amount of red">
 			</section>
 
-			<section class="grid__item color" :class="{dark: green.brightness < .35}" :style="{'--color': green.hex}">
+			<section class="grid__item color" :class="{dark: green.light < .35}" :style="{'--color': green.hex}">
 				<h3 class="color__title">
 					green
 				</h3>
 				<input x-model="color.green" type="range" min="0" max="1" :step="1/16" title="amount of green">
 			</section>
 
-			<section class="grid__item color" :class="{dark: blue.brightness < .35}" :style="{'--color': blue.hex}">
+			<section class="grid__item color" :class="{dark: blue.light < .35}" :style="{'--color': blue.hex}">
 				<h3 class="color__title">
 					blue
 				</h3>
 				<input x-model="color.blue" type="range" min="0" max="1" :step="1/16" title="amount of blue">
 			</section>
 
-			<div x-ref="color" class="grid__item col-2 color" :class="{dark: color.brightness < .35}"
+			<div x-ref="color" class="grid__item col-2 color" :class="{dark: color.light < .35}"
 				:style="{'--color': color.hex}">
 				<h2 class="color__title">
 					color
@@ -101,22 +101,22 @@
 				<input x-model="color.hue" type="range" min="0" max="360" step="1" title="color hue">
 			</section>
 
-			<section class="grid__item color" :style="{'--color': saturation.hex}">
+			<section class="grid__item color" :style="{'--color': chroma.hex}">
 				<h3 class="color__title">
-					saturation
+					chroma
 				</h3>
-				<input x-model="color.saturation" type="range" min="0" max="1" :step="1/100" title="color saturation">
+				<input x-model="color.chroma" type="range" min="0" max="1" :step="1/100" title="color chroma">
 			</section>
 
-			<section class="grid__item color" :class="{dark: brightness.brightness < .35}"
-				:style="{'--color': brightness.hex}">
+			<section class="grid__item color" :class="{dark: light.light < .35}"
+				:style="{'--color': light.hex}">
 				<h3 class="color__title">
-					brightness
+					light
 				</h3>
-				<input x-model="color.brightness" type="range" min="0" max="1" :step="1/100" title="color brightness">
+				<input x-model="color.light" type="range" min="0" max="1" :step="1/100" title="color light">
 			</section>
 
-			<section class="grid__item color" :class="{dark: complementary.brightness < .35}"
+			<section class="grid__item color" :class="{dark: complementary.light < .35}"
 				:style="{'--color': complementary.hex}">
 				<h3 class="color__title">
 					complementary
@@ -125,7 +125,7 @@
 					title="selects the complementary of current color"></button>
 			</section>
 
-			<section class="grid__item color" :class="{dark: complementary2.brightness < .35}"
+			<section class="grid__item color" :class="{dark: complementary2.light < .35}"
 				:style="{'--color': complementary2.hex}">
 				<h3 class="color__title">
 					complementary
@@ -134,7 +134,7 @@
 					title="selects the complementary of current color"></button>
 			</section>
 
-			<section class="grid__item color" :class="{dark: randomColor.brightness < .35}"
+			<section class="grid__item color" :class="{dark: randomColor.light < .35}"
 				:style="{'--color': randomColor.hex}">
 				<h3 class="color__title">
 					random
@@ -146,8 +146,8 @@
 
 		<div class="divider"></div>
 
-		<article class="grid grid--large" :class="{dark: color.brightness < .35}">
-			<div class="grid__item col-1 color" :class="{dark: color.brightness < .35}" :style="{'--color': color.hex}">
+		<article class="grid grid--large" :class="{dark: color.light < .35}">
+			<div class="grid__item col-1 color" :class="{dark: color.light < .35}" :style="{'--color': color.hex}">
 				<h2 class="color__title">
 					storage
 				</h2>
@@ -156,7 +156,7 @@
 			</div>
 
 			<template x-for="item in storage">
-				<section class="grid__item color" :class="{dark: item.brightness < .35}" :style="{'--color': item.hex}">
+				<section class="grid__item color" :class="{dark: item.light < .35}" :style="{'--color': item.hex}">
 					<h3 x-text="item.hex" class="color__title font-mono"></h3>
 					<button @click="selectColor(item)" title="selects this color">select</button>
 				</section>
