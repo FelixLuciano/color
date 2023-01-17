@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 987 610">
-  <rect id="background" width="987" height="610" fill="#111"/>
-  <g id="logo">
-    <circle cx="565.5" cy="305" r="72" fill="#22f"/>
-    <circle cx="493.5" cy="305" r="72" fill="#2f2"/>
-    <circle cx="421.5" cy="305" r="72" fill="#f22"/>
-  </g>
-</svg>

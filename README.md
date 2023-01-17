@@ -1,28 +1,31 @@
-![tri](assets/images/artistic-banner.svg)
+![tri](assets/image/banner.svg)
+<h1 align="center">
+    tri
+</h1>
+
+<p align="center">
+    <strong>A color tool for three character hexadecimal codes.</strong>
+</p>
 
 
-## Introduction
+## Features
 
-**tri** is a three characters hexadecimal color system.
+The app features a color picker to help you find the perfect color for your
+project, as well as a color storage to save your selections. Also it features a
+selection of already-chosen and harmonized colors to make your work easier.
 
-## The app
+If the slightest variances don't cause you too much trouble, this tool is ideal
+for you whether you're a designer, developer, or just searching for a quick way
+to pick colors.
 
-### Desktop
 
-![tri app](assets/screenshots/app-desktop.webp)
+## Check it out
 
-![tri app](assets/screenshots/palette-desktop.webp)
+![App screenshot](assets/image/picker-screenshot.jpg)
 
-### Mobile
+Here is the following link to [see it online](https://github.lucianofelix.com.br/tri/).
 
-![tri app](assets/screenshots/app-mobile.webp)
 
-![tri app](assets/screenshots/palette-mobile.webp)
+## LICENSE
 
-## Color palette
-
-![Color palette](assets/images/palette.svg)
-
-[LICENSE](https://github.com/FelixLuciano/tri/blob/master/LICENSE)
-
-Copyright © 2023 Luciano Felix
+This project is [MIT Licensed](LICENSE)!

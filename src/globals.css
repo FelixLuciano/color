@@ -1,0 +1,171 @@
+:root {
+  background-color: #111;
+  color: #FFF;
+  font-size: max(16px, 1vw);
+  font-family: 'Manrope', sans-serif;
+}
+
+::selection {
+  background-color: #FFF;
+  color: #000;
+}
+
+/* Elements */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+a {
+  color: currentColor;
+  text-decoration: underline;
+}
+
+/* Helpers */
+
+@media (max-width: 425px) {
+  .hide-small {
+    display: none;
+  }
+}
+
+/* Layout */
+
+body {
+  margin: 0;
+  padding: 0 2rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: 6rem minmax(calc(100vh - 10rem), auto) 4rem;
+  display: grid;
+}
+
+header {
+  width: 100%;
+  /* border-bottom: 1px dotted #333; */
+  font-size: 1.5rem;
+  line-height: 6rem;
+  display: flex;
+  gap: 2rem;
+}
+
+#logo {
+  text-decoration: none;
+  display: block;
+}
+#logo:hover {
+  text-decoration: underline;
+}
+#logo > svg {
+  width: 6rem;
+  height: 6rem;
+  margin-right: 1em;
+  margin-bottom: .4rem;
+  vertical-align: middle;
+  transition: transform 256ms cubic-bezier(0, 0, .2, 1);
+}
+#logo:active > svg {
+  transform: scale(.75);
+}
+#logo > svg > circle {
+  animation-duration: 512ms;
+  animation-timing-function: cubic-bezier(0, 0, .2, 1);
+  animation-fill-mode: both;
+}
+#logo:hover > svg > circle {
+  mix-blend-mode: lighten;
+  animation-duration: 512ms;
+}
+#logo:hover > svg > circle:nth-of-type(2) {
+  animation-name: circle2;
+}
+#logo:hover > svg > circle:nth-of-type(7) {
+  animation-name: circle7;
+}
+#logo:hover > svg > circle:nth-of-type(4) {
+  animation-name: circle4;
+}
+#logo:hover > svg > circle:nth-of-type(6) {
+  animation-name: circle6;
+}
+@keyframes circle2 {
+  50% {transform: rotate(45deg) translateX(-16%);}
+  to {transform: rotate(45deg) translateX(0) scale(75%);}
+}
+@keyframes circle7 {
+  50% {transform: rotate(45deg) translateX(16%);}
+  to {transform: rotate(45deg) translateX(0) scale(75%);}
+}
+@keyframes circle4 {
+  50% {transform: scale(90%);}
+  to {transform: scale(100%);}
+}
+@keyframes circle6 {
+  50% {transform: rotate(45deg) translateX(38%)}
+  to {transform: rotate(45deg) scale(50%) translateX(105%);}
+}
+
+#logo:hover > svg > circle:nth-of-type(5),
+#logo:hover > svg > circle:nth-of-type(3),
+#logo:hover > svg > circle:nth-of-type(1) {
+  opacity: 0;
+}
+
+header > h1 {
+  margin: 0;
+  font-size: .75em;
+  font-weight: normal;
+  line-height: inherit;
+  font-weight: semibold;
+}
+header > h1:before {
+  content: "/";
+  padding-right: 1.5rem;
+  color: #777;
+  font-weight: normal;
+}
+
+nav {
+  flex: 1 0 auto;
+}
+nav > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2rem;
+  justify-content: end;
+}
+nav > ul > li {
+}
+nav a {
+  font-size: .8em;
+  text-decoration: none;
+}
+nav a:is(
+  :hover,
+  :active,
+  :visited
+) {
+  text-decoration: underline;
+}
+
+nav a svg {
+  width: 1.25em;
+  height: 1.25em;
+  margin-bottom: -.2em;
+  margin-left: .3em;
+  fill: currentcolor;
+}
+
+main {
+  /* background-color: #333; */
+}
+
+
+footer {
+  width: 100%;
+  font-size: .8em;
+  line-height: 4rem;
+}
