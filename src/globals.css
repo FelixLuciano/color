@@ -30,12 +30,6 @@ a {
   font-family: 'Azeret Mono', sans-serif !important;
 }
 
-@media (max-width: 425px) {
-  .hide-small {
-    display: none;
-  }
-}
-
 /* Layout */
 
 body {
