@@ -1,0 +1,171 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-512 -256 1024 512">
+  <defs>
+    <style>
+      #logo,
+      .c {
+        animation-duration: 4s;
+        animation-timing-function: cubic-bezier(0, 0, .2, 1);
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+      }
+      .c.c--B { animation-name: c--B; }
+      .c.c--R { animation-name: c--R; }
+      .c.c--G { animation-name: c--G; }
+      .c.c--K { animation-name: c--K; }
+      .c.c--C,
+      .c.c--Y,
+      .c.c--M { animation-name: c--CYM; }
+      @keyframes c {
+        from,
+        40% {
+          transform: scale(100%);
+        }
+        50% {
+          transform: scale(100%);
+        }
+        60%,
+        to {
+          transform: scale(80%);
+        }
+      }
+      @keyframes c--K {
+        from,
+        40% {
+          transform: rotate(0deg) translateX(0px);
+        }
+        50% {
+          transform: rotate(45deg) translateX(50px);
+        }
+        60%,
+        to {
+          transform: rotate(45deg) scale(50%) translateX(150px);
+        }
+      }
+      @keyframes c--R {
+        from,
+        40% {
+          transform: rotate(0deg) translateX(0px);
+          mix-blend-mode: normal;
+        }
+        45%,
+        to {
+          mix-blend-mode: lighten;
+        }
+        50% {
+          transform: rotate(45deg) translateX(20px);
+        }
+        60%,
+        to {
+          transform: rotate(45deg) translateX(0) scale(75%);
+        }
+      }
+      @keyframes c--G {
+        from,
+        40% {
+          transform: scale(100%);
+          mix-blend-mode: normal;
+        }
+        45%,
+        to {
+          mix-blend-mode: lighten;
+        }
+        50% {
+          transform: scale(90%);
+        }
+        60%,
+        to {
+          transform: scale(100%);
+        }
+      }
+      @keyframes c--B {
+        from,
+        40% {
+          transform: rotate(0deg) translateX(0px);
+          mix-blend-mode: normal;
+        }
+        45%,
+        to {
+          mix-blend-mode: lighten;
+        }
+        50% {
+          transform: rotate(45deg) translateX(-20px);
+        }
+        60%,
+        to {
+          transform: rotate(45deg) translateX(0) scale(75%);
+        }
+      }
+
+      @keyframes c--CYM {
+        from,
+        40% {
+          opacity: 1;
+        }
+
+        45%,
+        to {
+          opacity: 0;
+        }
+      }
+
+      .shadow--primary,
+      .shadow--complementary {
+        mix-blend-mode: difference;
+        animation: 8s rotate linear infinite;
+      }
+      .shadow--complementary {
+        animation-duration: 16s;
+        animation-direction: alternate-reverse;
+      }
+      @keyframes rotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="64" />
+    </filter>
+  </defs>
+
+  <rect id="background" x="-512" y="-256" width="1024" height="512"
+    fill="#EEE" />
+
+  <g id="shadow" filter="url(#blur)">
+    <g class="shadow--primary">
+      <circle cx="128" r="128" fill="#F22" transform="rotate(0)" />
+      <circle cx="128" r="128" fill="#22F" transform="rotate(120)" />
+      <circle cx="128" r="128" fill="#2F2" transform="rotate(240)" />
+    </g>
+    <g class="shadow--complementary">
+      <circle cx="128" r="128" fill="#F2F" transform="rotate(60)" />
+      <circle cx="128" r="128" fill="#2FF" transform="rotate(180)" />
+      <circle cx="128" r="128" fill="#FF2" transform="rotate(300)" />
+    </g>
+  </g>
+
+  <g class="mask" fill="#111">
+    <rect x="-32" y="-96" width="64" height="192" />
+    <rect x="-96" y="-32" width="192" height="64" />
+    <circle cx="-32" cy="-32" r="64" />
+    <circle cx="-32" cy="32" r="64" />
+    <circle cx="32" cy="-32" r="64" />
+    <circle cx="32" cy="32" r="64" />
+  </g>
+
+  <g id="logo">
+    <circle cx="52" r="16" fill="#F2F" class="c c--M" />
+    <circle cx="32" r="32" fill="#22F" class="c c--B" />
+    <circle cx="20" r="16" fill="#2FF" class="c c--C" />
+    <circle r="32" fill="#2F2" class="c c--G" />
+    <circle cx="-12" r="16" fill="#FF2" class="c c--Y" />
+    <circle cx="-52" r="16" fill="#FFF" class="c c--K" />
+    <circle cx="-32" r="32" fill="#F22" class="c c--R" />
+  </g>
+
+  <!-- <text id="type" y="144" fill="#111" font-size="32" text-anchor="middle"
+    alignment-baseline="middle" font-weight="bold" font-family="sans-serif">
+    tri
+  </text> -->
+</svg>

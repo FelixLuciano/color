@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>tri - picker</title>
+	<meta name="Description" content="Three characters hexadecimal color system">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link async rel="shortcut icon" href="./favicon.svg">
+	<meta name="theme-color" content="#111">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap">
+	<link rel="stylesheet" href="./globals.css">
+	<link rel="stylesheet" href="./style.css">
+
+	<script type="module" src="./script.mjs"></script>
+</head>
+
+<body>
+	<header>
+		<a id="logo" href="/tri/" target="_top" title="Go to start page" onclick="navigator.vibrate(128)">
+			<svg width="136" height="128" viewBox="-68 -32 136 64">
+				<circle cx="52" r="16" fill="#F2F" />
+				<circle cx="32" r="32" fill="#22F" />
+				<circle cx="20" r="16" fill="#2FF" />
+				<circle r="32" fill="#2F2" />
+				<circle cx="-12" r="16" fill="#FF2" />
+				<circle cx="-52" r="16" fill="#FFF" />
+				<circle cx="-32" r="32" fill="#F22" />
+			</svg>tri
+		</a>
+
+		<h1>
+			picker
+		</h1>
+
+		<nav>
+			<ul>
+				<li>
+					<a href="/tri/swatches" title="Open swatches">swatches</a>
+				</li>
+				<li>
+					<a href="/tri/palettes" title="Open palettes">palettes</a>
+				</li>
+				<li>
+					<a href="/tri/fades" title="Open fades">fades</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<main x-data="picker()">
+		<article class="half grid">
+			<h2 class="color__title" hidden>
+				controls
+			</h2>
+
+			<section class="grid__item color" :class="{dark: red.brightness < .35}" :style="{'--color': red.hex}">
+				<h3 class="color__title">
+					red
+				</h3>
+				<input x-model="color.red" type="range" min="0" max="1" :step="1/16" title="amount of red">
+			</section>
+
+			<section class="grid__item color" :class="{dark: green.brightness < .35}" :style="{'--color': green.hex}">
+				<h3 class="color__title">
+					green
+				</h3>
+				<input x-model="color.green" type="range" min="0" max="1" :step="1/16" title="amount of green">
+			</section>
+
+			<section class="grid__item color" :class="{dark: blue.brightness < .35}" :style="{'--color': blue.hex}">
+				<h3 class="color__title">
+					blue
+				</h3>
+				<input x-model="color.blue" type="range" min="0" max="1" :step="1/16" title="amount of blue">
+			</section>
+
+			<section class="grid__item color" :style="{'--color': hue.hex}">
+				<h3 class="color__title">
+					hue
+				</h3>
+				<input x-model="color.hue" type="range" min="0" max="360" step="1" title="color hue">
+			</section>
+
+			<section class="grid__item color" :style="{'--color': saturation.hex}">
+				<h3 class="color__title">
+					saturation
+				</h3>
+				<input x-model="color.saturation" type="range" min="0" max="1" :step="1/100" title="color saturation">
+			</section>
+
+			<section class="grid__item color" :class="{dark: brightness.brightness < .35}"
+				:style="{'--color': brightness.hex}">
+				<h3 class="color__title">
+					brightness
+				</h3>
+				<input x-model="color.brightness" type="range" min="0" max="1" :step="1/100" title="color brightness">
+			</section>
+		</article>
+
+		<article class="half grid">
+			<div x-ref="color" class="grid__item col-2 color" :class="{dark: color.brightness < .35}"
+				:style="{'--color': color.hex}">
+				<h2 class="color__title">
+					color
+				</h2>
+				<input x-model="color.hex" type="text" maxlength="7">
+			</div>
+
+			<section class="grid__item color" :class="{dark: complementary.brightness < .35}"
+				:style="{'--color': complementary.hex}">
+				<h3 class="color__title">
+					complementary
+				</h3>
+				<button @click="selectColor(complementary)" x-text="complementary.hex"
+					title="selects the complementary of current color"></button>
+			</section>
+
+			<section class="grid__item color" :class="{dark: randomColor.brightness < .35}"
+				:style="{'--color': randomColor.hex}">
+				<h3 class="color__title">
+					random
+				</h3>
+				<button @click="selectRandomColor()" x-text="randomColor.hex" title="selects a random color"></button>
+			</section>
+		</article>
+
+		<div class="divider"></div>
+
+		<article class="grid grid--large grid--gap" :class="{dark: color.brightness < .35}">
+			<div class="grid__item col-1 color" :class="{dark: color.brightness < .35}" :style="{'--color': color.hex}">
+				<h2 class="color__title">
+					storage
+				</h2>
+
+				<button @click="store(color)" title="puts current color into storage">save</button>
+			</div>
+
+			<template x-for="item in storage">
+				<section class="grid__item color" :class="{dark: item.brightness < .35}" :style="{'--color': item.hex}">
+					<h3 x-text="item.hex" class="color__title"></h3>
+					<button @click="selectColor(item)" title="selects this color">select</button>
+				</section>
+			</template>
+		</article>
+	</main>
+
+	<footer>
+		&copy; 2023 Luciano Felix<span class="hide-small">, all rights reserved</span>.
+
+		<a href="https://github.com/FelixLuciano/tri#readme" target="_blank" rel="noopener">
+			<span class="hide-small">See on </span>GitHub.
+		</a>
+	</footer>
+</body>
+
+</html>
