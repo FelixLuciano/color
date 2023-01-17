@@ -63,59 +63,37 @@
 				controls
 			</h2>
 
-			<section class="grid__item color" :class="{dark: red.light < .35}" :style="{'--color': red.hex}">
-				<h3 class="color__title">
-					red
-				</h3>
-				<input x-model="color.red" type="range" min="0" max="1" :step="1/16" title="amount of red">
-			</section>
-
-			<section class="grid__item color" :class="{dark: green.light < .35}" :style="{'--color': green.hex}">
-				<h3 class="color__title">
-					green
-				</h3>
-				<input x-model="color.green" type="range" min="0" max="1" :step="1/16" title="amount of green">
-			</section>
-
-			<section class="grid__item color" :class="{dark: blue.light < .35}" :style="{'--color': blue.hex}">
-				<h3 class="color__title">
-					blue
-				</h3>
-				<input x-model="color.blue" type="range" min="0" max="1" :step="1/16" title="amount of blue">
-			</section>
-
 			<div x-ref="color" class="grid__item col-2 color" :class="{dark: color.light < .35}"
 				:style="{'--color': color.hex}">
 				<h2 class="color__title">
 					color
 				</h2>
-				<input x-model="color.hex" type="text" maxlength="7" class="font-mono">
+				<input x-model.debounce="hex" type="text" maxlength="7" pattern="[#\\dA-Fa-f]" class="font-mono">
 			</div>
+
+			<section class="grid__item color" :class="{dark: redDisplay.light < .35}" :style="{'--color': redDisplay.hex}">
+				<h3 class="color__title">
+					red
+				</h3>
+				<input x-model.number="red" type="range" min="0" max="1" :step="1/64" title="amount of red">
+			</section>
+
+			<section class="grid__item color" :class="{dark: greenDisplay.light < .35}" :style="{'--color': greenDisplay.hex}">
+				<h3 class="color__title">
+					green
+				</h3>
+				<input x-model.number="green" type="range" min="0" max="1" :step="1/64" title="amount of green">
+			</section>
+
+			<section class="grid__item color" :class="{dark: blueDisplay.light < .35}" :style="{'--color': blueDisplay.hex}">
+				<h3 class="color__title">
+					blue
+				</h3>
+				<input x-model.number="blue" type="range" min="0" max="1" :step="1/64" title="amount of blue">
+			</section>
 		</article>
 
 		<article class="half grid">
-			<section class="grid__item color" :style="{'--color': hue.hex}">
-				<h3 class="color__title">
-					hue
-				</h3>
-				<input x-model="color.hue" type="range" min="0" max="360" step="1" title="color hue">
-			</section>
-
-			<section class="grid__item color" :style="{'--color': chroma.hex}">
-				<h3 class="color__title">
-					chroma
-				</h3>
-				<input x-model="color.chroma" type="range" min="0" max="1" :step="1/100" title="color chroma">
-			</section>
-
-			<section class="grid__item color" :class="{dark: light.light < .35}"
-				:style="{'--color': light.hex}">
-				<h3 class="color__title">
-					light
-				</h3>
-				<input x-model="color.light" type="range" min="0" max="1" :step="1/100" title="color light">
-			</section>
-
 			<section class="grid__item color" :class="{dark: complementary.light < .35}"
 				:style="{'--color': complementary.hex}">
 				<h3 class="color__title">
@@ -141,6 +119,28 @@
 				</h3>
 				<button @click="selectRandomColor()" x-text="randomColor.hex" class="font-mono"
 					title="selects a random color"></button>
+			</section>
+
+			<section class="grid__item color" :style="{'--color': hueDisplay.hex}">
+				<h3 class="color__title">
+					hue
+				</h3>
+				<input x-model.number="hue" type="range" min="0" max="360" step="1" title="color hue">
+			</section>
+
+			<section class="grid__item color" :style="{'--color': chromaDisplay.hex}">
+				<h3 class="color__title">
+					chroma
+				</h3>
+				<input x-model.number="chroma" type="range" min="0" max="1" :step="1/100" title="color chroma">
+			</section>
+
+			<section class="grid__item color" :class="{dark: lightDisplay.light < .35}"
+				:style="{'--color': lightDisplay.hex}">
+				<h3 class="color__title">
+					light
+				</h3>
+				<input x-model.number="light" type="range" min="0" max="1" :step="1/100" title="color light">
 			</section>
 		</article>
 
