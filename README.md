@@ -6,6 +6,9 @@
 <p align="center">
     <strong>A color tool for three character hexadecimal codes.</strong>
 </p>
+<p align="center">
+    <a href="https://github.com/FelixLuciano/tri/actions/workflows/deploy.yml"><img src="https://github.com/FelixLuciano/tri/actions/workflows/deploy.yml/badge.svg" alt="Deploy"></a>
+</p>
 
 
 ## Features
