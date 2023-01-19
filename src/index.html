@@ -73,7 +73,7 @@
 				<h2 class="color__title">
 					color
 				</h2>
-				<input x-model.debounce="hex" type="text" maxlength="7" pattern="[#\\dA-Fa-f]" class="font-mono">
+				<input x-model="hex" type="text" minlength="1" maxlength="7" class="font-mono">
 			</div>
 
 			<section class="grid__item color" :class="{dark: redDisplay.light < .35}" :style="{'--color': redDisplay.hex}">

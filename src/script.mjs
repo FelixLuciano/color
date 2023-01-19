@@ -75,6 +75,7 @@ function picker() {
 
   return {
     hexInput: '#FFF',
+    inputTimeout: null,
     color: new Color(),
     randomColor: null,
     $storage: this.$persist([]).as('com.lucianofelix.tri.storage'),
@@ -88,13 +89,16 @@ function picker() {
 
       this.hexInput = value.toUpperCase()
 
-      try {
-        this.color = Color.fromHex(value)
-        this.hexInput = this.color.hex
-      }
-      catch (error) {
-        console.warn(error)
-      }
+      clearTimeout(this.inputTimeout)
+      this.inputTimeout = setTimeout(() => {
+        try {
+          this.color = Color.fromHex(value)
+          this.hexInput = this.color.hex
+        }
+        catch (error) {
+          console.warn(error)
+        }
+      }, 512)
     },
     get red() {
       return this.color.red
