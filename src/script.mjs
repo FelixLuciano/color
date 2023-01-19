@@ -211,6 +211,9 @@ function picker() {
       if (!(color instanceof Color))
         throw new Error(`Object is not a instance of Color`)
 
+      if (this.color.hex === color.hex)
+        return
+
       const dR = (color.red - this.color.red) / 16
       const dG = (color.green - this.color.green) / 16
       const dB = (color.blue - this.color.blue) / 16
@@ -228,7 +231,8 @@ function picker() {
           this.color = color
       }
 
-      this.$refs.color.scrollIntoView({ block: 'nearest' })
+      this.$refs.colorInput.scrollIntoView({ block: 'nearest' })
+      this.$refs.colorInput.focus()
       cancelAnimationFrame(this.transition)
       transition()
     },
