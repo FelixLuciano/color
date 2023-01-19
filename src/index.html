@@ -62,98 +62,100 @@
 		</nav>
 	</header>
 
-	<main x-data="picker()">
-		<article class="half grid">
-			<h2 class="color__title" hidden>
-				controls
+	<main x-data="picker()" class="flex">
+		<article class="flex-basis-half ratio-3 color text-2x" x-bind="getDisplayBind('color')">
+			<h2 class="">
+				color
 			</h2>
-
-			<div x-ref="color" class="grid__item col-2 color" :class="{dark: color.light < .35}"
-				:style="{'--color': color.hex}">
-				<h2 class="color__title">
-					color
-				</h2>
-				<input x-model="hex" type="text" minlength="1" maxlength="7" class="font-mono">
-			</div>
-
-			<section class="grid__item color" :class="{dark: redDisplay.light < .35}" :style="{'--color': redDisplay.hex}">
-				<h3 class="color__title">
-					red
-				</h3>
-				<input x-model.number="red" type="range" min="0" max="1" :step="1/64" title="amount of red">
-			</section>
-
-			<section class="grid__item color" :class="{dark: greenDisplay.light < .35}" :style="{'--color': greenDisplay.hex}">
-				<h3 class="color__title">
-					green
-				</h3>
-				<input x-model.number="green" type="range" min="0" max="1" :step="1/64" title="amount of green">
-			</section>
-
-			<section class="grid__item color" :class="{dark: blueDisplay.light < .35}" :style="{'--color': blueDisplay.hex}">
-				<h3 class="color__title">
-					blue
-				</h3>
-				<input x-model.number="blue" type="range" min="0" max="1" :step="1/64" title="amount of blue">
-			</section>
+			<input x-model="hex" x-ref="colorInput" type="text" minlength="1" maxlength="7" value="#FFF" class="font-mono">
 		</article>
 
-		<article class="half grid">
-			<section class="grid__item color" :class="{dark: complementary.light < .35}"
-				:style="{'--color': complementary.hex}">
-				<h3 class="color__title">
+		<article class="flex-basis-half flex">
+			<h2 class="screen-reader">
+				sugestions
+			</h2>
+
+			<section class="flex flex-grow-2! color" x-bind="getDisplayBind('complementary')">
+				<h3 class="text-2x">
 					complementary
 				</h3>
-				<button @click="selectColor(complementary)" x-text="complementary.hex" class="font-mono"
-					title="selects the complementary of current color"></button>
+
+				<div class="color ratio-1 relative">
+					<button @click="selectColor(complementary)" x-text="complementary.hex" class="font-mono"
+						title="selects the complementary of current color">#FFF</button>
+				</div>
+				<div class="color ratio-1 relative" x-bind="getDisplayBind('complementary2')">
+					<button @click="selectColor(complementary2)" x-text="complementary2.hex" class="font-mono"
+						title="selects the complementary of current color">#FFF</button>
+				</div>
 			</section>
 
-			<section class="grid__item color" :class="{dark: complementary2.light < .35}"
-				:style="{'--color': complementary2.hex}">
-				<h3 class="color__title">
-					complementary
-				</h3>
-				<button @click="selectColor(complementary2)" x-text="complementary2.hex" class="font-mono"
-					title="selects the complementary of current color"></button>
-			</section>
-
-			<section class="grid__item color" :class="{dark: randomColor.light < .35}"
-				:style="{'--color': randomColor.hex}">
-				<h3 class="color__title">
+			<section class="color ratio-1 action" x-bind="getDisplayBind('randomColor')">
+				<h3 class="text-2x">
 					random
 				</h3>
 				<button @click="selectRandomColor()" x-text="randomColor.hex" class="font-mono"
-					title="selects a random color"></button>
-			</section>
-
-			<section class="grid__item color" :style="{'--color': hueDisplay.hex}">
-				<h3 class="color__title">
-					hue
-				</h3>
-				<input x-model.number="hue" type="range" min="0" max="360" step="1" title="color hue">
-			</section>
-
-			<section class="grid__item color" :style="{'--color': chromaDisplay.hex}">
-				<h3 class="color__title">
-					chroma
-				</h3>
-				<input x-model.number="chroma" type="range" min="0" max="1" :step="1/100" title="color chroma">
-			</section>
-
-			<section class="grid__item color" :class="{dark: lightDisplay.light < .35}"
-				:style="{'--color': lightDisplay.hex}">
-				<h3 class="color__title">
-					light
-				</h3>
-				<input x-model.number="light" type="range" min="0" max="1" :step="1/100" title="color light">
+					title="selects a random color">#FFF</button>
 			</section>
 		</article>
 
-		<div class="divider"></div>
+		<article class="flex-basis-full flex">
+			<h2 class="screen-reader">
+				controls
+			</h2>
 
-		<article class="grid grid--large" :class="{dark: color.light < .35}">
-			<div class="grid__item col-1 color" :class="{dark: color.light < .35}" :style="{'--color': color.hex}">
-				<h2 class="color__title">
+			<div class="flex-basis-half flex">
+				<section class="ratio-1 color color--red" x-bind="getDisplayBind('redDisplay')">
+					<h3 class="text-2x">
+						red
+					</h3>
+					<input x-model.number="red" type="range" min="0" max="1" :step="1/64" title="amount of red">
+				</section>
+
+				<section class="ratio-1 color color--green" x-bind="getDisplayBind('greenDisplay')">
+					<h3 class="text-2x">
+						green
+					</h3>
+					<input x-model.number="green" type="range" min="0" max="1" :step="1/64" title="amount of green">
+				</section>
+
+				<section class="ratio-1 color color--blue" x-bind="getDisplayBind('blueDisplay')">
+					<h3 class="text-2x">
+						blue
+					</h3>
+					<input x-model.number="blue" type="range" min="0" max="1" :step="1/64" title="amount of blue">
+				</section>
+			</div>
+
+			<div class="flex-basis-half flex">
+				<section class="ratio-1 color color--hue" x-bind="getDisplayBind('hueDisplay')">
+					<h3 class="text-2x">
+						hue
+					</h3>
+					<input x-model.number="hue" type="range" min="0" max="360" step="1" value="60" title="color hue">
+				</section>
+
+				<section class="ratio-1 color color--chroma" x-bind="getDisplayBind('chromaDisplay')">
+					<h3 class="text-2x">
+						chroma
+					</h3>
+					<input x-model.number="chroma" type="range" min="0" max="1" :step="1/100" value="0" title="color chroma">
+				</section>
+
+				<section class="ratio-1 color color--light" x-bind="getDisplayBind('lightDisplay')">
+					<h3 class="text-2x">
+						light
+					</h3>
+					<input x-model.number="light" type="range" min="0" max="1" :step="1/100" title="color light">
+				</section>
+			</div>
+		</article>
+
+		<div class="flex-basis-full min-h-12"></div>
+
+		<article class="storage-grid flex-basis-full" :class="{dark: color.light < .35}">
+			<div class="ratio-1 col-1 color" :class="{dark: color.light < .35}" :style="{'--color': color.hex}">
+				<h2 class="">
 					storage
 				</h2>
 
@@ -163,11 +165,13 @@
 			</div>
 
 			<template x-for="(item, i) in storage" :key="item.hex">
-				<section class="grid__item color" :class="{dark: item.light < .35}" :style="{'--color': item.hex}">
-					<h3 x-text="item.hex" class="color__title font-mono"></h3>
+				<section class="ratio-1 color" :class="{dark: item.light < .35}" :style="{'--color': item.hex}">
+					<h3 x-text="item.hex" class=" font-mono"></h3>
+
 					<template x-if="color.hex === item.hex">
 						<button @click.debounce="deleteColor(item)" title="deletes this color" x-text="confirmDelete ? 'confirm?' : 'delete'"></button>
 					</template>
+
 					<template x-if="color.hex !== item.hex">
 						<button @click="selectColor(item)" title="selects this color">select</button>
 					</template>

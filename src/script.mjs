@@ -187,6 +187,13 @@ function picker() {
       return this.$storage.map(item => Color.fromHex(item))
     },
 
+    getDisplayBind(color) {
+      return {
+        ':class': `{dark: ${color}.light < .5}`,
+        ':style': `{'--color': ${color}.hex}`,
+      }
+    },
+
     setColor(color) {
       const oldHue = this.hue
       const oldChroma = this.chroma

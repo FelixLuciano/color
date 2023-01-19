@@ -1,55 +1,99 @@
 main {
 	color: #111;
-    display: flex;
-    flex-wrap: wrap;
     align-content: start;
-    gap: 0;
-}
-
-main > * {
-    flex: 1 0 100%;
-    position: relative;
-}
-main > .divider {
-    height: 3rem;
+    font-size: max(24px, 4vw);
 }
 @media (min-width: 64rem) {
-    main > .half {
-        flex-basis: 50%;
+    main {
+        font-size: 2vw;
     }
 }
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
-.grid--large {
-    grid-template-columns: repeat(6, 1fr);
-    font-size: 1rem;
-}
-@media (min-width: 70rem) {
-    .grid--large {
-        grid-template-columns: repeat(9, 1fr);
-        font-size: .8em;
-    }
-}
-.grid > .col-2 {
-    grid-column-end: span 3;
-    grid-row-end: span 1;
-    aspect-ratio: 3 / 1;
-}
-.grid__item {
-    aspect-ratio: 1 / 1;
+main :has(h2, h3) {
     position: relative;
     overflow: hidden;
 }
+main :is(h2, h3) {
+    max-width: 100%;
+	margin: 0;
+	padding: 0;
+    padding-right: 22%;
+    font-size: 1em;
+	font-weight: 550;
+	line-height: .7em;
+    word-wrap: break-word;
+    transition: color 250ms;
+    position: absolute;
+    top: .06em;
+    left: -.03em;
+    z-index: 1;
+    text-decoration: inherit;
+}
+
+.relative {
+    position: relative;
+}
+
+.min-h-12 {
+    height: 3rem;
+}
+
+.flex-basis-full, .flex-basis-half {
+    flex-basis: 100%;
+}
+@media (min-width: 64rem) {
+    .flex-basis-half {
+        flex-basis: 50%;
+    }
+}
+[class~="flex-grow-2!"] {
+    flex-grow: 2 !important;
+}
+
+.text-2x {
+    font-size: 2em;
+}
+
+.ratio-1 {
+    aspect-ratio: 1 / 1;
+}
+.ratio-2 {
+    aspect-ratio: 2 / 1;
+}
+.ratio-3 {
+    aspect-ratio: 3 / 1;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.flex > * {
+    flex: 1 1 auto;
+}
+
+.flex-basis-full, .flex-basis-half {
+    flex-basis: 100%;
+}
+@media (min-width: 64rem) {
+    .flex-basis-half {
+        flex-basis: 50%;
+    }
+}
+[class~="flex-grow-2!"] {
+    flex-grow: 2 !important;
+}
 
 .color {
-    background-color: var(--color, #888);
-    font-weight: 600;
-    line-height: 1em;
+    --default-color: #FFF;
+    background-color: var(--color, var(--default-color));
     transition: background-color 256ms;
 }
+.color--red    { --default-color: #F00; }
+.color--green  { --default-color: #0F0; }
+.color--blue   { --default-color: #00F; }
+.color--hue    { --default-color: #FF0; }
+.color--chroma { --default-color: #888; }
+.color--light  { --default-color: #FFF; }
 .color.dark {
     color: #EEE;
 }
@@ -57,58 +101,54 @@ main > .divider {
     background-color: #000;
     color: #FFF;
 }
-
-.color__title {
-    max-width: 100%;
-    margin: -.25em 0 0 -.03em;
-	padding: 0;
-    padding-right: .6em;
-	font-size: 3em;
-	font-weight: 550;
-	line-height: 1.3em;
-    word-wrap: break-word;
-    transition: color 250ms;
+.color:has(button):hover {
+    text-decoration-line: underline;
 }
 
 .color > input, .color > button {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    color: inherit;
-    font-size: inherit;
-    font-weight: inherit;
     text-align: right;
-    position: absolute;
-    inset: 0;
     border: none;
     background-color: transparent;
+    font-size: 1em;
+    font-weight: 600;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    outline-offset: -1rem;
 }
 .color > input[type="text"] {
-    width: 98%;
-    height: 94%;
-    margin: 1%;
-    padding-top: 3.5em;
-    padding-right: .1em;
-    font-size: 3em;
+    padding-right: .5em;
+    color: inherit;
 }
 .color > input[type="range"] {
-    width: 80%;
-    height: 80%;
+    top: 4rem;
+    right: 2rem;
+    bottom: 0;
+    left: 2rem;
     accent-color: currentcolor;
-    top: 20%;
-    right: 10%;
-    left: 10%;
 }
 .color > button {
-    width: 94%;
-    height: 94%;
-    margin: 3%;
-    padding-top: 75%;
-    font-family: inherit;
-    font-size: 1.5em;
+    padding: 0 .5em .5em 0;
     cursor: pointer;
+    display: flex;
+    justify-content: end;
+    align-items: end;
 }
-.color:has(> button:hover) {
-    text-decoration-line: underline;
+
+.storage-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+@media (min-width: 64rem) {
+    .storage-grid {
+        grid-template-columns: repeat(9, 1fr);
+    }
+}
+
+
+.screen-reader {
+    position: absolute !important;  // Outside the DOM flow
+    height: 1px; width: 1px;        // Nearly collapsed
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
 }
