@@ -26,7 +26,7 @@ to pick colors.
 
 ![App screenshot](assets/image/picker-screenshot.jpg)
 
-Here is the following link to [see it online](https://github.lucianofelix.com.br/tri/).
+Here is the following link to [see it online](https://color.lucianofelix.com.br/).
 
 
 ## LICENSE
