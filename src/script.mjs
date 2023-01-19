@@ -199,12 +199,12 @@ function picker() {
       if (!(color instanceof Color))
         throw new Error(`Object is not a instance of Color`)
 
-      const dR = (color.red - this.color.red) / 10
-      const dG = (color.green - this.color.green) / 10
-      const dB = (color.blue - this.color.blue) / 10
+      const dR = (color.red - this.color.red) / 16
+      const dG = (color.green - this.color.green) / 16
+      const dB = (color.blue - this.color.blue) / 16
       const round = (num) => Math.round((num + Number.EPSILON) * 1_000) / 1_000
-      const transition = (step) => {
-        if (step >= 0) {
+      const transition = (step = 16) => {
+        if (step > 0) {
           const r = round(color.red - dR * step)
           const g = round(color.green - dG * step)
           const b = round(color.blue - dB * step)
@@ -218,7 +218,7 @@ function picker() {
 
       this.$refs.color.scrollIntoView({ block: 'nearest' })
       cancelAnimationFrame(this.transition)
-      transition(10)
+      transition()
     },
     selectRandomColor() {
       this.selectColor(this.randomColor)
