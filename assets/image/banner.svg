@@ -49,15 +49,6 @@
       .mix-blend-lighten {
         mix-blend-mode: lighten;
       }
-
-      .animation-rotate {
-        animation: 8s rotate ease-in-out infinite alternate;
-      }
-      @keyframes rotate {
-        to {
-          transform: rotate(360deg);
-        }
-      }
     </style>
 
     <filter id="blur">
@@ -85,13 +76,14 @@
 
   <g id="shadow" filter="url(#blur)">
     <rect x="-300" y="-256" width="600" height="512" fill="#EEE" />
-    <g class="animation-rotate">
+    <g>
       <circle cx="128" r="128" fill="#2E2" transform="rotate(300)" />
       <circle cx="128" r="128" fill="#EE2" transform="rotate(240)" />
       <circle cx="128" r="128" fill="#E22" transform="rotate(180)" />
       <circle cx="128" r="128" fill="#E2E" transform="rotate(120)" />
       <circle cx="128" r="128" fill="#22E" transform="rotate(60)" />
       <circle cx="128" r="128" fill="#2EE" transform="rotate(0)" />
+      <animateTransform attributeName="transform" attributeType="XML" type="rotate" values="0; 360" dur="8s" repeatCount="indefinite" />
     </g>
     <g class="mix-blend-lighten">
       <circle cx="128" r="128" fill="#E2E" transform="rotate(300)" />
