@@ -242,3 +242,5 @@ function picker() {
 Alpine.plugin(persist)
 Alpine.data('picker', picker)
 Alpine.start()
+
+document.querySelector('#logo').addEventListener('click', event => event.preventDefault())
