@@ -157,13 +157,20 @@
 					storage
 				</h2>
 
-				<button @click="store(color)" title="puts current color into storage">save</button>
+				<template x-if="!$storage.includes(color.hex)">
+					<button @click="store(color)" title="puts current color into storage">save</button>
+				</template>
 			</div>
 
-			<template x-for="item in storage">
+			<template x-for="(item, i) in storage" :key="item.hex">
 				<section class="grid__item color" :class="{dark: item.light < .35}" :style="{'--color': item.hex}">
 					<h3 x-text="item.hex" class="color__title font-mono"></h3>
-					<button @click="selectColor(item)" title="selects this color">select</button>
+					<template x-if="color.hex === item.hex">
+						<button @click.debounce="deleteColor(item)" title="deletes this color" x-text="confirmDelete ? 'confirm?' : 'delete'"></button>
+					</template>
+					<template x-if="color.hex !== item.hex">
+						<button @click="selectColor(item)" title="selects this color">select</button>
+					</template>
 				</section>
 			</template>
 		</article>

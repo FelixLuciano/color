@@ -79,6 +79,7 @@ function picker() {
     color: new Color(),
     randomColor: null,
     $storage: this.$persist([]).as('com.lucianofelix.tri.storage'),
+    confirmDelete: false,
 
     get hex() {
       return this.hexInput
@@ -233,6 +234,19 @@ function picker() {
     store(color) {
       if (!this.$storage.includes(color.hex))
         this.$storage.unshift(color.hex)
+    },
+    deleteColor(color) {
+      if (!this.confirmDelete) {
+        this.confirmDelete = true
+
+        setTimeout(() => this.confirmDelete = false, 2048)
+      }
+      else {
+        const index = this.$storage.indexOf(color.hex)
+        
+        this.confirmDelete = false
+         this.$storage.splice(index, 1)
+      }
     },
 
     init() {
