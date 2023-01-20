@@ -8,26 +8,6 @@ main {
         font-size: 2vw;
     }
 }
-main :has(h2, h3) {
-    position: relative;
-    overflow: hidden;
-}
-main :is(h2, h3) {
-    max-width: 100%;
-	margin: 0;
-	padding: 0;
-    padding-right: 22%;
-    font-size: 1em;
-	font-weight: 550;
-	line-height: .7em;
-    word-wrap: break-word;
-    transition: color 250ms;
-    position: absolute;
-    top: .06em;
-    left: -.03em;
-    z-index: 1;
-    text-decoration: inherit;
-}
 
 .relative {
     position: relative;
@@ -87,6 +67,8 @@ main :is(h2, h3) {
     --default-color: #FFF;
     background-color: var(--color, var(--default-color));
     transition: background-color 256ms;
+    position: relative;
+    overflow: hidden;
 }
 .color--red    { --default-color: #F00; }
 .color--green  { --default-color: #0F0; }
@@ -104,6 +86,23 @@ main :is(h2, h3) {
     background-color: #000;
     color: #FFF;
 }
+
+.color__title {
+    max-width: 100%;
+	margin: 0;
+	padding: 0;
+    padding-right: 22%;
+	font-weight: 550;
+	line-height: .7em;
+    word-wrap: break-word;
+    transition: color 250ms;
+    position: absolute;
+    top: .06em;
+    left: -.03em;
+    z-index: 1;
+    text-decoration: inherit;
+}
+
 
 .color > input, .color > button {
     text-align: right;

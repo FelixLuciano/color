@@ -65,7 +65,7 @@
 
 	<main x-data="picker()" class="flex">
 		<article class="flex-basis-half ratio-3 color text-2x" x-bind="getDisplayBind('color')">
-			<h2 class="">
+			<h2 class="color__title">
 				color
 			</h2>
 			<input aria-label="hex code" x-model="hex" x-ref="colorInput" type="text" minlength="1" maxlength="7"
@@ -78,7 +78,7 @@
 			</h2>
 
 			<section class="flex flex-grow-2! color" x-bind="getDisplayBind('complementary')">
-				<h3 class="text-2x">
+				<h3 class="color__title text-2x">
 					complementary
 				</h3>
 
@@ -93,7 +93,7 @@
 			</section>
 
 			<section class="color ratio-1" x-bind="getDisplayBind('randomColor')">
-				<h3 class="text-2x">
+				<h3 class="color__title text-2x">
 					random
 				</h3>
 				<button @click="selectRandomColor()" x-text="randomColor.hex" class="font-mono"
@@ -108,7 +108,7 @@
 
 			<div class="flex-basis-half flex">
 				<section class="ratio-1 color color--red" x-bind="getDisplayBind('redDisplay')">
-					<h3 class="text-2x">
+					<h3 class="color__title text-2x">
 						red
 					</h3>
 					<input aria-label="red level" x-model.number="red" type="range" min="0" max="1" :step="1/64"
@@ -116,7 +116,7 @@
 				</section>
 
 				<section class="ratio-1 color color--green" x-bind="getDisplayBind('greenDisplay')">
-					<h3 class="text-2x">
+					<h3 class="color__title text-2x">
 						green
 					</h3>
 					<input aria-label="green level" x-model.number="green" type="range" min="0" max="1" :step="1/64"
@@ -124,7 +124,7 @@
 				</section>
 
 				<section class="ratio-1 color color--blue" x-bind="getDisplayBind('blueDisplay')">
-					<h3 class="text-2x">
+					<h3 class="color__title text-2x">
 						blue
 					</h3>
 					<input aria-label="blue level" x-model.number="blue" type="range" min="0" max="1" :step="1/64"
@@ -134,7 +134,7 @@
 
 			<div class="flex-basis-half flex">
 				<section class="ratio-1 color color--hue" x-bind="getDisplayBind('hueDisplay')">
-					<h3 class="text-2x">
+					<h3 class="color__title text-2x">
 						hue
 					</h3>
 					<input aria-label="hue degree" x-model.number="hue" type="range" min="0" max="360" step="1"
@@ -142,7 +142,7 @@
 				</section>
 
 				<section class="ratio-1 color color--chroma" x-bind="getDisplayBind('chromaDisplay')">
-					<h3 class="text-2x">
+					<h3 class="color__title text-2x">
 						chroma
 					</h3>
 					<input aria-label="chroma level" x-model.number="chroma" type="range" min="0" max="1" :step="1/100"
@@ -150,7 +150,7 @@
 				</section>
 
 				<section class="ratio-1 color color--light" x-bind="getDisplayBind('lightDisplay')">
-					<h3 class="text-2x">
+					<h3 class="color__title text-2x">
 						light
 					</h3>
 					<input aria-label="light level" x-model.number="light" type="range" min="0" max="1" :step="1/100"
@@ -163,7 +163,7 @@
 
 		<article class="storage-grid flex-basis-full">
 			<div class="ratio-1 col-1 color" x-bind="getDisplayBind('color')">
-				<h2 class="">
+				<h2 class="color__title ">
 					storage
 				</h2>
 
@@ -174,7 +174,7 @@
 
 			<template x-for="(item, i) in storage" :key="item.hex">
 				<section class="ratio-1 color" :class="{dark: item.light < .35}" :style="{'--color': item.hex}">
-					<h3 x-text="item.hex" class=" font-mono"></h3>
+					<h3 x-text="item.hex" class="color__title font-mono"></h3>
 
 					<template x-if="color.hex === item.hex">
 						<button @click.debounce="deleteColor(item)" title="deletes this color"
