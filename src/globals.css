@@ -36,8 +36,8 @@ body {
   margin: 0;
   padding: 0 2rem;
   grid-template-columns: 1fr;
-  grid-template-rows: 6rem minmax(calc(100vh - 10rem), auto) 4rem;
-  display: grid;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -45,10 +45,11 @@ header {
   font-size: 1.5rem;
   line-height: 6rem;
   display: flex;
-  gap: 2rem;
+  flex-wrap: wrap;
 }
 
 #logo {
+  flex: 0 0 auto;
   text-decoration: none;
   display: block;
 }
@@ -111,20 +112,23 @@ header {
 }
 
 header > h1 {
+  flex: 0 0 auto;
   margin: 0;
+  margin-left: 2rem;
   font-size: .75em;
   font-weight: 600;
   line-height: inherit;
 }
 header > h1:before {
   content: "/";
-  padding-right: 1.5rem;
+  padding-right: 1.25rem;
   color: #777;
   font-weight: 500;
 }
 
 nav {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
+  padding-left: 3rem;
 }
 nav > ul {
   list-style: none;
