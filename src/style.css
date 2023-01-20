@@ -114,11 +114,10 @@ main {
     position: absolute;
     inset: 0;
     z-index: 1;
-    outline-offset: -1em;
+    outline-offset: -.2em;
 }
 .color > input[type="text"] {
     padding-right: .5em;
-    color: inherit;
 }
 .color > input[type="range"] {
     top: 2em;
