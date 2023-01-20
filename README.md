@@ -22,6 +22,10 @@ If the slightest variances don't cause you too much trouble, this tool is ideal
 for you whether you're a designer, developer, or just searching for a quick way
 to pick colors.
 
+Additionally, the app is a Progressive Web App (PWA) which allows users to
+access it offline. This means that even without an internet connection, you can
+still access the tool.
+
 
 ## Check it out
 
