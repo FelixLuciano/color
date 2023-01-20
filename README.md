@@ -29,7 +29,7 @@ still access the tool.
 
 ## Check it out
 
-![App screenshot](assets/image/picker-screenshot.jpg)
+![App screenshot](assets/image/picker-screenshot.png)
 
 Here is the following link to [see it online](https://color.lucianofelix.com.br/).
 
