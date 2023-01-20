@@ -217,7 +217,7 @@ function picker() {
       const dR = (color.red - this.color.red) / 16
       const dG = (color.green - this.color.green) / 16
       const dB = (color.blue - this.color.blue) / 16
-      const round = (num) => Math.round((num + Number.EPSILON) * 1_000) / 1_000
+      const round = (num) => Math.round((num + Number.EPSILON) * 1_024) / 1_024
       const transition = (step = 16) => {
         if (step > 0) {
           const r = round(color.red - dR * step)
@@ -228,7 +228,7 @@ function picker() {
           this.transition = requestAnimationFrame(() => transition(step - 1))
         }
         else
-          this.color = color
+          this.setColor(color)
       }
 
       this.$refs.colorInput.scrollIntoView({ block: 'nearest' })
