@@ -8,6 +8,7 @@
 </p>
 <p align="center">
     <a href="https://github.com/FelixLuciano/tri/actions/workflows/deploy.yml"><img src="https://github.com/FelixLuciano/tri/actions/workflows/deploy.yml/badge.svg" alt="Deploy"></a>
+    <img src="https://www.pwa-shields.com/1.0.0/series/classic/solid/purple.svg" alt="PWA Shield">
 </p>
 
 
