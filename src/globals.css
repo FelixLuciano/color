@@ -61,7 +61,6 @@ header {
   width: 6rem;
   height: 6rem;
   margin-right: 1em;
-  margin-bottom: .4rem;
   vertical-align: middle;
   transition: transform 256ms cubic-bezier(0, 0, .2, 1);
 }
@@ -118,7 +117,6 @@ header > h1 {
   margin-left: 2rem;
   font-size: .75em;
   font-weight: 600;
-  line-height: inherit;
 }
 header > h1:before {
   content: "/";
