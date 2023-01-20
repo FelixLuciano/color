@@ -3,7 +3,6 @@
 	"short_name": "tri",
 	"display": "standalone",
 	"start_url": "/",
-	"scope": ".",
 	"theme_color": "#111",
 	"background_color": "#111",
 	"icons":[
@@ -19,7 +18,7 @@
         },
         {
             "src": "/icons/maskable_icon.png",
-            "sizes": "650x650",
+            "sizes": "1024x1024",
             "type": "image/png",
             "purpose": "maskable"
         }
