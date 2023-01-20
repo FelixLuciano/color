@@ -104,9 +104,6 @@ main :is(h2, h3) {
     background-color: #000;
     color: #FFF;
 }
-.color:has(button):hover {
-    text-decoration-line: underline;
-}
 
 .color > input, .color > button {
     text-align: right;
@@ -137,6 +134,9 @@ main :is(h2, h3) {
     display: flex;
     justify-content: end;
     align-items: end;
+}
+.color > button:hover {
+    text-decoration-line: underline;
 }
 
 .storage-grid {
