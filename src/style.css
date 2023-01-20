@@ -1,7 +1,7 @@
 main {
 	color: #111;
     align-content: start;
-    font-size: max(24px, 4vw);
+    font-size: max(16px, 4vw);
 }
 @media (min-width: 64rem) {
     main {
