@@ -173,7 +173,7 @@
 					</template>
 
 					<template x-if="color.hex !== item.hex">
-						<button @click="selectColor(item)" title="selects this color">select</button>
+						<button @click="selectColor(item)" :title="`sets color to ${item.hex}`">select</button>
 					</template>
 				</section>
 			</template>
