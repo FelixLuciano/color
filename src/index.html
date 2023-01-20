@@ -4,16 +4,22 @@
 <head>
 	<meta charset="UTF-8">
 	<title>tri - picker</title>
-	<meta name="Description" content="Three characters hexadecimal color system">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link async rel="shortcut icon" href="./favicon.svg">
+	<meta name="Description" content="A color tool for three character hexadecimal codes.">
+	<meta name="application-name" content="tri">
 	<meta name="theme-color" content="#111">
-
 	<meta property="og:title" content="tri">
 	<meta property="og:type" content="website">
 	<meta property="og:description" content="A color tool for three character hexadecimal codes.">
 	<meta property="og:image"
 		content="https://repository-images.githubusercontent.com/250960025/1b0969ff-a9e5-40a7-9058-b7ddbff6f117">
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+	<link rel="icon" type="image/svg" href="/icons/favicon.svg">
+	<link rel="shortcut icon" href="/icons/favicon.ico">
+	<link rel="manifest" href="/icons/manifest.json">
 
 	<link rel="preconnect" href="https://api.fontshare.com">
 	<link rel="preconnect" href="https://unpkg.com">
@@ -21,6 +27,13 @@
 	<link rel="stylesheet" href="./globals.css">
 	<link rel="stylesheet" href="./style.css">
 
+	<script>
+		if ("serviceWorker" in navigator) {
+			window.addEventListener("load", () => {
+				navigator.serviceWorker && navigator.serviceWorker.register("/service-worker.js");
+			});
+		}
+	</script>
 	<script type="importmap">
 		{ "imports": {
 			"alpinejs": "https://unpkg.com/alpinejs@3/dist/module.esm.js",
