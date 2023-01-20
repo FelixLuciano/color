@@ -153,8 +153,8 @@
 
 		<div class="flex-basis-full min-h-12"></div>
 
-		<article class="storage-grid flex-basis-full" :class="{dark: color.light < .35}">
-			<div class="ratio-1 col-1 color" :class="{dark: color.light < .35}" :style="{'--color': color.hex}">
+		<article class="storage-grid flex-basis-full">
+			<div class="ratio-1 col-1 color" x-bind="getDisplayBind('color')">
 				<h2 class="">
 					storage
 				</h2>

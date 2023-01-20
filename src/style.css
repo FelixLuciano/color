@@ -94,9 +94,12 @@ main :is(h2, h3) {
 .color--hue    { --default-color: #FF0; }
 .color--chroma { --default-color: #888; }
 .color--light  { --default-color: #FFF; }
-.color.dark {
+.color--dark {
     color: #EEE;
 }
+.color--darken.color--red { color: #F00 !important; }
+.color--darken.color--green { color: #0F0 !important; }
+.color--darken.color--blue { color: #00F !important; }
 .color:not(.dark) ::selection {
     background-color: #000;
     color: #FFF;
@@ -109,6 +112,7 @@ main :is(h2, h3) {
     text-align: right;
     border: none;
     background-color: transparent;
+    color: inherit;
     font-size: 1em;
     font-weight: 600;
     position: absolute;

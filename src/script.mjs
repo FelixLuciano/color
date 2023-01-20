@@ -189,7 +189,7 @@ function picker() {
 
     getDisplayBind(color) {
       return {
-        ':class': `{dark: ${color}.light < .5}`,
+        ':class': `{'color--dark': ${color}.light < .5, 'color--darken': ${color}.light < .3}`,
         ':style': `{'--color': ${color}.hex}`,
       }
     },
