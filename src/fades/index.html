@@ -25,6 +25,11 @@
 	<link href="https://api.fontshare.com/v2/css?f[]=azeret-mono@1&f[]=chillax@1&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="../globals.css">
 	<link rel="stylesheet" href="./style.css">
+
+	<script>
+		if ('serviceWorker' in navigator)
+			window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js'))
+	</script>
 </head>
 
 <body>
