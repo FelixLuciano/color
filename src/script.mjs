@@ -214,6 +214,8 @@ function picker() {
       if (this.color.hex === color.hex)
         return
 
+      this.$refs.colorInput.readOnly = true
+
       const dR = (color.red - this.color.red) / 16
       const dG = (color.green - this.color.green) / 16
       const dB = (color.blue - this.color.blue) / 16
@@ -227,12 +229,15 @@ function picker() {
           this.setColor(new Color(r, g, b))
           this.transition = requestAnimationFrame(() => transition(step - 1))
         }
-        else
+        else {
           this.setColor(color)
+          this.$refs.colorInput.focus()
+
+          this.$refs.colorInput.readOnly = false
+        }
       }
 
       this.$refs.colorInput.scrollIntoView({ block: 'nearest' })
-      this.$refs.colorInput.focus()
       cancelAnimationFrame(this.transition)
       transition()
     },
