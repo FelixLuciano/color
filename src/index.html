@@ -69,7 +69,7 @@
 				color
 			</h2>
 			<input aria-label="hex code" x-model="hex" x-ref="colorInput" type="text" minlength="1" maxlength="7"
-				value="#FFF" class="font-mono">
+				value="#FFF" class="color__input color__input--text font-mono">
 		</article>
 
 		<article class="flex-basis-half flex">
@@ -83,11 +83,13 @@
 				</h3>
 
 				<div class="color ratio-1 relative">
-					<button @click="selectColor(complementary)" x-text="complementary.hex" class="font-mono"
+					<button @click="selectColor(complementary)" x-text="complementary.hex"
+						class="color__input color__input--button font-mono"
 						title="selects the complementary of current color">#FFF</button>
 				</div>
 				<div class="color ratio-1 relative" x-bind="getDisplayBind('complementary2')">
-					<button @click="selectColor(complementary2)" x-text="complementary2.hex" class="font-mono"
+					<button @click="selectColor(complementary2)" x-text="complementary2.hex"
+						class="color__input color__input--button font-mono"
 						title="selects the complementary of current color">#FFF</button>
 				</div>
 			</section>
@@ -96,8 +98,8 @@
 				<h3 class="color__title text-2x">
 					random
 				</h3>
-				<button @click="selectRandomColor()" x-text="randomColor.hex" class="font-mono"
-					title="selects a random color">#FFF</button>
+				<button @click="selectRandomColor()" x-text="randomColor.hex"
+					class="color__input color__input--button font-mono" title="selects a random color">#FFF</button>
 			</section>
 		</article>
 
@@ -112,7 +114,7 @@
 						red
 					</h3>
 					<input aria-label="red level" x-model.number="red" type="range" min="0" max="1" :step="1/64"
-						title="amount of red">
+						title="amount of red" class="color__input color__input--number">
 				</section>
 
 				<section class="ratio-1 color color--green" x-bind="getDisplayBind('greenDisplay')">
@@ -120,7 +122,7 @@
 						green
 					</h3>
 					<input aria-label="green level" x-model.number="green" type="range" min="0" max="1" :step="1/64"
-						title="amount of green">
+						title="amount of green" class="color__input color__input--number">
 				</section>
 
 				<section class="ratio-1 color color--blue" x-bind="getDisplayBind('blueDisplay')">
@@ -128,7 +130,7 @@
 						blue
 					</h3>
 					<input aria-label="blue level" x-model.number="blue" type="range" min="0" max="1" :step="1/64"
-						title="amount of blue">
+						title="amount of blue" class="color__input color__input--number">
 				</section>
 			</div>
 
@@ -138,7 +140,7 @@
 						hue
 					</h3>
 					<input aria-label="hue degree" x-model.number="hue" type="range" min="0" max="360" step="1"
-						value="60" title="color hue">
+						value="60" title="color hue" class="color__input color__input--number">
 				</section>
 
 				<section class="ratio-1 color color--chroma" x-bind="getDisplayBind('chromaDisplay')">
@@ -146,7 +148,7 @@
 						chroma
 					</h3>
 					<input aria-label="chroma level" x-model.number="chroma" type="range" min="0" max="1" :step="1/100"
-						value="0" title="color chroma">
+						value="0" title="color chroma" class="color__input color__input--number">
 				</section>
 
 				<section class="ratio-1 color color--light" x-bind="getDisplayBind('lightDisplay')">
@@ -154,7 +156,7 @@
 						light
 					</h3>
 					<input aria-label="light level" x-model.number="light" type="range" min="0" max="1" :step="1/100"
-						title="color light">
+						title="color light" class="color__input color__input--number">
 				</section>
 			</div>
 		</article>
@@ -168,7 +170,8 @@
 				</h2>
 
 				<template x-if="!$storage.includes(color.hex)">
-					<button @click="store(color)" title="puts current color into storage">save</button>
+					<button @click="store(color)" title="puts current color into storage"
+						class="color__input color__input--button">save</button>
 				</template>
 			</div>
 
@@ -178,11 +181,13 @@
 
 					<template x-if="color.hex === item.hex">
 						<button @click.debounce="deleteColor(item)" title="deletes this color"
-							x-text="confirmDelete ? 'confirm?' : 'delete'"></button>
+							x-text="confirmDelete ? 'confirm?' : 'delete'"
+							class="color__input color__input--button"></button>
 					</template>
 
 					<template x-if="color.hex !== item.hex">
-						<button @click="selectColor(item)" :title="`sets color to ${item.hex}`">select</button>
+						<button @click="selectColor(item)" :title="`sets color to ${item.hex}`"
+							class="color__input color__input--button">select</button>
 					</template>
 				</section>
 			</template>

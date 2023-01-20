@@ -17,18 +17,6 @@ main {
     height: 3rem;
 }
 
-.flex-basis-full, .flex-basis-half {
-    flex-basis: 100%;
-}
-@media (min-width: 64rem) {
-    .flex-basis-half {
-        flex-basis: 50%;
-    }
-}
-[class~="flex-grow-2!"] {
-    flex-grow: 2 !important;
-}
-
 .text-2x {
     font-size: 2em;
 }
@@ -60,7 +48,7 @@ main {
     }
 }
 [class~="flex-grow-2!"] {
-    flex-grow: 2 !important;
+    flex-grow: 2;
 }
 
 .color {
@@ -79,9 +67,9 @@ main {
 .color--dark {
     color: #EEE;
 }
-.color--darken.color--red { color: #F00 !important; }
-.color--darken.color--green { color: #0F0 !important; }
-.color--darken.color--blue { color: #00F !important; }
+.color--darken.color--red { color: #F00; }
+.color--darken.color--green { color: #0F0; }
+.color--darken.color--blue { color: #00F; }
 .color:not(.dark) ::selection {
     background-color: #000;
     color: #FFF;
@@ -104,7 +92,7 @@ main {
 }
 
 
-.color > input, .color > button {
+.color__input {
     text-align: right;
     border: none;
     background-color: transparent;
@@ -116,24 +104,24 @@ main {
     z-index: 1;
     outline-offset: -.2em;
 }
-.color > input[type="text"] {
+.color__input--text {
     padding-right: .5em;
 }
-.color > input[type="range"] {
+.color__input--number {
     top: 2em;
     right: 1em;
     bottom: 0;
     left: 1em;
     accent-color: currentcolor;
 }
-.color > button {
+.color__input--button {
     padding: 0 .5em .5em 0;
     cursor: pointer;
     display: flex;
     justify-content: end;
     align-items: end;
 }
-.color > button:hover {
+.color__input--button:hover {
     text-decoration-line: underline;
 }
 
