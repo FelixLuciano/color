@@ -1,9 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="136" height="128" viewBox="-68 -68 136 136">
-    <circle cx="52" r="16" fill="#F2F" />
-    <circle cx="32" r="32" fill="#22F" />
-    <circle cx="20" r="16" fill="#2FF" />
-    <circle r="32" fill="#2F2" />
-    <circle cx="-12" r="16" fill="#FF2" />
-    <circle cx="-52" r="16" fill="#FFF" />
-    <circle cx="-32" r="32" fill="#F22" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-96 -96 192 192">
+  <g fill="#111">
+    <rect x="-32" y="-96" width="64" height="192" />
+    <rect x="-96" y="-32" width="192" height="64" />
+    <circle cx="-32" cy="-32" r="64" />
+    <circle cx="-32" cy="32" r="64" />
+    <circle cx="32" cy="-32" r="64" />
+    <circle cx="32" cy="32" r="64" />
+  </g>
+
+  <circle cx="52" r="16" fill="#F2F" />
+  <circle cx="32" r="32" fill="#22F" />
+  <circle cx="20" r="16" fill="#2FF" />
+  <circle r="32" fill="#2F2" />
+  <circle cx="-12" r="16" fill="#FF2" />
+  <circle cx="-52" r="16" fill="#FFF" />
+  <circle cx="-32" r="32" fill="#F22" />
 </svg>
