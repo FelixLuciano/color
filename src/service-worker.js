@@ -9,7 +9,6 @@ self.addEventListener("install", event => {
 		caches.open(cacheName).then(cache => {
 			return cache.addAll([
 				"/",
-				"/service-worker.js",
 				"/icons/manifest.json",
 
 				"/icons/apple-touch-icon.png",
