@@ -65,6 +65,26 @@ class Color {
 
     return color
   }
+
+  getSRGB() {
+    const linearize = (n) => this.red <= 0.03928 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4
+
+    return [
+      linearize(this.red),
+      linearize(this.green),
+      linearize(this.blue),
+    ]
+  }
+
+  getIlluminance() {
+    const [r, g, b] = this.getSRGB()
+
+    return 0.2125*r + 0.7152*g + 0.0722*b
+  }
+
+  copy() {
+    return new Color(this.red, this.green, this.blue)
+  }
 }
 
 
@@ -78,6 +98,8 @@ function picker() {
     inputTimeout: null,
     color: new Color(),
     randomColor: null,
+    background: Color.fromHex('#CCC'),
+    foreground: Color.fromHex('#333'),
     $storage: this.$persist([]).as('com.lucianofelix.tri.storage'),
     confirmDelete: false,
 
@@ -192,6 +214,35 @@ function picker() {
         ':class': `{'color--dark': ${color}.light < .5, 'color--darken': ${color}.light < .3}`,
         ':style': `{'--color': ${color}.hex}`,
       }
+    },
+
+    setBackgroundColor() {
+      this.background = this.color.copy()
+    },
+    setForegroundColor() {
+      this.foreground = this.color.copy()
+    },
+    swapBackgroundForegroud() {
+      [this.background, this.foreground] = [this.foreground, this.background]
+    },
+
+    getContrastLevel() {
+      const l1 = this.background.getIlluminance() + 0.05
+      const l2 = this.foreground.getIlluminance() + 0.05
+      const ratio = l1 > l2 ? l1 / l2 : l2 / l1
+
+      if (ratio >= 7) return 'AAA'
+      else if (ratio >= 4.5) return 'AA'
+      else if (ratio >= 3) return 'A'
+      else return 'none'
+    },
+    get ContrastLevelDisplay() {
+      return {
+        'none': Color.fromHex('#D22'),
+        'A': Color.fromHex('#D72'),
+        'AA': Color.fromHex('#DD2'),
+        'AAA': Color.fromHex('#2D2'),
+      }[this.getContrastLevel()]
     },
 
     setColor(color) {

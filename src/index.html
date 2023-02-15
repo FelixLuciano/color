@@ -115,7 +115,7 @@
 
 		<article class="flex-basis-full flex">
 			<h2 class="screen-reader">
-				controls
+				color controls
 			</h2>
 
 			<div class="flex-basis-half flex">
@@ -169,6 +169,46 @@
 						title="color light" class="color__input color__input--number">
 				</section>
 			</div>
+		</article>
+
+		<div class="flex-basis-full min-h-12"></div>
+
+		<article class="flex-basis-half ratio-3 color text-2x"
+			:style="{'--color': background.hex, color: foreground.hex}">
+			<h2 class="color__title">
+				accessibility
+			</h2>
+			<button @click="swapBackgroundForegroud()" class="color__input color__input--button font-mono"
+				title="swaps the background and foreground colors">swap</button>
+		</article>
+
+		<article class="flex-basis-half flex">
+			<h2 class="screen-reader">
+				accessibility controls
+			</h2>
+
+			<section class="color ratio-1" style="--color: #CCC; color: #333">
+				<h3 class="color__title text-2x">
+					background
+				</h3>
+				<button @click="setBackgroundColor()" x-text="background.hex"
+					class="color__input color__input--button font-mono" title="selects the current color for background">set</button>
+			</section>
+
+			<section class="color ratio-1" style="--color: #CCC; color: #333">
+				<h3 class="color__title text-2x">
+					foreground
+				</h3>
+				<button @click="setForegroundColor()" x-text="foreground.hex"
+					class="color__input color__input--button font-mono" title="selects the current color for foreground">set</button>
+			</section>
+
+			<section class="color ratio-1" x-bind="getDisplayBind('ContrastLevelDisplay')">
+				<h3 class="color__title text-2x">
+					level
+				</h3>
+				<div class="color__input color__input--button text-2x" x-text="getContrastLevel()">AAA</div>
+			</section>
 		</article>
 
 		<div class="flex-basis-full min-h-12"></div>

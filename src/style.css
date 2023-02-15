@@ -116,7 +116,7 @@ main {
 }
 .color__input--button {
     padding: 0 .5em .5em 0;
-    cursor: pointer;
+    /* cursor: pointer; */
     display: flex;
     justify-content: end;
     align-items: end;
