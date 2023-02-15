@@ -1,6 +1,6 @@
 // https://simplepwa.com
 
-const cacheName = "tri@2.0.0" // Change value to force update
+const cacheName = "tri@2.1.0" // Change value to force update
 
 self.addEventListener("install", event => {
 	self.skipWaiting()
