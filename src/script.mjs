@@ -56,7 +56,7 @@ class Color {
       h >= 300 && h < 360 ? [c, 0, x] :
       null
     ).map(c => c + m)
-    const color = new Color(...rgb)
+    const color = new Color(...rgb.map(n => Math.round(n * 15) / 15))
 
     // Keeps original parameters
     color.hue = h
