@@ -66,7 +66,7 @@ class Color {
     return color
   }
 
-  getSRGB() {
+  get sRGBVec() {
     const linearize = (n) => this.red <= 0.03928 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4
 
     return [
@@ -76,10 +76,10 @@ class Color {
     ]
   }
 
-  getIlluminance() {
-    const [r, g, b] = this.getSRGB()
+  get luminance() {
+    const [r, g, b] = this.sRGBVec
 
-    return 0.2125*r + 0.7152*g + 0.0722*b
+    return 0.2126*r + 0.7152*g + 0.0722*b
   }
 
   copy() {
@@ -226,23 +226,25 @@ function picker() {
       [this.background, this.foreground] = [this.foreground, this.background]
     },
 
-    getContrastLevel() {
-      const l1 = this.background.getIlluminance() + 0.05
-      const l2 = this.foreground.getIlluminance() + 0.05
-      const ratio = l1 > l2 ? l1 / l2 : l2 / l1
+    get contrast() {
+      const l1 = this.background.luminance + 0.05
+      const l2 = this.foreground.luminance + 0.05
 
-      if (ratio >= 7) return 'AAA'
-      else if (ratio >= 4.5) return 'AA'
-      else if (ratio >= 3) return 'A'
-      else return 'none'
+      return l1 > l2 ? l1 / l2 : l2 / l1
     },
-    get ContrastLevelDisplay() {
-      return {
-        'none': Color.fromHex('#D22'),
-        'A': Color.fromHex('#D72'),
-        'AA': Color.fromHex('#DD2'),
-        'AAA': Color.fromHex('#2D2'),
-      }[this.getContrastLevel()]
+    get contrastGrade() {
+      const contrast = parseFloat(this.contrast.toFixed(2))
+
+      if (contrast >= 7) return `${contrast} (AAA)`
+      else if (contrast >= 4.5) return `${contrast} (AA)`
+      else if (contrast >= 3) return `${contrast} (A)`
+      else return `${contrast} (!)`
+    },
+    get contrastGradeDisplay() {
+      if (this.contrast >= 7) return Color.fromHex('#2D2')
+      else if (this.contrast >= 4.5) return Color.fromHex('#DD2')
+      else if (this.contrast >= 3) return Color.fromHex('#D72')
+      else return Color.fromHex('#D22')
     },
 
     setColor(color) {

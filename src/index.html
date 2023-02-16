@@ -173,12 +173,12 @@
 
 		<div class="flex-basis-full min-h-12"></div>
 
-		<article class="flex-basis-half ratio-3 color text-2x"
+		<article class="flex-basis-half ratio-3 color"
 			:style="{'--color': background.hex, color: foreground.hex}">
-			<h2 class="color__title">
+			<h2 class="color__title text-3x">
 				accessibility
 			</h2>
-			<button @click="swapBackgroundForegroud()" class="color__input color__input--button font-mono"
+			<button @click="swapBackgroundForegroud()" class="color__input color__input--button"
 				title="swaps the background and foreground colors">swap</button>
 		</article>
 
@@ -203,11 +203,11 @@
 					class="color__input color__input--button font-mono" title="selects the current color for foreground">set</button>
 			</section>
 
-			<section class="color ratio-1" x-bind="getDisplayBind('ContrastLevelDisplay')">
+			<section class="color ratio-1" x-bind="getDisplayBind('contrastGradeDisplay')">
 				<h3 class="color__title text-2x">
-					level
+					grade
 				</h3>
-				<div class="color__input color__input--button text-2x" x-text="getContrastLevel()">AAA</div>
+				<div class="color__input color__input--button" x-text="contrastGrade">7.9 (AAA)</div>
 			</section>
 		</article>
 
