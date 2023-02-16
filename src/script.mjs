@@ -9,6 +9,7 @@ class Color {
     if (b < 0 || b > 1) throw new Error('Blue value is out of range')
 
     const vec = [this.red, this.green, this.blue] = [r, g, b]
+    const sRGBVec = vec.map((n) => n <= 0.03928 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4)
     const cmax = Math.max(r, g, b)
     const cmin = Math.min(r, g, b)
     const delta = cmax - cmin
@@ -23,6 +24,7 @@ class Color {
     this.chroma = cmax === 0 ? 0 : delta / cmax
     this.light = cmax
     this.transition = null
+    this.luminance = 0.2126*sRGBVec[0] + 0.7152*sRGBVec[1] + 0.0722*sRGBVec[2]
   }
 
   static fromHex(hex) {
@@ -66,24 +68,15 @@ class Color {
     return color
   }
 
-  get sRGBVec() {
-    const linearize = (n) => this.red <= 0.03928 ? n / 12.92 : ((n + 0.055) / 1.055) ** 2.4
-
-    return [
-      linearize(this.red),
-      linearize(this.green),
-      linearize(this.blue),
-    ]
-  }
-
-  get luminance() {
-    const [r, g, b] = this.sRGBVec
-
-    return 0.2126*r + 0.7152*g + 0.0722*b
-  }
-
   copy() {
     return new Color(this.red, this.green, this.blue)
+  }
+
+  getContrast(color) {
+    const l1 = this.luminance + 0.05
+    const l2 = color.luminance + 0.05
+
+    return l1 > l2 ? l1 / l2 : l2 / l1
   }
 }
 
@@ -102,6 +95,9 @@ function picker() {
     foreground: Color.fromHex('#333'),
     $storage: this.$persist([]).as('com.lucianofelix.tri.storage'),
     confirmDelete: false,
+
+    BLACK: new Color(0, 0, 0),
+    WHITE: new Color(1, 1, 1),
 
     get hex() {
       return this.hexInput
@@ -211,7 +207,7 @@ function picker() {
 
     getDisplayBind(color) {
       return {
-        ':class': `{'color--dark': ${color}.light < .5, 'color--darken': ${color}.light < .3}`,
+        ':class': `{'color--dark': ${color}.getContrast(WHITE) > ${color}.getContrast(BLACK), 'color--darken': ${color}.getContrast(WHITE) > 18}`,
         ':style': `{'--color': ${color}.hex}`,
       }
     },
@@ -227,10 +223,7 @@ function picker() {
     },
 
     get contrast() {
-      const l1 = this.background.luminance + 0.05
-      const l2 = this.foreground.luminance + 0.05
-
-      return l1 > l2 ? l1 / l2 : l2 / l1
+      return this.background.getContrast(this.foreground)
     },
     get contrastGrade() {
       const contrast = parseFloat(this.contrast.toFixed(2))
