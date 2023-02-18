@@ -16,15 +16,15 @@ class Color {
     this.hex = '#' + vec.map(value => Math.round(value * 15).toString(16).toUpperCase()).join('')
     this.hue = 60 * (
       delta === 0 ? 0 :
-      cmax === r ? (g - b) / delta + (g < b ? 6 : 0) :
-      cmax === g ? (b - r) / delta + 2 :
-      cmax === b ? (r - g) / delta + 4 :
-      null
+        cmax === r ? (g - b) / delta + (g < b ? 6 : 0) :
+          cmax === g ? (b - r) / delta + 2 :
+            cmax === b ? (r - g) / delta + 4 :
+              null
     )
     this.chroma = cmax === 0 ? 0 : delta / cmax
     this.light = cmax
     this.transition = null
-    this.luminance = 0.2126*sRGBVec[0] + 0.7152*sRGBVec[1] + 0.0722*sRGBVec[2]
+    this.luminance = 0.2126 * sRGBVec[0] + 0.7152 * sRGBVec[1] + 0.0722 * sRGBVec[2]
   }
 
   static fromHex(hex) {
@@ -51,12 +51,12 @@ class Color {
     const m = v - c
     let rgb = (
       h >= 360 || h < 60 ? [c, x, 0] :
-      h >= 60 && h < 120 ? [x, c, 0] :
-      h >= 120 && h < 180 ? [0, c, x] :
-      h >= 180 && h < 240 ? [0, x, c] :
-      h >= 240 && h < 300 ? [x, 0, c] :
-      h >= 300 && h < 360 ? [c, 0, x] :
-      null
+        h >= 60 && h < 120 ? [x, c, 0] :
+          h >= 120 && h < 180 ? [0, c, x] :
+            h >= 180 && h < 240 ? [0, x, c] :
+              h >= 240 && h < 300 ? [x, 0, c] :
+                h >= 300 && h < 360 ? [c, 0, x] :
+                  null
     ).map(c => c + m)
     const color = new Color(...rgb.map(n => Math.round(n * 15) / 15))
 
@@ -70,6 +70,14 @@ class Color {
 
   copy() {
     return new Color(this.red, this.green, this.blue)
+  }
+
+  transform(matrix) {
+    const r = matrix[0][0] * this.red + matrix[0][1] * this.green + matrix[0][2] * this.blue
+    const g = matrix[1][0] * this.red + matrix[1][1] * this.green + matrix[1][2] * this.blue
+    const b = matrix[2][0] * this.red + matrix[2][1] * this.green + matrix[2][2] * this.blue
+
+    return new Color(r, g, b)
   }
 
   getContrast(color) {
@@ -201,15 +209,41 @@ function picker() {
 
       return Color.fromHsv(hue, this.color.chroma, this.color.light)
     },
-    get storage() {
-      return this.$storage.map(item => Color.fromHex(item))
-    },
 
-    getDisplayBind(color) {
-      return {
-        ':class': `{'color--dark': ${color}.getContrast(WHITE) > ${color}.getContrast(BLACK), 'color--darken': ${color}.getContrast(WHITE) > 18}`,
-        ':style': `{'--color': ${color}.hex}`,
-      }
+    get deuteranopia() {
+      return this.color.transform([
+        [0.625, 0.375, 0.000],
+        [0.700, 0.300, 0.000],
+        [0.000, 0.300, 0.700],
+      ])
+    },
+    get protanopia() {
+      return this.color.transform([
+        [0.567, 0.433, 0.000],
+        [0.558, 0.442, 0.000],
+        [0.000, 0.242, 0.758],
+      ])
+    },
+    get tritanopia() {
+      return this.color.transform([
+        [0.950, 0.050, 0.000],
+        [0.000, 0.433, 0.567],
+        [0.000, 0.475, 0.525],
+      ])
+    },
+    get achromatomaly() {
+      return this.color.transform([
+        [0.618, 0.320, 0.062],
+        [0.163, 0.775, 0.062],
+        [0.163, 0.320, 0.516],
+      ])
+    },
+    get achromatopsia() {
+      return this.color.transform([
+        [0.299, 0.587, 0.114],
+        [0.299, 0.587, 0.114],
+        [0.299, 0.587, 0.114],
+      ])
     },
 
     setBackgroundColor() {
@@ -240,6 +274,16 @@ function picker() {
       else return Color.fromHex('#D22')
     },
 
+    get storage() {
+      return this.$storage.map(item => Color.fromHex(item))
+    },
+
+    getDisplayBind(color) {
+      return {
+        ':class': `{'color--dark': ${color}.getContrast(WHITE) > ${color}.getContrast(BLACK), 'color--darken': ${color}.getContrast(WHITE) > 18}`,
+        ':style': `{'--color': ${color}.hex}`,
+      }
+    },
     setColor(color) {
       const oldHue = this.hue
       const oldChroma = this.chroma
@@ -305,9 +349,9 @@ function picker() {
       }
       else {
         const index = this.$storage.indexOf(color.hex)
-        
+
         this.confirmDelete = false
-         this.$storage.splice(index, 1)
+        this.$storage.splice(index, 1)
       }
     },
 

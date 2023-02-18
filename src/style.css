@@ -27,9 +27,6 @@ main {
 .ratio-1 {
     aspect-ratio: 1 / 1;
 }
-.ratio-2 {
-    aspect-ratio: 2 / 1;
-}
 .ratio-3 {
     aspect-ratio: 3 / 1;
 }
@@ -48,6 +45,11 @@ main {
 @media (min-width: 64rem) {
     .flex-basis-half {
         flex-basis: 50%;
+    }
+}
+@media (max-width: 64rem) {
+    .flex-basis-third {
+        flex-basis: calc(100% / 3);
     }
 }
 [class~="flex-grow-2!"] {

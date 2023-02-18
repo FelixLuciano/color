@@ -173,6 +173,62 @@
 
 		<div class="flex-basis-full min-h-12"></div>
 
+		<article class="flex-basis-full flex">
+			<h2 class="screen-reader">
+				colorblind
+			</h2>
+
+			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('color')">
+				<h3 class="color__title text-2x">
+					normal
+				</h3>
+				<button @click="selectColor(color)" x-text="color.hex"
+					class="color__input color__input--button font-mono" :title="`sets color to ${color.hex}`">#FFF</button>
+			</section>
+
+			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('deuteranopia')">
+				<h3 class="color__title text-2x">
+					deuteranopia
+				</h3>
+				<button @click="selectColor(deuteranopia)" x-text="deuteranopia.hex"
+					class="color__input color__input--button font-mono" :title="`sets color to ${deuteranopia.hex}`">#FFF</button>
+			</section>
+
+			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('protanopia')">
+				<h3 class="color__title text-2x">
+					protanopia
+				</h3>
+				<button @click="selectColor(protanopia)" x-text="protanopia.hex"
+					class="color__input color__input--button font-mono" :title="`sets color to ${protanopia.hex}`">#FFF</button>
+			</section>
+
+			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('tritanopia')">
+				<h3 class="color__title text-2x">
+					tritanopia
+				</h3>
+				<button @click="selectColor(tritanopia)" x-text="tritanopia.hex"
+					class="color__input color__input--button font-mono" :title="`sets color to ${tritanopia.hex}`">#FFF</button>
+			</section>
+
+			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('achromatomaly')">
+				<h3 class="color__title text-2x">
+					achromatomaly
+				</h3>
+				<button @click="selectColor(achromatomaly)" x-text="achromatomaly.hex"
+					class="color__input color__input--button font-mono" :title="`sets color to ${achromatomaly.hex}`">#FFF</button>
+			</section>
+
+			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('achromatopsia')">
+				<h3 class="color__title text-2x">
+					achromatopsia
+				</h3>
+				<button @click="selectColor(achromatopsia)" x-text="achromatopsia.hex"
+					class="color__input color__input--button font-mono" :title="`sets color to ${achromatopsia.hex}`">#FFF</button>
+			</section>
+		</article>
+
+		<div class="flex-basis-full min-h-12"></div>
+
 		<article class="flex-basis-half ratio-3 color"
 			:style="{'--color': background.hex, color: foreground.hex}">
 			<h2 class="color__title text-3x">
