@@ -26,13 +26,23 @@ Additionally, the app is a Progressive Web App (PWA) which allows users to
 access it offline. This means that even without an internet connection, you can
 still access the tool.
 
+### Accessibility
+
+W3C developed the WCAG2 set of international guidelines to make digital content
+better accessible to those with disabilities. Three grades of conformance (A,
+AA, and AAA) based on perceivability, operability understandability, and
+robustness.
+
+- **A**: Good for large text
+- **AA**: Good for small text and Excellent for large text
+- **AAA**: Excellent for small text
 
 ## Check it out
 
 ![App screenshot](assets/image/picker-screenshot.png)
 
-Here is the following link to [see it online](https://color.lucianofelix.com.br/).
-
+Here is the following link to
+[see it online](https://color.lucianofelix.com.br).
 
 ## LICENSE
 
