@@ -69,6 +69,7 @@ main {
 .color--hue    { --default-color: #FF0; }
 .color--chroma { --default-color: #888; }
 .color--light  { --default-color: #FFF; }
+.color--grade  { --default-color: #2D2; }
 .color--dark {
     color: #EEE;
 }
