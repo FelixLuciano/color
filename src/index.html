@@ -273,6 +273,43 @@
 
 		<div class="flex-basis-full min-h-12"></div>
 
+		<template x-if="image !== null">
+			<article class="flex-basis-full flex">
+				<h2 class="screen-reader">
+					image picker
+				</h2>
+				<canvas id="canvas" x-effect="displayImage($el)" @click="selectCanvasColor($el, $event)" title="click on the image to select the color of a pixel"></canvas>
+			</article>
+		</template>
+
+		<article class="flex-basis-full flex relative">
+			<h2 class="color__title text-3x">
+				extract
+			</h2>
+
+			<div class="flex-basis-third color ratio-1" @click="getImageFromFIle">
+				<button class="color__input color__input--button" title="opens image file">open</button>
+			</div>
+
+			<div class="flex-basis-third color ratio-1" @click="getImageFromClipboard">
+				<button class="color__input color__input--button" title="paste image from clipboard">paste</button>
+			</div>
+
+			<section class="flex-basis-third color color--image-average ratio-1" x-bind="getDisplayBind('imageAverage')">
+				<h3 class="color__title text-2x">
+					average
+				</h3>
+				<button @click="selectColor(imageAverage)" x-text="imageAverage.hex"
+					class="color__input color__input--button font-mono" :title="`sets color to ${imageAverage.hex}`">#FFF</button>
+			</section>
+
+			<div class="flex-grow"></div>
+			<div class="flex-grow"></div>
+			<div class="flex-grow"></div>
+		</article>
+
+		<div class="flex-basis-full min-h-12"></div>
+
 		<article class="storage-grid flex-basis-full">
 			<div class="ratio-1 col-1 color" x-bind="getDisplayBind('color')">
 				<h2 class="color__title">

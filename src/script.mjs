@@ -209,6 +209,96 @@ function picker() {
         '--color': color.hex
       }
     },
+    image: null,
+    get imageAverage() {
+      if (this.image === null) {
+        return WHITE
+      }
+
+      const canvas = document.createElement('canvas')
+      const context = canvas.getContext('2d')
+
+      canvas.width = this.image.width
+      canvas.height = this.image.height
+      context.drawImage(this.image, 0, 0, canvas.width, canvas.height)
+
+      const { data } = context.getImageData(0, 0, canvas.width, canvas.height)
+      const area = canvas.width * canvas.height
+      let r = 0
+      let g = 0
+      let b = 0
+  
+      for (let i = 0; i < data.length; i += 4) {
+        r += data[i]
+        g += data[i+1]
+        b += data[i+2]
+      }
+
+      r = ~~(r / area) / 255
+      g = ~~(g / area) / 255
+      b = ~~(b / area) / 255
+
+      return new Color(r, g, b)
+    },
+    async getImageFromFIle() {
+      const input = document.createElement('input')
+
+      input.type = 'file'
+      input.accept = 'image/*'
+
+      input.addEventListener('change', async (event) => {
+        const blob = event.target.files[0]
+        
+        if (!blob.type.startsWith('image/'))
+          throw new Error('Invalid file format')
+
+        this.image = await createImageBitmap(blob)
+      })
+      
+      input.click()
+    },
+    async getImageFromClipboard() {
+      const clipboardData = await navigator.clipboard.read()
+      let image_type = null
+      const image = clipboardData.find(item =>
+        item.types.some(type => {
+          if(type.startsWith( 'image/')) {
+            image_type = type
+            return true
+          }
+        })
+      )
+      if (image === undefined || image_type === null)
+        throw new Error('There are no images on the clipboard')
+
+      const imageBlob = await image.getType(image_type)
+
+      this.image = await createImageBitmap(imageBlob)
+    },
+    async displayImage(canvas) {
+      const ctx = canvas.getContext('2d')
+      const ratio = this.image.height / this.image.width
+      const width = canvas.offsetWidth
+      const height = width * ratio
+      const x = (canvas.offsetWidth - width) / 2
+      const y = 0
+
+      canvas.width = canvas.offsetWidth
+      canvas.height = height
+      ctx.imageSmoothingEnabled = false
+
+      ctx.drawImage(this.image, x, y, width, height)
+      canvas.scrollIntoView({ block: 'nearest' })
+    },
+    selectCanvasColor(canvas, {pageX, pageY}) {
+      const ctx = canvas.getContext('2d')
+      const x = pageX - canvas.offsetLeft
+      const y = pageY - canvas.offsetTop
+      const [r, g, b] = ctx.getImageData(x, y, 1, 1).data
+      const color = new Color(r/255, g/255, b/255)
+
+      this.selectColor(color)
+    },
 
     setColor(color) {
       const oldHue = this.hue
@@ -280,6 +370,7 @@ function picker() {
         this.$storage.splice(index, 1)
       }
     },
+
 
     init() {
       this.color.hue = 60

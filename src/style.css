@@ -70,6 +70,7 @@ main {
 .color--chroma { --default-color: #888; }
 .color--light  { --default-color: #FFF; }
 .color--grade  { --default-color: #2D2; }
+.color--image-average  { --default-color: #FFF;}
 .color--dark {
     color: #EEE;
 }
@@ -119,10 +120,11 @@ main {
     bottom: 0;
     left: 1em;
     accent-color: currentcolor;
+    cursor: ew-resize;
 }
 .color__input--button {
     padding: 0 .5em .5em 0;
-    /* cursor: pointer; */
+    cursor: pointer;
     font-family: inherit;
     display: flex;
     justify-content: end;
@@ -130,6 +132,11 @@ main {
 }
 .color__input--button:hover {
     text-decoration-line: underline;
+}
+
+#canvas {
+    width: 100%;
+    cursor: crosshair;
 }
 
 .storage-grid {
