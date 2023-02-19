@@ -278,7 +278,7 @@
 				<h2 class="screen-reader">
 					image picker
 				</h2>
-				<canvas id="canvas" x-effect="displayImage($el)" @click="selectCanvasColor($el, $event)" title="click on the image to select the color of a pixel"></canvas>
+				<canvas id="canvas" x-effect="displayImage($el)" @mousemove="onCanvasPointer($el, $event)" @click="selectCanvasColor($el, $event)" title="click on the image to select the color of a pixel"></canvas>
 			</article>
 		</template>
 
@@ -303,7 +303,14 @@
 					class="color__input color__input--button font-mono" :title="`sets color to ${imageAverage.hex}`">#FFF</button>
 			</section>
 
-			<div class="flex-grow"></div>
+			<section class="flex-basis-third color color--image-average ratio-1" x-bind="getDisplayBind('imagePointer')">
+				<h3 class="color__title text-2x">
+					pointer
+				</h3>
+				<button @click="selectColor(imagePointer)" x-text="imagePointer.hex"
+					class="color__input color__input--button font-mono" :title="`sets color to ${imagePointer.hex}`">#FFF</button>
+			</section>
+
 			<div class="flex-grow"></div>
 			<div class="flex-grow"></div>
 		</article>

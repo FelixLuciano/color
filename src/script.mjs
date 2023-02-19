@@ -210,6 +210,7 @@ function picker() {
       }
     },
     image: null,
+    imagePointer: WHITE,
     get imageAverage() {
       if (this.image === null) {
         return WHITE
@@ -289,6 +290,15 @@ function picker() {
 
       ctx.drawImage(this.image, x, y, width, height)
       canvas.scrollIntoView({ block: 'nearest' })
+    },
+    onCanvasPointer(canvas, {pageX, pageY}) {
+      const ctx = canvas.getContext('2d')
+      const x = pageX - canvas.offsetLeft
+      const y = pageY - canvas.offsetTop
+      const [r, g, b] = ctx.getImageData(x, y, 1, 1).data
+      const color = new Color(r/255, g/255, b/255)
+
+      this.imagePointer = color
     },
     selectCanvasColor(canvas, {pageX, pageY}) {
       const ctx = canvas.getContext('2d')
