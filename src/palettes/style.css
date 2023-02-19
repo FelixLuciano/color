@@ -1,9 +1,19 @@
 main {
 	padding: .5rem 0 1rem 0;
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(1, 1fr);
 	gap: 1.5rem 1rem;
 	color: #000;
+}
+@media (min-width: 640px) {
+    main {
+		grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1300px) {
+    main {
+		grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .palette {
@@ -40,7 +50,7 @@ main {
 	display: flex;
 	justify-content: end;
 	align-items: end;
-	transform: scale(100.75%);
+	transform: scale(102%);
 }
 .palette > ul > li.dark {
 	color: #FFF;
