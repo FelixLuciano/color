@@ -124,14 +124,17 @@ main {
 }
 .color__input--button {
     padding: 0 .5em .5em 0;
-    cursor: pointer;
     font-family: inherit;
     display: flex;
     justify-content: end;
     align-items: end;
 }
-.color__input--button:hover {
+button.color__input--button:hover {
     text-decoration-line: underline;
+    cursor: pointer;
+}
+button.color__input--button:hover[disabled] {
+    cursor: not-allowed;
 }
 
 #canvas {
