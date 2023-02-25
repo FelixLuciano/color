@@ -89,7 +89,7 @@
 
 			<section class="flex flex-grow-2! color" x-bind="getDisplayBind('complementary')">
 				<h3 class="color__title text-2x">
-					complementary
+					comple<wbr>mentary
 				</h3>
 
 				<div class="color ratio-1 relative">
@@ -106,7 +106,7 @@
 
 			<section class="color ratio-1" x-bind="getDisplayBind('randomColor')">
 				<h3 class="color__title text-2x">
-					random
+					ran<wbr>dom
 				</h3>
 				<button @click="selectRandomColor()" x-text="randomColor.hex"
 					class="color__input color__input--button font-mono" title="selects a random color">#FFF</button>
@@ -155,7 +155,7 @@
 
 				<section class="ratio-1 color color--chroma" x-bind="getDisplayBind('chromaDisplay')">
 					<h3 class="color__title text-2x">
-						chroma
+						chro<wbr>ma
 					</h3>
 					<input aria-label="chroma level" x-model.number="chroma" type="range" min="0" max="1" :step="1/100"
 						value="0" title="color chroma" class="color__input color__input--number">
@@ -180,7 +180,7 @@
 
 			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('color')">
 				<h3 class="color__title text-2x">
-					normal
+					nor<wbr>mal
 				</h3>
 				<button @click="selectColor(color)" x-text="color.hex"
 					class="color__input color__input--button font-mono"
@@ -189,7 +189,7 @@
 
 			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('deuteranopia')">
 				<h3 class="color__title text-2x">
-					deuteranopia
+					deute<wbr>rano<wbr>pia
 				</h3>
 				<button @click="selectColor(deuteranopia)" x-text="deuteranopia.hex"
 					class="color__input color__input--button font-mono"
@@ -198,7 +198,7 @@
 
 			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('protanopia')">
 				<h3 class="color__title text-2x">
-					protanopia
+					prota<wbr>nopia
 				</h3>
 				<button @click="selectColor(protanopia)" x-text="protanopia.hex"
 					class="color__input color__input--button font-mono"
@@ -207,7 +207,7 @@
 
 			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('tritanopia')">
 				<h3 class="color__title text-2x">
-					tritanopia
+					trita<wbr>nopia
 				</h3>
 				<button @click="selectColor(tritanopia)" x-text="tritanopia.hex"
 					class="color__input color__input--button font-mono"
@@ -216,7 +216,7 @@
 
 			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('achromatomaly')">
 				<h3 class="color__title text-2x">
-					achromatomaly
+					achro<wbr>mato<wbr>maly
 				</h3>
 				<button @click="selectColor(achromatomaly)" x-text="achromatomaly.hex"
 					class="color__input color__input--button font-mono"
@@ -225,7 +225,7 @@
 
 			<section class="flex-basis-third color ratio-1" x-bind="getDisplayBind('achromatopsia')">
 				<h3 class="color__title text-2x">
-					achromatopsia
+					achro<wbr>mato<wbr>psia
 				</h3>
 				<button @click="selectColor(achromatopsia)" x-text="achromatopsia.hex"
 					class="color__input color__input--button font-mono"
@@ -255,7 +255,7 @@
 
 			<section class="color ratio-1" style="--color: #CCC; color: #333">
 				<h3 class="color__title text-2x">
-					background
+					back<wbr>ground
 				</h3>
 				<button @click="setBackgroundColor()" @contextmenu.prevent="selectColor(background)"
 					x-text="background.hex" class="color__input color__input--button font-mono"
@@ -264,7 +264,7 @@
 
 			<section class="color ratio-1" style="--color: #CCC; color: #333">
 				<h3 class="color__title text-2x">
-					foreground
+					fore<wbr>ground
 				</h3>
 				<button @click="setForegroundColor()" @contextmenu.prevent="selectColor(foreground)"
 					x-text="foreground.hex" class="color__input color__input--button font-mono"
@@ -307,7 +307,7 @@
 			<section class="flex-basis-third color color--image-average ratio-1"
 				x-bind="getDisplayBind('imageAverage')">
 				<h3 class="color__title text-2x">
-					average
+					ave<wbr>rage
 				</h3>
 				<button @click="selectColor(imageAverage)" x-text="imageAverage.hex"
 					class="color__input color__input--button font-mono"
@@ -317,7 +317,7 @@
 			<section class="flex-basis-third color color--image-average ratio-1"
 				x-bind="getDisplayBind('imagePointer')">
 				<h3 class="color__title text-2x">
-					pointer
+					poin<wbr>ter
 				</h3>
 				<button @click="selectColor(imagePointer)" x-text="imagePointer.hex"
 					class="color__input color__input--button font-mono"
@@ -333,7 +333,7 @@
 		<article class="storage-grid flex-basis-full">
 			<div class="ratio-1 col-1 color" x-bind="getDisplayBind('color')">
 				<h2 class="color__title">
-					storage
+					stora<wbr>ge
 				</h2>
 
 				<template x-if="!$storage.includes(color.hex)">
