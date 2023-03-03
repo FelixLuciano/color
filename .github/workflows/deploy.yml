@@ -3,6 +3,8 @@ name: Deploy
 on:
   workflow_dispatch: {}
   push:
+    paths:
+      - src/**
     branches:
       - main
 
@@ -17,6 +19,7 @@ concurrency:
 
 jobs:
   deploy:
+    name: Build and Deploy on GitHub pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
