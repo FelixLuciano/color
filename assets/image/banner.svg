@@ -1,49 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-512 -256 1024 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-400 -200 800 400">
   <defs>
     <style>
-      #logo,
       .c {
-        animation-duration: 4s;
-        animation-timing-function: cubic-bezier(0, 0, .2, 1);
-        animation-direction: alternate;
+        mix-blend-mode: lighten;
+        animation-duration: 5s;
+        animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
-      .c.c--B { animation-name: c--B; }
-      .c.c--R { animation-name: c--R; }
-      .c.c--G { animation-name: c--G; }
-      .c.c--C,
-      .c.c--Y,
-      .c.c--M { animation-name: c--CYM; }
-      .c.c--K { animation-name: c--K; }
-      @keyframes c--R {
-        from, 40% { mix-blend-mode: normal;
-                    transform: rotate(0deg) translateX(0px); }
-        45%, to   { mix-blend-mode: lighten; }
-        50%       { transform: rotate(45deg) translateX(20px); }
-        60%, to   { transform: rotate(45deg) translateX(0) scale(75%); }
+      .c.cR { animation-name: cR; }
+      .c.cG { animation-name: cG; }
+      .c.cG2 { animation-name: cG2; }
+      .c.cB { animation-name: cB; }
+      @keyframes cR {
+        from, to { cx: -17; cy: -17; r: 24; }
+        12.5%    { cx: -12; cy: -12; r: 28; }
+        25%      { cx:   0; cy:   0; r: 32; }
+        37.5%    { cx:  12; cy:  12; r: 28; }
+        50%      { cx:  17; cy:  17; r: 24; }
+        62.5%    { cx:  12; cy:  12; r: 20; }
+        75%      { cx:   0; cy:   0; r: 16; }
+        87.5%    { cx: -12; cy: -12; r: 20; }
       }
-      @keyframes c--G {
-        from, 40% { mix-blend-mode: normal;
-                    transform: scale(100%); }
-        45%, to   { mix-blend-mode: lighten; }
-        50%       { transform: scale(90%); }
-        60%, to   { transform: scale(100%); }
+      @keyframes cG {
+        from, to { cx:   0; cy:   0; r: 32; }
+        12.5%    { cx:  12; cy:  12; r: 28; }
+        25%      { cx:  17; cy:  17; r: 24; }
+        37.5%    { cx:  12; cy:  12; r: 20; }
+        50%      { cx:   0; cy:   0; r: 16; }
+        62.5%    { cx: -12; cy: -12; r: 20; }
+        75%      { cx: -17; cy: -17; r: 24; }
+        87.5%    { cx: -12; cy: -12; r: 28; }
       }
-      @keyframes c--B {
-        from, 40% { mix-blend-mode: normal;
-                    transform: rotate(0deg) translateX(0px); }
-        45%, to   { mix-blend-mode: lighten; }
-        50%       { transform: rotate(45deg) translateX(-20px); }
-        60%, to   { transform: rotate(45deg) translateX(0) scale(75%); }
+      @keyframes cB {
+        from, to { cx:  17; cy:  17; r: 24; }
+        12.5%    { cx:  12; cy:  12; r: 20; }
+        25%      { cx:   0; cy:   0; r: 16; }
+        37.5%    { cx: -12; cy: -12; r: 20; }
+        50%      { cx: -17; cy: -17; r: 24; }
+        62.5%    { cx: -12; cy: -12; r: 28; }
+        75%      { cx:   0; cy:   0; r: 32; }
+        87.5%    { cx:  12; cy:  12; r: 28; }
       }
-      @keyframes c--CYM {
-        from, 40% { opacity: 1; }
-        45%, to   { opacity: 0; }
-      }
-      @keyframes c--K {
-        from, 40% { transform: rotate(0deg)  translateX(0px); }
-        50%       { transform: rotate(45deg) translateX(50px); }
-        60%, to   { transform: rotate(45deg) translateX(75px) scale(50%); }
+      @keyframes cG2 {
+        from, to { cx:   0; cy:   0; r: 16; }
+        12.5%    { cx: -12; cy: -12; r: 20; }
+        25%      { cx: -17; cy: -17; r: 24; }
+        37.5%    { cx: -12; cy: -12; r: 28; }
+        50%      { cx:   0; cy:   0; r: 32; }
+        62.5%    { cx:  12; cy:  12; r: 28; }
+        75%      { cx:  17; cy:  17; r: 24; }
+        87.5%    { cx:  12; cy:  12; r: 20; }
       }
 
       .mix-blend-lighten {
@@ -65,46 +71,37 @@
     </filter>
   </defs>
 
-  <rect id="background" fill="#EEE" x="-512" y="-256" width="1024" height="512" rx="16" />
+  <rect id="background" fill="#EEEEEE" x="-400" y="-200" width="800" height="400" rx="16" />
 
   <g id="shadow" filter="url(#wavy)">
-    <rect x="-300" y="-256" width="600" height="512" fill="#EEE" />
+    <rect x="-300" y="-256" width="600" height="512" fill="#EEEEEE" />
     <g>
-      <circle cx="128" r="128" fill="#2E2" transform="rotate(300)" />
-      <circle cx="128" r="128" fill="#EE2" transform="rotate(240)" />
-      <circle cx="128" r="128" fill="#E22" transform="rotate(180)" />
-      <circle cx="128" r="128" fill="#E2E" transform="rotate(120)" />
-      <circle cx="128" r="128" fill="#22E" transform="rotate(60)" />
-      <circle cx="128" r="128" fill="#2EE" transform="rotate(0)" />
+      <circle cx="128" r="64" fill="#22EE22" transform="rotate(300)" />
+      <circle cx="128" r="64" fill="#EEEE22" transform="rotate(240)" />
+      <circle cx="128" r="64" fill="#EE2222" transform="rotate(180)" />
+      <circle cx="128" r="64" fill="#EE22EE" transform="rotate(120)" />
+      <circle cx="128" r="64" fill="#2222EE" transform="rotate(60)" />
+      <circle cx="128" r="64" fill="#22EEEE" transform="rotate(0)" />
       <animateTransform attributeName="transform" attributeType="XML" type="rotate" keyTimes="0; .9 ; 1" values="0; 360; 360" dur="8s" repeatCount="indefinite" />
     </g>
     <g class="mix-blend-lighten">
-      <circle cx="128" r="128" fill="#E2E" transform="rotate(300)" />
-      <circle cx="128" r="128" fill="#22E" transform="rotate(240)" />
-      <circle cx="128" r="128" fill="#2EE" transform="rotate(180)" />
-      <circle cx="128" r="128" fill="#2E2" transform="rotate(120)" />
-      <circle cx="128" r="128" fill="#EE2" transform="rotate(60)" />
-      <circle cx="128" r="128" fill="#E22" transform="rotate(0)" />
+      <circle cx="128" r="64" fill="#EE22EE" transform="rotate(300)" />
+      <circle cx="128" r="64" fill="#2222EE" transform="rotate(240)" />
+      <circle cx="128" r="64" fill="#22EEEE" transform="rotate(180)" />
+      <circle cx="128" r="64" fill="#22EE22" transform="rotate(120)" />
+      <circle cx="128" r="64" fill="#EEEE22" transform="rotate(60)" />
+      <circle cx="128" r="64" fill="#EE2222" transform="rotate(0)" />
     </g>
-      <animateTransform attributeName="transform" attributeType="XML" type="rotate" values="0; 360" dur="32s" repeatCount="indefinite" />
-      <animate attributeName="opacity" values="0; 0; 1; 1; 1; .5; 0" dur="8s" repeatCount="indefinite" />
-      <animateTransform attributeName="transform" attributeType="XML" type="scale" values=".25; 1.5" dur="8s" additive="sum" repeatCount="indefinite" />
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" values="0; 360" dur="32s" repeatCount="indefinite" />
+    <animate attributeName="opacity" values="0; 0; 1; 1; 1; .5; 0" dur="8s" repeatCount="indefinite" />
+    <animateTransform attributeName="transform" attributeType="XML" type="scale" values=".25; 1.5" dur="8s" additive="sum" repeatCount="indefinite" />
   </g>
   
-  <rect id="mask" fill="#111" x="-96" y="-96" width="192" height="192" rx="64" />
+  <rect id="mask" fill="#000000" x="-63" y="-63" width="128" height="128" rx="42" />
 
-  <g id="logo">
-    <circle cx="52" r="16" fill="#F2F" class="c c--M" />
-    <circle cx="32" r="32" fill="#22F" class="c c--B" />
-    <circle cx="20" r="16" fill="#2FF" class="c c--C" />
-    <circle r="32" fill="#2F2" class="c c--G" />
-    <circle cx="-12" r="16" fill="#FF2" class="c c--Y" />
-    <circle cx="-52" r="16" fill="#FFF" class="c c--K" />
-    <circle cx="-32" r="32" fill="#F22" class="c c--R" />
-  </g>
-
-  <!-- <text id="type" y="144" fill="#111" font-size="32" text-anchor="middle"
-    alignment-baseline="middle" font-weight="bold" font-family="sans-serif">
-    tri
-  </text> -->
+  <circle cx="17" cy="17" r="24" fill="#2222FF" class="c cB" />
+  <circle cx="-17" cy="-17" r="24" fill="#FF2222" class="c cR" />
+  <circle r="32" fill="#22FF22" class="c cG" />
+  <circle r="32" fill="#22FF22" class="c cG2" />
+  <circle cx="35" cy="35" r="6" fill="#FFFFFF" style="mix-blend-mode: difference;" />
 </svg>
