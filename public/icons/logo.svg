@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-41 -41 82 82">
+  <defs>
+    <style>
+      .c {
+        mix-blend-mode: lighten;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      .c.cR { animation-name: cR; }
+      .c.cG { animation-name: cG; }
+      .c.cG2 { animation-name: cG2; }
+      .c.cB { animation-name: cB; }
+      @keyframes cR {
+        from, to { cx: -17; cy: -17; r: 24; }
+        12.5%    { cx: -12; cy: -12; r: 28; }
+        25%      { cx:   0; cy:   0; r: 32; }
+        37.5%    { cx:  12; cy:  12; r: 28; }
+        50%      { cx:  17; cy:  17; r: 24; }
+        62.5%    { cx:  12; cy:  12; r: 20; }
+        75%      { cx:   0; cy:   0; r: 16; }
+        87.5%    { cx: -12; cy: -12; r: 20; }
+      }
+      @keyframes cG {
+        from, to { cx:   0; cy:   0; r: 32; }
+        12.5%    { cx:  12; cy:  12; r: 28; }
+        25%      { cx:  17; cy:  17; r: 24; }
+        37.5%    { cx:  12; cy:  12; r: 20; }
+        50%      { cx:   0; cy:   0; r: 16; }
+        62.5%    { cx: -12; cy: -12; r: 20; }
+        75%      { cx: -17; cy: -17; r: 24; }
+        87.5%    { cx: -12; cy: -12; r: 28; }
+      }
+      @keyframes cB {
+        from, to { cx:  17; cy:  17; r: 24; }
+        12.5%    { cx:  12; cy:  12; r: 20; }
+        25%      { cx:   0; cy:   0; r: 16; }
+        37.5%    { cx: -12; cy: -12; r: 20; }
+        50%      { cx: -17; cy: -17; r: 24; }
+        62.5%    { cx: -12; cy: -12; r: 28; }
+        75%      { cx:   0; cy:   0; r: 32; }
+        87.5%    { cx:  12; cy:  12; r: 28; }
+      }
+      @keyframes cG2 {
+        from, to { cx:   0; cy:   0; r: 16; }
+        12.5%    { cx: -12; cy: -12; r: 20; }
+        25%      { cx: -17; cy: -17; r: 24; }
+        37.5%    { cx: -12; cy: -12; r: 28; }
+        50%      { cx:   0; cy:   0; r: 32; }
+        62.5%    { cx:  12; cy:  12; r: 28; }
+        75%      { cx:  17; cy:  17; r: 24; }
+        87.5%    { cx:  12; cy:  12; r: 20; }
+      }
+    </style>
+  </defs>
+  <circle cx="17" cy="17" r="24" fill="#2222FF" class="c cB" />
+  <circle cx="-17" cy="-17" r="24" fill="#FF2222" class="c cR" />
+  <circle r="32" fill="#22FF22" class="c cG" />
+  <circle r="32" fill="#22FF22" class="c cG2" />
+  <circle cx="35" cy="35" r="6" fill="#FFFFFF" style="mix-blend-mode: difference;" />
+</svg>
