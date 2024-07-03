@@ -4,7 +4,7 @@ on:
   workflow_dispatch: {}
   push:
     paths:
-      - src/**
+      - public/**
     branches:
       - main
 
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/configure-pages@v2
       - uses: actions/upload-pages-artifact@v1
         with:
-          path: src
+          path: public
 
       - name: Deploy
         id: deployment
