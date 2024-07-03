@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>swatches</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Description" content="Color picking tool.">
+    <meta property="og:title" content="picker">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Color picking tool.">
+    <meta property="og:image"
+        content="https://repository-images.githubusercontent.com/250960025/1b0969ff-a9e5-40a7-9058-b7ddbff6f117">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="icon" type="image/svg" href="/icons/favicon.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="manifest" href="/icons/manifest.json">
+    <meta name="apple-mobile-web-app-title" content="color">
+    <meta name="application-name" content="color">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=azeret-mono@1&f[]=chillax@1&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/beercss@3.6.4/dist/cdn/beer.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+
+    <script>
+        if ('serviceWorker' in navigator)
+            window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js'))
+    </script>
+    <script type="importmap">
+        { "imports": {
+            "alpinejs": "https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/module.esm.min.js"
+        } }
+    </script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.6.4/dist/cdn/beer.min.js"></script>
+    <script type="module">
+        import Alpine from 'alpinejs'
+        import swatches from './swatches.mjs'
+
+        Alpine.data('swatches', () => ({ swatches }))
+        Alpine.start()
+    </script>
+</head>
+
+<body class="dark">
+    <nav class="s bottom padding">
+        <img src="/icons/logo.svg" class="small">
+        <div class="max"></div>
+        <a href="/">
+            <i>instant_mix</i>
+            <div>Picker</div>
+        </a>
+        <div class="space"></div>
+        <a class="active">
+            <i>style</i>
+            <div>swatches</div>
+        </a>
+        <div class="space"></div>
+        <a href="/palettes">
+            <i>palette</i>
+            <div>palettes</div>
+        </a>
+        <div class="max"></div>
+        <a href="https://github.com/FelixLuciano/color#readme" target="_top" rel="noreferrer">
+            <i>help</i>
+            <div>about</div>
+        </a>
+    </nav>
+    <nav class="m l left">
+        <div class="space"></div>
+        <img src="/icons/logo.svg">
+        <div class="max"></div>
+        <a href="/">
+            <i>instant_mix</i>
+            <div>Picker</div>
+        </a>
+        <div class="space"></div>
+        <a class="active">
+            <i>style</i>
+            <div>swatches</div>
+        </a>
+        <div class="space"></div>
+        <a href="/palettes">
+            <i>palette</i>
+            <div>palettes</div>
+        </a>
+        <div class="max"></div>
+        <a href="https://github.com/FelixLuciano/color#readme" target="_top" rel="noreferrer">
+            <i>help</i>
+            <div>about</div>
+        </a>
+        <div class="space"></div>
+    </nav>
+
+    <main x-data="swatches" class="responsive large-padding">
+        <section>
+            <header class="transparent p-0">
+                <nav>
+                    <h1 style="flex-wrap: wrap;">
+                        swatches
+                        <div style="flex-basis: 100%;"></div>
+                        <div class="badge primary none bold">From Tailwindcss</div>
+                    </h1>
+                    <div class="max"></div>
+                    <a href="https://tailwindcss.com/docs/customizing-colors" class="button transparent small-round vertical">
+                        <i>open_in_new</i>
+                        <span>source</span>
+                    </a>
+                </nav>
+            </header>
+            <div class="space"></div>
+
+            <template x-for="[name, set] in Object.entries(swatches)" :key="name">
+                <div>
+                    <h2 x-text="name" class="m-0"></h2>
+
+                    <nav class="scroll grid" style="grid-template-columns: repeat(11, 1fr);">
+                        <template x-for="[color, hex] in Object.entries(set)" :key="color">
+                            <div class="">
+                                <button @click="navigator.clipboard.writeText(hex)" data-ui="#snackbar-clipboard" class="border responsive m-0 ratio-square" :style="{backgroundColor: hex}"></button>
+                                <p class="font-mono">
+                                    <strong x-text="color">100</strong><br>
+                                    <span x-text="hex">#ffffff</span>
+                                </p>
+                            </div>
+                        </template>
+                    </nav>
+                    <div class="large-divider"></div>
+                </div>
+            </template>
+        </section>
+
+        <footer class="transparent p-0">
+            © 2024 Luciano Felix.
+        </footer>
+
+        <div id="snackbar-clipboard" class="snackbar green white-text">
+            <i>inventory</i>
+            <span>Color copied to the clipboard!</span>
+        </div>
+    </main>
+</body>
+
+</html>

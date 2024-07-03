@@ -1,0 +1,105 @@
+:root {
+    --font: 'Chillax', sans-serif;
+}
+
+::selection {
+    background-color: rgba(255, 255, 255, .6);
+    color: #000000;
+}
+
+.w-full {
+    width: 100%;
+}
+.w-half {
+    width: 50%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.m-0 {
+    margin: 0;
+}
+
+.p-0 {
+    padding: 0;
+}
+
+.font-mono {
+    font-family: azeret mono, sans-serif !important;
+}
+
+.text-surface-dim {
+    color: var(--on-surface) !important;
+}
+.text-surface-inverse {
+    color: var(--inverse-on-surface) !important;
+}
+.text-surface-inverse ::selection {
+    background-color: rgba(0, 0, 0, .6);
+    color: #ffffff;
+}
+
+.text-medium {
+    font-size: 1.5em !important;
+}
+.text-extra {
+    font-size: 3em !important;
+}
+
+.absolute {
+    z-index: 1;
+}
+
+button.writing-vertical {
+    padding: 1.5rem 0;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.slider,
+.slider * {
+    cursor: ew-resize !important;
+}
+
+.slider.vertical,
+.slider.vertical * {
+    cursor: ns-resize !important;
+}
+
+.slider.max > span {
+    border-radius: 1.5rem;
+}
+
+.ratio-square {
+    height: auto;
+    aspect-ratio: 1 / 1;
+}
+
+.ratio-2-1 {
+    height: auto;
+    aspect-ratio: 2 / 1;
+}
+.ratio-1-2 {
+    height: auto;
+    aspect-ratio: 1 / 2;
+}
+
+.ratio-3-1 {
+    height: auto;
+    aspect-ratio: 3 / 1;
+}
+
+.slider.max > input[type="range"]:not(:active) ~ span {
+    transition: inset 256ms;
+}
+
+#canvas {
+    cursor: crosshair;
+}
+
+.test {
+    z-index: 1;
+    transform: translateY(150%) translateX(-25%) rotate(45deg) !important;
+}
