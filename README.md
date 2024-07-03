@@ -1,13 +1,10 @@
-![tri](assets/image/banner.svg)
+![color](assets/image/banner.svg)
 <h1 align="center">
-    tri
+    color
 </h1>
 
 <p align="center">
-    <strong>A color tool for three character hexadecimal codes.</strong>
-</p>
-<p align="center">
-    <a href="https://github.com/FelixLuciano/tri/actions/workflows/deploy.yml"><img src="https://github.com/FelixLuciano/tri/actions/workflows/deploy.yml/badge.svg" alt="Deploy"></a>
+    <a href="https://github.com/FelixLuciano/color/actions/workflows/deploy.yml"><img src="https://github.com/FelixLuciano/color/actions/workflows/deploy.yml/badge.svg" alt="Deploy"></a>
     <img src="https://www.pwa-shields.com/1.0.0/series/classic/solid/purple.svg" alt="PWA Shield">
 </p>
 
