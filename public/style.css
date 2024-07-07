@@ -91,6 +91,10 @@ button.writing-vertical {
     aspect-ratio: 3 / 1;
 }
 
+.smooth-color {
+    transition: color 256ms, background-color 256ms;
+}
+
 .slider.max > input[type="range"]:not(:active) ~ span {
     transition: inset 256ms;
 }
