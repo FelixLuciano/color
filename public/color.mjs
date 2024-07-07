@@ -19,7 +19,6 @@ export default class Color {
     )
     this.chroma = cmax === 0 ? 0 : delta / cmax
     this.light = cmax
-    this.transition = null
     this.luminance = 0.2126 * sRGBVec[0] + 0.7152 * sRGBVec[1] + 0.0722 * sRGBVec[2]
   }
 
