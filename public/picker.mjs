@@ -150,17 +150,32 @@ export function picker() {
         [0.299, 0.587, 0.114],
       ])
     },
-    
-    background: Color.fromHex('#CCCCCC'),
-    foreground: Color.fromHex('#333333'),
+
+    background: Color.fromHex('#333333'),
+    foreground: Color.fromHex('#cccccc'),
     setBackgroundColor() {
       this.background = this.color.copy()
     },
     setForegroundColor() {
-      this.foreground = this.color.copy()
+      this.foreground = this.color
     },
     swapBackgroundForegroud() {
       [this.background, this.foreground] = [this.foreground, this.background]
+    },
+    enhanceContrast() {
+      let target = 3
+      let step = 0.01
+
+      if (this.contrast >= target) target = 4.5
+      if (this.contrast >= target) target = 7
+      if (this.background.getContrast(WHITE) < this.background.getContrast(BLACK)) step = -0.01
+
+      for (let light = this.foreground.light; this.contrast < target && light >= 0.0 && light <= 1.0; light += step) {
+        this.foreground = Color.fromHsv(this.foreground.hue, this.foreground.chroma, light)
+      }
+      for (let chroma = this.foreground.chroma; this.contrast < target && chroma >= 0.0 && chroma <= 1.0; chroma -= step) {
+        this.foreground = Color.fromHsv(this.foreground.hue, chroma, this.foreground.light)
+      }
     },
 
     get contrast() {
@@ -190,13 +205,13 @@ export function picker() {
     darkChroma: 1.0,
     darkLevel: 0.8,
     get darkFade() {
-      let hue = (this.hue + this.darkHue) % 361
+      let hue = this.hue + this.darkHue
       const saturation = this.darkChroma < 0 ? this.chroma * (this.darkChroma + 1) : this.chroma + (1 - this.chroma) * this.darkChroma
       const value = this.light * (1 - this.darkLevel)
 
-      if (hue < 0) {
-        hue += 360
-      }
+      // if (hue < 0) {
+      //   hue += 360
+      // }
 
       return Color.fromHsv(hue, saturation, value)
     },
@@ -211,13 +226,14 @@ export function picker() {
     lightChroma: -0.8,
     lightLevel: 1.0,
     get lightFade() {
-      let hue = (this.hue + this.lightHue) % 361
+      let hue = this.hue + this.lightHue
+      // let hue = (this.hue + this.lightHue) % 361
       const saturation = this.lightChroma < 0 ? this.chroma * (this.lightChroma + 1) : this.chroma + (1 - this.chroma) * this.lightChroma
       const value = this.light + (1 - this.light) * this.lightLevel
 
-      if (hue < 0) {
-        hue += 360
-      }
+      // if (hue < 0) {
+      //   hue += 360
+      // }
 
       return Color.fromHsv(hue, saturation, value)
     },
@@ -234,10 +250,6 @@ export function picker() {
         let dHue = c2.hue - c1.hue
         const dChroma = c2.chroma - c1.chroma
         const dLight = c2.light - c1.light
-
-        if (dHue < 0) {
-          dHue += 360
-        }
 
         return function (x) {
           const hue = (x * dHue + c1.hue) % 361
@@ -395,6 +407,7 @@ export function picker() {
     init() {
       this.color.hue = 300
       this.randomColor = getRandomColor()
+      this.foreground = this.color
     },
   }
 
