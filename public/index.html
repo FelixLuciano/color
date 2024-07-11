@@ -35,7 +35,8 @@
     </script> -->
     <script type="importmap">
         { "imports": {
-            "alpinejs": "https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/module.esm.min.js"
+            "alpinejs": "https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/module.esm.min.js",
+            "colorthief": "https://unpkg.com/colorthief@2.4.0/dist/color-thief.mjs"
         } }
     </script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.6.4/dist/cdn/beer.min.js"></script>
@@ -101,7 +102,7 @@
                     <div class="max"></div>
                     <button class="transparent small-round vertical">
                         <i>image</i>
-                        <span>image</span>
+                        <span>extract</span>
                         <menu id="menu" class="no-wrap min left small-round">
                             <a @click="getImageFromFIle" data-ui="#menu" class="row">
                                 <i>upload_file</i>
@@ -126,11 +127,20 @@
                 </nav>
             </header>
             <template x-if="image !== null">
-                <div class="">
-                    <canvas id="canvas" x-effect="displayImage($el)" @click="setColorFromCanvas($el, $event)"
-                        class="round w-full h-full"></canvas>
-                    <span class="helper font-mono">image (click do pick)</span>
-                </div>
+                <nav class="grid">
+                    <div class="s12">
+                        <canvas id="canvas" x-effect="displayImage($el)" @click="setColorFromCanvas($el, $event)"
+                            class="round w-full h-full"></canvas>
+                        <span class="helper font-mono">image (click do pick)</span>
+                    </div>
+                    <template x-for="[name, imageColor] in Object.entries(imagePalette)" :key="imageColor.hex">
+                        <div class="s4 m2 field fill round ratio-2-1">
+                            <span class="helper font-mono" x-text="name"></span>
+                            <button @click="setColor(imageColor)" x-bind="getDisplayBind('imageColor')" x-text="imageColor.hex" class="responsive h-full m-0 font-mono text-medium smooth-color">#FFFFFF</button>
+                        </div>
+                    </template>
+                    <div class="s12"></div>
+                </nav>
             </template>
             <nav class="grid">
                 <div x-bind="getDisplayBind('color')" class="s12 l6 field round border ratio-3-1 smooth-color" style="background-color: #FFFFFF;">
@@ -175,23 +185,23 @@
                 </div>
                 <div class="s m s12"></div>
                 <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">hue:<b x-text="Math.round(hue) + '°'">180°</b></span>
+                    <span class="helper font-mono">hue:<b x-text="Math.round(hue * 360) + '°'">180°</b></span>
                     <label class="slider max vertical" :style="{color: hueDisplay.hex}">
-                        <input x-model.number="hue" type="range" min="0" max="360" step="1" value="180">
+                        <input x-model.number="hue" type="range" min="0" max="1" :step="1/360">
                         <span class="smooth-color"></span>
                     </label>
                 </div>
                 <div class="s4 l2 field fill round ratio-square">
                     <span class="helper font-mono">chroma:<b x-text="Math.round(chroma * 100)">0</b></span>
                     <label class="slider max vertical" :style="{color: chromaDisplay.hex}">
-                        <input x-model.number="chroma" type="range" min="0" max="1" :step="1/100" value="0">
+                        <input x-model.number="chroma" type="range" min="0" max="1" :step="1/100">
                         <span class="smooth-color"></span>
                     </label>
                 </div>
                 <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">light:<b x-text="Math.round(light * 100)">100</b></span>
+                    <span class="helper font-mono">light:<b x-text="Math.round(color.light * 100)">100</b></span>
                     <label class="slider max vertical" style="color: currentcolor;">
-                        <input x-model.number="light" type="range" min="0" max="1" :step="1/100">
+                        <input x-model.number="light" type="range" :min="0" max="1" :step="1/100">
                         <span class="smooth-color"></span>
                     </label>
                 </div>
@@ -259,17 +269,17 @@
                 <div class="s m s12"></div>
                 <nav class="s8 m4 field ratio-2-1 no-space">
                     <span class="helper font-mono">subject</span>
-                    <button @click="setBackgroundColor()" x-bind="getDisplayBind('background')" class="responsive  w-half h-full p-0 left-round text-medium smooth-color" style="position: relative;">background</button>
-                    <button @click="setForegroundColor()" x-bind="getDisplayBind('foreground')" class="responsive w-half h-full p-0 right-round text-medium smooth-color">foreground</button>
-                    <button @click="setColor(background)" x-bind="getDisplayBind('background')" class="circle absolute bottom left transparent margin smooth-color" style="z-index: 2;">
+                    <button @click="setForegroundColor()" x-bind="getDisplayBind('foreground')" class="responsive w-half h-full p-0 left-round text-medium smooth-color">foreground</button>
+                    <button @click="setBackgroundColor()" x-bind="getDisplayBind('background')" class="responsive  w-half h-full p-0 right-round text-medium smooth-color" style="position: relative;">background</button>
+                    <button @click="setColor(foreground)" x-bind="getDisplayBind('foreground')" class="circle absolute bottom left transparent margin smooth-color" style="z-index: 2;">
                         <i>colorize</i>
                     </button>
-                    <button @click="setColor(foreground)" x-bind="getDisplayBind('foreground')" class="circle absolute bottom right transparent margin smooth-color" style="z-index: 2;">
+                    <button @click="setColor(background)" x-bind="getDisplayBind('background')" class="circle absolute bottom right transparent margin smooth-color" style="z-index: 2;">
                         <i>colorize</i>
                     </button>
                 </nav>
                 <div class="s4 m2 field fill round ratio-square">
-                    <span class="helper font-mono">grade <strong x-text="contrastDisplay">65:8</strong></span>
+                    <span class="helper font-mono">grade <strong x-text="contrastDisplay">100:1</strong></span>
                     <button x-bind="getDisplayBind('contrastGradeDisplay')" x-text="contrastGrade" class="responsive h-full m-0 font-mono text-extra center-text smooth-color">AAA</button>
                 </div>
             </nav>
@@ -303,9 +313,9 @@
                 </div>
                 <div class="s m s12"></div>
                 <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">darken hue:<b x-text="darkHue">0</b></span>
+                    <span class="helper font-mono">darken hue:<b x-text="Math.round(darkHue * 360)">0</b></span>
                     <label class="slider max vertical" :style="{color: darkHueDisplay.hex}">
-                        <input x-model.number="darkHue" type="range" min="-360" max="360">
+                        <input x-model.number="darkHue" type="range" min="-1" max="1" :step="1/360">
                         <span></span>
                     </label>
                 </div>
@@ -333,9 +343,9 @@
                 </div>
                 <div class="s m s12"></div>
                 <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">lighten hue:<b x-text="lightHue">0</b></span>
+                    <span class="helper font-mono">lighten hue:<b x-text="Math.round(lightHue * 360)">0</b></span>
                     <label class="slider max vertical" :style="{color: lightHueDisplay.hex}">
-                        <input x-model.number="lightHue" type="range" min="-360" max="360">
+                        <input x-model.number="lightHue" type="range" min="-1" max="1" :step="1/360">
                         <span class="smooth-color"></span>
                     </label>
                 </div>

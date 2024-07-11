@@ -1,13 +1,11 @@
 import Alpine from 'alpinejs'
+import ColorThief from 'colorthief'
 
 import Color from '/color.mjs'
 import swatches from '/swatches/swatches.mjs'
 
 
 export function picker() {
-  const BLACK = new Color(0, 0, 0)
-  const WHITE = new Color(1, 1, 1)
-
   return {
     swatches,
     createColor: Color,
@@ -75,7 +73,7 @@ export function picker() {
       this.hexInput = this.color.hex
     },
     get hueDisplay() {
-      return Color.fromHsv(this.hue, .8, .8)
+      return Color.fromHsv(this.hue, 0.8, 0.8)
     },
 
     get chroma() {
@@ -86,7 +84,7 @@ export function picker() {
       this.hexInput = this.color.hex
     },
     get chromaDisplay() {
-      return Color.fromHsv(this.hue, this.chroma * .8, this.chroma * .5 + .3)
+      return Color.fromHsv(this.hue, this.chroma * .8, this.chroma * 0.2 + 0.6)
     },
 
     get light() {
@@ -98,12 +96,12 @@ export function picker() {
     },
 
     get complementary1() {
-      const hue = (this.color.hue + 180 + 43) % 360
+      const hue = (this.color.hue + (180 + 43) / 360) % 1
 
       return Color.fromHsv(hue, this.color.chroma, this.color.light)
     },
     get complementary2() {
-      const hue = (this.color.hue + 180 - 43) % 360
+      const hue = (this.color.hue + (180 - 43) / 360) % 1
 
       return Color.fromHsv(hue, this.color.chroma, this.color.light)
     },
@@ -168,7 +166,7 @@ export function picker() {
 
       if (this.contrast >= target) target = 4.5
       if (this.contrast >= target) target = 7
-      if (this.background.getContrast(WHITE) < this.background.getContrast(BLACK)) step = -0.01
+      if (this.background.luminance > 0.5) step = -0.01
 
       for (let light = this.foreground.light; this.contrast < target && light >= 0.0 && light <= 1.0; light += step) {
         this.foreground = Color.fromHsv(this.foreground.hue, this.foreground.chroma, light)
@@ -182,10 +180,10 @@ export function picker() {
       return this.background.getContrast(this.foreground)
     },
     get contrastDisplay() {
-      const max = Math.round((Math.max(this.background.luminance, this.foreground.luminance) + 0.05) * 100)
-      const min = Math.round((Math.min(this.background.luminance, this.foreground.luminance) + 0.05) * 100)
+      const b = Math.round(this.foreground.luminance * 100)
+      const a = Math.round(this.background.luminance * 100)
 
-      return `${max}:${min}`
+      return `${b}:${a}`
     },
     get contrastGrade() {
       if (this.contrast >= 7) return 'AAA'
@@ -201,19 +199,15 @@ export function picker() {
     },
 
     darkAmount: 6,
-    darkHue: 0.0,
+    darkHue: -15/360,
     darkChroma: 1.0,
     darkLevel: 0.8,
     get darkFade() {
-      let hue = this.hue + this.darkHue
-      const saturation = this.darkChroma < 0 ? this.chroma * (this.darkChroma + 1) : this.chroma + (1 - this.chroma) * this.darkChroma
-      const value = this.light * (1 - this.darkLevel)
+      const h = this.hue + this.darkHue
+      const s = this.darkChroma <= 0 ? this.chroma * (this.darkChroma + 1) : this.chroma + (1 - this.chroma) * this.darkChroma
+      const v = this.light * (1 - this.darkLevel)
 
-      // if (hue < 0) {
-      //   hue += 360
-      // }
-
-      return Color.fromHsv(hue, saturation, value)
+      return Color.fromHsv(h, s, v)
     },
     get darkHueDisplay() {
       return Color.fromHsv(this.darkFade.hue, .8, .8)
@@ -222,20 +216,15 @@ export function picker() {
       return Color.fromHsv(this.darkFade.hue, this.darkFade.chroma * .8, this.darkFade.chroma * .5 + .3)
     },
     lightAmount: 6,
-    lightHue: 0.0,
+    lightHue: 15/360,
     lightChroma: -0.8,
     lightLevel: 1.0,
     get lightFade() {
-      let hue = this.hue + this.lightHue
-      // let hue = (this.hue + this.lightHue) % 361
-      const saturation = this.lightChroma < 0 ? this.chroma * (this.lightChroma + 1) : this.chroma + (1 - this.chroma) * this.lightChroma
-      const value = this.light + (1 - this.light) * this.lightLevel
+      const h = this.hue + this.lightHue
+      const s = this.lightChroma < 0 ? this.chroma * (this.lightChroma + 1) : this.chroma + (1 - this.chroma) * this.lightChroma
+      const v = this.light + (1 - this.light) * this.lightLevel
 
-      // if (hue < 0) {
-      //   hue += 360
-      // }
-
-      return Color.fromHsv(hue, saturation, value)
+      return Color.fromHsv(h, s, v)
     },
     get lightHueDisplay() {
       return Color.fromHsv(this.lightFade.hue, .8, .8)
@@ -252,7 +241,7 @@ export function picker() {
         const dLight = c2.light - c1.light
 
         return function (x) {
-          const hue = (x * dHue + c1.hue) % 361
+          const hue = x * dHue + c1.hue
           const chroma = x * dChroma + c1.chroma
           const light = x * dLight + c1.light
 
@@ -283,11 +272,11 @@ export function picker() {
       }
     },
     getDisplayClass(color) {
-      const inverse = color.getContrast(WHITE) < color.getContrast(BLACK)
+      const inverse = color.luminance > 0.5
 
       return {
-        'text-surface-dim': !inverse,
-        'text-surface-inverse': inverse,
+        'white-text': !inverse,
+        'black-text': inverse,
       }
     },
     getDisplayStyle(color) {
@@ -296,36 +285,7 @@ export function picker() {
       }
     },
     image: null,
-    get imageAverage() {
-      if (this.image === null) {
-        return WHITE
-      }
-
-      const canvas = document.createElement('canvas')
-      const context = canvas.getContext('2d')
-
-      canvas.width = this.image.width
-      canvas.height = this.image.height
-      context.drawImage(this.image, 0, 0, canvas.width, canvas.height)
-
-      const { data } = context.getImageData(0, 0, canvas.width, canvas.height)
-      const area = canvas.width * canvas.height
-      let r = 0
-      let g = 0
-      let b = 0
-  
-      for (let i = 0; i < data.length; i += 4) {
-        r += data[i]
-        g += data[i+1]
-        b += data[i+2]
-      }
-
-      r = ~~(r / area) / 255
-      g = ~~(g / area) / 255
-      b = ~~(b / area) / 255
-
-      return new Color(r, g, b)
-    },
+    imagePalette: [],
     async getImageFromFIle() {
       const input = document.createElement('input')
 
@@ -340,6 +300,9 @@ export function picker() {
 
         try {
           this.image = await createImageBitmap(blob)
+          this.image.naturalWidth = this.image.width
+          this.image.naturalHeight = this.image.height
+          this.imagePalette = this.getImagePalette()
         }
         catch {
           ui('#snackbar-error-file')
@@ -367,6 +330,25 @@ export function picker() {
       const imageBlob = await image.getType(image_type)
 
       this.image = await createImageBitmap(imageBlob)
+      this.image.naturalWidth = this.image.width
+      this.image.naturalHeight = this.image.height
+      this.imagePalette = this.getImagePalette()
+    },
+    getImagePalette() {
+      const palette = new ColorThief().getPalette(this.image, 6, 100).map((color) => {
+        const [r, g, b] = color.map((n) => n / 256)
+
+        return new Color(r, g, b)
+      })
+
+      return {
+        'predominant': palette[0],
+        '2nd': palette[1],
+        '3rd': palette[2],
+        '4th': palette[3],
+        '5th': palette[4],
+        'least': palette[5],
+      }
     },
     async displayImage(canvas) {
       const ctx = canvas.getContext('2d')
@@ -378,7 +360,7 @@ export function picker() {
 
       canvas.width = canvas.offsetWidth
       canvas.height = height
-      ctx.imageSmoothingEnabled = false
+      // ctx.imageSmoothingEnabled = false
 
       ctx.drawImage(this.image, x, y, width, height)
     },
@@ -405,7 +387,7 @@ export function picker() {
     },
 
     init() {
-      this.color.hue = 300
+      this.color.hue = 1
       this.randomColor = getRandomColor()
       this.foreground = this.color
     },
