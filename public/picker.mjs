@@ -253,13 +253,20 @@ export function picker() {
       const interpolateLight = interpolate(this.lightFade, this.color)
 
       for (let i = this.darkAmount; i > 0; i--) {
-        fades.push(interpolateDark(i / this.darkAmount))
+        const fade = interpolateDark(i / this.darkAmount)
+
+        if (fade.hex !== fades[fades.length - 1]?.hex)
+          fades.push(fade)
       }
 
-      fades.push(this.color)
+      if (this.color.hex !== fades[fades.length - 1]?.hex)
+        fades.push(this.color)
 
       for (let i = this.lightAmount; i > 0; i--) {
-        fades.push(interpolateLight((i - 1) / this.lightAmount))
+        const fade = interpolateLight((i - 1) / (this.lightAmount))
+
+        if (fade.hex !== fades[fades.length - 1]?.hex)
+          fades.push(fade)
       }
 
       return fades
