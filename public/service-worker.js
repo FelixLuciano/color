@@ -23,6 +23,7 @@ self.addEventListener("install", event => {
 				"/index.html",
 				"/style.css",
 				"/color.mjs",
+				"/conversions.mjs",
 				"/picker.mjs",
 
 				"/swatches/index.html",
