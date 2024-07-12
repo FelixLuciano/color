@@ -30,15 +30,9 @@
     font-family: azeret mono, sans-serif !important;
 }
 
-.text-surface-dim {
-    color: var(--on-surface) !important;
-}
-.text-surface-inverse {
-    color: var(--inverse-on-surface) !important;
-}
-.text-surface-inverse ::selection {
+.black-text ::selection {
     background-color: rgba(0, 0, 0, .6);
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 .text-medium {

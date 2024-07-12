@@ -143,13 +143,18 @@
                 </nav>
             </template>
             <nav class="grid">
-                <div x-bind="getDisplayBind('color')" class="s12 l6 field round border ratio-3-1 smooth-color" style="background-color: #FFFFFF;">
+                <div x-bind="getDisplayBind('color')" class="s12 l6 field round border ratio-3-1 smooth-color black-text" style="background-color: #FFFFFF;">
                     <span class="helper font-mono surface">hex</span>
                     <input type="text" value="#FFFFFF" x-ref="colorInput" x-model="hex" class="font-mono text-extra">
-                    <button class="circle large transparent absolute middle right">
-                        <i>colorize</i>
-                        <input type="color" x-model="hex">
-                    </button>
+                    <div class="absolute middle right vertical margin">
+                        <button @click="navigator.clipboard.writeText(color.hex)" data-ui="#snackbar-color-clipboard" class="circle large transparent">
+                            <i>content_copy</i>
+                        </button>
+                        <button class="circle large transparent">
+                            <i>colorize</i>
+                            <input type="color" x-model="hex">
+                        </button>
+                    </div>
                 </div>
                 <div class="s m s12"></div>
                 <nav class="s8 l4 field ratio-2-1 no-space">
