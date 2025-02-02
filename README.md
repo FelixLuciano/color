@@ -36,7 +36,7 @@ robustness.
 
 ## Check it out
 
-![App screenshot](assets/image/picker-screenshot.png)
+![App screenshot](assets/image/picker-screenshot.jpg)
 
 Here is the following link to
 [see it online](https://color.lucianofelix.com.br).
