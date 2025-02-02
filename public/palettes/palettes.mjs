@@ -16,8 +16,8 @@ Alpine.data('palettes', () => ({
         const inverse = color.getContrast(WHITE) < color.getContrast(BLACK)
   
         return {
-          'text-surface-dim': !inverse,
-          'text-surface-inverse': inverse,
+          'white-text': !inverse,
+          'black-text': inverse,
         }
     },
 }))
