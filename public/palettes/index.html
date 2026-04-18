@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://api.fontshare.com">
     <link rel="preconnect" href="https://unpkg.com">
     <link href="https://api.fontshare.com/v2/css?f[]=azeret-mono@1&f[]=chillax@1&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/beercss@3.6.4/dist/cdn/beer.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/beercss@4.0.20/dist/cdn/beer.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 
     <script>
@@ -38,94 +38,101 @@
             "alpinejs": "https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/module.esm.min.js"
         } }
     </script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.6.4/dist/cdn/beer.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@4.0.20/dist/cdn/beer.min.js"></script>
     <script type="module" src="./palettes.mjs"></script>
 </head>
 
 <body class="dark">
-    <nav class="s bottom padding">
+    <nav class="bottom s">
         <img src="/icons/logo.svg" class="small">
         <div class="max"></div>
         <a href="/">
             <i>instant_mix</i>
-            <div>Picker</div>
+            <span>Picker</span>
         </a>
         <div class="space"></div>
         <a href="/swatches">
             <i>style</i>
-            <div>swatches</div>
+            <span>swatches</span>
         </a>
         <div class="space"></div>
         <a class="active">
             <i>palette</i>
-            <div>palettes</div>
+            <span>palettes</span>
         </a>
         <div class="max"></div>
         <a href="https://github.com/FelixLuciano/color#readme" target="_top" rel="noreferrer">
             <i>help</i>
-            <div>about</div>
+            <span>about</span>
         </a>
     </nav>
-    <nav class="m l left">
+
+    <nav class="left max m l">
         <div class="space"></div>
-        <img src="/icons/logo.svg">
+        <img src="/icons/logo.svg" class="extra">
         <div class="max"></div>
         <a href="/">
             <i>instant_mix</i>
-            <div>Picker</div>
+            <span>Picker</span>
         </a>
         <div class="space"></div>
         <a href="/swatches">
             <i>style</i>
-            <div>swatches</div>
+            <span>swatches</span>
         </a>
         <div class="space"></div>
         <a class="active">
             <i>palette</i>
-            <div>palettes</div>
+            <span>palettes</span>
         </a>
         <div class="max"></div>
         <a href="https://github.com/FelixLuciano/color#readme" target="_top" rel="noreferrer">
             <i>help</i>
-            <div>about</div>
+            <span>about</span>
         </a>
         <div class="space"></div>
     </nav>
 
     <main x-data="palettes" class="responsive large-padding">
         <section>
-            <header class="transparent p-0">
+            <header>
                 <nav>
-                    <h1 style="flex-wrap: wrap;">
+                    <h1>
                         palettes
-                        <div style="flex-basis: 100%;"></div>
-                        <div class="badge primary none bold">Top 100 from COLOURlovers</div>
                     </h1>
                     <div class="max"></div>
-                    <a href="https://github.com/Experience-Monks/nice-color-palettes" class="button transparent small-round vertical">
+                    <a href="https://github.com/Experience-Monks/nice-color-palettes" class="button transparent vertical">
                         <i>open_in_new</i>
                         <span>source</span>
                     </a>
                 </nav>
             </header>
-            <div class="space"></div>
+
+            <p>
+                COLOURlovers' 100 most loved palettes.
+            </p>
 
             <div class="grid">
                 <template x-for="(set, index) in palettes">
-                    <article class="s4 m3 l2 m-0">
-                        <header>
+                    <article class="s4 m3 l2">
                             <nav>
-                                <h5 x-text="`#${index + 1}`" class="m-0"></h5>
+                                <h2 x-text="`#${index + 1}`" class="m-0 small"></h2>
                                 <div class="max"></div>
                                 <button @click="navigator.clipboard.writeText(set.join(', '))" data-ui="#snackbar-set-clipboard" class="square round transparent absolute right">
                                     <i>content_copy</i>
                                 </button>
                             </nav>
-                        </header>
 
-                        <nav class="wrap" style="gap: .5rem;">
-                            <template x-for="color in set">
-                                <button @click="navigator.clipboard.writeText(color)" data-ui="#snackbar-color-clipboard" x-text="color" class="responsive small-round font-mono" :class="getDisplayClass(color)" :style="{backgroundColor: color}"></button>
+                        <nav class="group connected wrap m-0">
+                            <template x-for="color, index in set">
+                                <button
+                                    @click="navigator.clipboard.writeText(color)"
+                                    data-ui="#snackbar-color-clipboard"
+                                    x-text="color"
+                                    class="responsive large border font-mono"
+                                    :class="{'top-round': index === 0, 'no-round': index !== 0 && index !== 4, 'bottom-round': index === 4, ...getDisplayClass(color)}"
+                                    :style="{backgroundColor: color}"
+                                ></button>
                             </template>
                         </nav>
                     </article>

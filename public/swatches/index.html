@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://api.fontshare.com">
     <link rel="preconnect" href="https://unpkg.com">
     <link href="https://api.fontshare.com/v2/css?f[]=azeret-mono@1&f[]=chillax@1&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/beercss@3.6.4/dist/cdn/beer.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/beercss@4.0.20/dist/cdn/beer.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 
     <script>
@@ -38,7 +38,8 @@
             "alpinejs": "https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/module.esm.min.js"
         } }
     </script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.6.4/dist/cdn/beer.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@4.0.20/dist/cdn/beer.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.1.4/dist/cdn/material-dynamic-colors.min.js"></script>
     <script type="module">
         import Alpine from 'alpinejs'
         import swatches from './swatches.mjs'
@@ -49,72 +50,71 @@
 </head>
 
 <body class="dark">
-    <nav class="s bottom padding">
+    <nav class="bottom s">
         <img src="/icons/logo.svg" class="small">
         <div class="max"></div>
         <a href="/">
             <i>instant_mix</i>
-            <div>Picker</div>
+            <span>Picker</span>
         </a>
         <div class="space"></div>
         <a class="active">
             <i>style</i>
-            <div>swatches</div>
+            <span>swatches</span>
         </a>
         <div class="space"></div>
         <a href="/palettes">
             <i>palette</i>
-            <div>palettes</div>
+            <span>palettes</span>
         </a>
         <div class="max"></div>
         <a href="https://github.com/FelixLuciano/color#readme" target="_top" rel="noreferrer">
             <i>help</i>
-            <div>about</div>
+            <span>about</span>
         </a>
     </nav>
-    <nav class="m l left">
+
+    <nav class="left max m l">
         <div class="space"></div>
-        <img src="/icons/logo.svg">
+        <img src="/icons/logo.svg" class="extra">
         <div class="max"></div>
         <a href="/">
             <i>instant_mix</i>
-            <div>Picker</div>
+            <span>Picker</span>
         </a>
         <div class="space"></div>
         <a class="active">
             <i>style</i>
-            <div>swatches</div>
+            <span>swatches</span>
         </a>
         <div class="space"></div>
         <a href="/palettes">
             <i>palette</i>
-            <div>palettes</div>
+            <span>palettes</span>
         </a>
         <div class="max"></div>
         <a href="https://github.com/FelixLuciano/color#readme" target="_top" rel="noreferrer">
             <i>help</i>
-            <div>about</div>
+            <span>about</span>
         </a>
         <div class="space"></div>
     </nav>
 
     <main x-data="swatches" class="responsive large-padding">
         <section>
-            <header class="transparent p-0">
+            <header>
                 <nav>
-                    <h1 style="flex-wrap: wrap;">
+                    <h1>
                         swatches
-                        <div style="flex-basis: 100%;"></div>
-                        <div class="badge primary none bold">From Tailwindcss</div>
                     </h1>
                     <div class="max"></div>
-                    <a href="https://tailwindcss.com/docs/colors" class="button transparent small-round vertical">
+                    <a href="https://tailwindcss.com/docs/colors" class="extra button vertical transparent">
                         <i>open_in_new</i>
                         <span>source</span>
                     </a>
                 </nav>
             </header>
-            <div class="space"></div>
+
             <p class="large-text" style="text-wrap: balance">
                 Tailwind CSS includes a vast, beautiful color palette out of the box, carefully crafted by expert designers and suitable for a wide range of different design styles.
             </p>
@@ -123,18 +123,24 @@
                 <div>
                     <h2 x-text="name" class="m-0"></h2>
 
-                    <nav class="scroll grid" style="grid-template-columns: repeat(11, 1fr);">
-                        <template x-for="[color, hex] in Object.entries(set)" :key="color">
-                            <div class="">
-                                <button @click="navigator.clipboard.writeText(hex)" data-ui="#snackbar-clipboard" class="border responsive m-0 ratio-square" :style="{backgroundColor: hex}"></button>
-                                <p class="font-mono">
-                                    <strong x-text="color">100</strong><br>
+                    <nav class="scroll grid group connected" style="grid-template-columns: repeat(11, 1fr);">
+                        <template x-for="[tone, hex] in Object.entries(set)" :key="tone">
+                            <div class="field">
+                                <button
+                                    @click="navigator.clipboard.writeText(hex)"
+                                    data-ui="#snackbar-clipboard"
+                                    class="left-round border extra"
+                                    :class="{'left-round': tone === '50', 'no-round': tone !== '50' && tone !== '950', 'right-round': tone === '950'}"
+                                    :style="{backgroundColor: hex}"
+                                ></button>
+                                <output>
+                                    <strong x-text="tone">100</strong><br>
                                     <span x-text="hex">#ffffff</span>
-                                </p>
+                                </output>
                             </div>
                         </template>
                     </nav>
-                    <div class="large-divider"></div>
+                    <div class="medium-divider"></div>
                 </div>
             </template>
         </section>

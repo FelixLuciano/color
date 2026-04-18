@@ -26,100 +26,116 @@
     <link rel="preconnect" href="https://api.fontshare.com">
     <link rel="preconnect" href="https://unpkg.com">
     <link href="https://api.fontshare.com/v2/css?f[]=azeret-mono@1&f[]=chillax@1&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/beercss@3.6.4/dist/cdn/beer.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/beercss@4.0.20/dist/cdn/beer.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
 
-    <!-- <script>
+    <script>
         if ('serviceWorker' in navigator)
             window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js'))
-    </script> -->
+    </script>
     <script type="importmap">
         { "imports": {
             "alpinejs": "https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/module.esm.min.js",
             "colorthief": "https://unpkg.com/colorthief@2.4.0/dist/color-thief.mjs"
         } }
     </script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.6.4/dist/cdn/beer.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@4.0.20/dist/cdn/beer.min.js"></script>
     <script type="module" src="/picker.mjs"></script>
 </head>
 
 <body class="dark">
-    <nav class="s bottom padding">
+    <nav class="bottom s">
         <img src="/icons/logo.svg" class="small">
         <div class="max"></div>
         <a class="active">
             <i>instant_mix</i>
-            <div>Picker</div>
+            <span>Picker</span>
         </a>
         <div class="space"></div>
         <a href="/swatches">
             <i>style</i>
-            <div>swatches</div>
+            <span>swatches</span>
         </a>
         <div class="space"></div>
         <a href="/palettes">
             <i>palette</i>
-            <div>palettes</div>
+            <span>palettes</span>
         </a>
         <div class="max"></div>
         <a href="https://github.com/FelixLuciano/color#readme" target="_top" rel="noreferrer">
             <i>help</i>
-            <div>about</div>
+            <span>about</span>
         </a>
     </nav>
 
-    <nav class="m l left">
+    <nav class="left max m l">
         <div class="space"></div>
-        <img src="/icons/logo.svg">
+        <img src="/icons/logo.svg" class="extra">
         <div class="max"></div>
         <a class="active">
             <i>instant_mix</i>
-            <div>Picker</div>
+            <span>Picker</span>
         </a>
         <div class="space"></div>
         <a href="/swatches">
             <i>style</i>
-            <div>swatches</div>
+            <span>swatches</span>
         </a>
         <div class="space"></div>
         <a href="/palettes">
             <i>palette</i>
-            <div>palettes</div>
+            <span>palettes</span>
         </a>
         <div class="max"></div>
         <a href="https://github.com/FelixLuciano/color#readme" target="_top" rel="noreferrer">
             <i>help</i>
-            <div>about</div>
+            <span>about</span>
         </a>
         <div class="space"></div>
     </nav>
 
-    <main x-data="picker" class="responsive large-padding">
+    <main x-data="picker" class="responsive">
         <section>
             <header class="transparent p-0">
                 <nav>
                     <h1>picker</h1>
                     <div class="max"></div>
-                    <button class="transparent small-round vertical">
-                        <i>image</i>
-                        <span>extract</span>
-                        <menu id="menu" class="no-wrap min left small-round">
-                            <a @click="getImageFromFIle" data-ui="#menu" class="row">
-                                <i>upload_file</i>
-                                <div class="max">Import</div>
-                            </a>
-                            <a @click="getImageFromClipboard" data-ui="#menu" class="row">
-                                <i>content_paste</i>
-                                <div class="max">Paste</div>
-                            </a>
+                    <div data-ui="#menu">
+                        <button class="transparent vertical">
+                            <i>image</i>
+                            <span>extract</span>
+                        </button>
+                        <menu id="menu" class="min left no-wrap group">
+                            <li>
+                                <menu class="no-wrap">
+                                    <li>
+                                        <a @click="getImageFromFIle" data-ui="#menu" class="row">
+                                            <i>upload_file</i>
+                                            <div class="max">Import</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a @click="getImageFromClipboard" data-ui="#menu" class="row">
+                                            <i>content_paste</i>
+                                            <div class="max">Paste</div>
+                                        </a>
+                                    </li>
+                                </menu>
+                            </li>
                             <template x-if="image !== null">
-                                <a @click="image = null" data-ui="#menu" class="row">
-                                    <i>close_small</i>
-                                    <div class="max">Close</div>
-                                </a>
+                                <li>
+                                    <menu class="error">
+                                        <li>
+                                            <a @click="image = null" data-ui="#menu" class="row">
+                                                <i>close_small</i>
+                                                <div class="max">Close</div>
+                                            </a>
+                                        </li>
+                                    </menu>
+                                </li>
                             </template>
                         </menu>
-                    </button>
+                    </div>
                     <button data-ui="#swatches" class="transparent small-round vertical">
                         <i>style</i>
                         <span>swatches</span>
@@ -134,161 +150,182 @@
                         <span class="helper font-mono">image (click do pick)</span>
                     </div>
                     <template x-for="[name, imageColor] in Object.entries(imagePalette)" :key="imageColor.hex">
-                        <div class="s4 m2 field fill round ratio-2-1">
-                            <span class="helper font-mono" x-text="name"></span>
-                            <button @click="setColor(imageColor)" x-bind="getDisplayBind('imageColor')" x-text="imageColor.hex" class="responsive h-full m-0 font-mono text-medium smooth-color">#FFFFFF</button>
+                        <div class="s4 m2 field">
+                            <button @click="setColor(imageColor)" x-bind="getDisplayBind('imageColor')" x-text="imageColor.hex" class="extra font-mono">#FFFFFF</button>
+                            <output class="font-mono" x-text="name"></putput>
                         </div>
                     </template>
                     <div class="s12"></div>
                 </nav>
             </template>
             <nav class="grid">
-                <div x-bind="getDisplayBind('color')" class="s12 l6 field round border ratio-3-1 smooth-color black-text" style="background-color: #FFFFFF;">
-                    <span class="helper font-mono surface">hex</span>
-                    <input type="text" value="#FFFFFF" x-ref="colorInput" x-model="hex" class="font-mono text-extra">
-                    <div class="absolute middle right vertical margin">
-                        <button @click="navigator.clipboard.writeText(color.hex)" data-ui="#snackbar-color-clipboard" class="circle large transparent">
+
+                <div class="s12 l6">
+                    <nav class="group connected w-full top-align">
+                        <div class="field left-round large flex-1">
+                            <input type="text" value="#FFFFFF" x-ref="colorInput" x-model="hex" x-bind="getDisplayBind('color')" class="border large-text font-mono">
+                            <output class="font-mono">Hex</output>
+                        </div>
+                        <button @click="navigator.clipboard.writeText(color.hex)" data-ui="#snackbar-color-clipboard" class="no-round extra surface-bright">
                             <i>content_copy</i>
                         </button>
-                        <button class="circle large transparent">
+                        <button class="right-round extra surface-bright">
                             <i>colorize</i>
                             <input type="color" x-model="hex">
                         </button>
+                    </nav>
+                </div>
+
+                <nav class="s8 l4 group connected top-align">
+                    <div class="field flex-1">
+                        <button @click="setColor(complementary1)" x-bind="getDisplayBind('complementary1')" x-text="complementary1.hex" class="left-round extra font-mono border">
+                            #FFFFFF
+                        </button>
+                        <output class="font-mono">compl. -137°</output>
                     </div>
-                </div>
-                <div class="s m s12"></div>
-                <nav class="s8 l4 field ratio-2-1 no-space">
-                    <span class="helper font-mono">complementary (±137°)</span>
-                    <button @click="setColor(complementary1)" x-bind="getDisplayBind('complementary1')" x-text="complementary1.hex" class="responsive w-half h-full p-0 no-elevate left-round font-mono text-medium smooth-color">#FFFFFF</button>
-                    <button @click="setColor(complementary2)" x-bind="getDisplayBind('complementary2')" x-text="complementary2.hex" class="responsive w-half h-full p-0 no-elevate right-round font-mono text-medium smooth-color">#FFFFFF</button>
+                    <div class="field flex-1">
+                        <button @click="setColor(complementary2)" x-bind="getDisplayBind('complementary2')" x-text="complementary2.hex" class="right-round extra font-mono border flex-1">
+                            #FFFFFF
+                        </button>
+                        <output class="font-mono">compl. +137°</output>
+                    </div>
                 </nav>
-                <div class="s4 l2 field fill round ratio-square smooth-color">
-                    <span class="helper font-mono">random</span>
-                    <button @click="setRandomColor()" x-bind="getDisplayBind('randomColor')" x-text="randomColor.hex" class="responsive h-full m-0 no-elevate font-mono text-medium">#FFFFFF</button>
+                <div class="s4 l2 field round">
+                    <button @click="setRandomColor()" x-bind="getDisplayBind('randomColor')" class="extra prefix round border font-mono">
+                        <i class="fill">shuffle</i>
+                        <span x-text="randomColor.hex">#FFFFFF</span>
+                    </button>
+                    <output class="font-mono">random</putput>
                 </div>
-                <div class="s12"></div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">red:<b x-text="Math.round(red * 255)">255</b></span>
-                    <label class="slider max vertical red-text">
-                        <input x-model.number="red" type="range" min="0" max="1" :step="1/255">
+
+                <div class="s4 l2 field middle-align">
+                    <div class="slider large red-text">
+                        <input  x-model.number="red" type="range" min="0" max="1" :step="1/255">
                         <span></span>
-                    </label>
+                    </div>
+                    <output class="font-mono">red:<b x-text="Math.round(red * 255)">255</b></output>
                 </div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">green:<b x-text="Math.round(green * 255)">255</b></span>
-                    <label class="slider max vertical green-text">
-                        <input x-model.number="green" type="range" min="0" max="1" :step="1/255">
+                <div class="s4 l2 field middle-align">
+                    <div class="slider large green-text">
+                        <input  x-model.number="green" type="range" min="0" max="1" :step="1/255">
                         <span></span>
-                    </label>
+                    </div>
+                    <output class="font-mono">green:<b x-text="Math.round(green * 255)">255</b></output>
                 </div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">blue:<b x-text="Math.round(blue * 255)">255</b></span>
-                    <label class="slider max vertical indigo-text">
-                        <input x-model.number="blue" type="range" min="0" max="1" :step="1/255">
+                <div class="s4 l2 field middle-align">
+                    <div class="slider large blue-text">
+                        <input  x-model.number="blue" type="range" min="0" max="1" :step="1/255">
                         <span></span>
-                    </label>
+                    </div>
+                    <output class="font-mono">blue:<b x-text="Math.round(blue * 255)">255</b></output>
                 </div>
-                <div class="s m s12"></div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">hue:<b x-text="Math.round(hue * 360) + '°'">180°</b></span>
-                    <label class="slider max vertical" :style="{color: hueDisplay.hex}">
-                        <input x-model.number="hue" type="range" min="0" max="1" :step="1/360">
-                        <span class="smooth-color"></span>
-                    </label>
+
+                <div class="s4 l2 field middle-align" :style="{'--primary': hueDisplay.hex}">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="hue" type="range" min="0" max="1" :step="1/360">
+                        <span><i class="fill" :class="[hue < .2 ? 'white-text' : 'black-text']">workspaces</i></span>
+                    </div>
+                    <output class="font-mono">hue:<b x-text="Math.round(hue * 360) + '°'">180°</b></output>
                 </div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">chroma:<b x-text="Math.round(chroma * 100)">0</b></span>
-                    <label class="slider max vertical" :style="{color: chromaDisplay.hex}">
-                        <input x-model.number="chroma" type="range" min="0" max="1" :step="1/100">
-                        <span class="smooth-color"></span>
-                    </label>
+                <div class="s4 l2 field middle-align" :style="{'--primary': chromaDisplay.hex}">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="chroma" type="range" min="0" max="1" :step="1/360">
+                        <span><i class="fill" :class="[chroma < .2 ? 'white-text' : 'black-text']">motion_mode</i></span>
+                    </div>
+                    <output class="font-mono">chroma:<b x-text="Math.round(chroma * 100)">0</b></output>
                 </div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">light:<b x-text="Math.round(color.light * 100)">100</b></span>
-                    <label class="slider max vertical" style="color: currentcolor;">
-                        <input x-model.number="light" type="range" :min="0" max="1" :step="1/100">
-                        <span class="smooth-color"></span>
-                    </label>
+                <div class="s4 l2 field middle-align" style="--primary: currentcolor">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="light" type="range" min="0" max="1" :step="1/360">
+                        <span><i class="fill" class="material-icons-two-tone" :class="[light < .2 ? 'white-text' : 'black-text']">light_mode</i></span>
+                    </div>
+                    <output class="font-mono">light:<b x-text="Math.round(color.light * 100)">100</b></output>
                 </div>
             </nav>
-            <div class="medium-space"></div>
             <div class="medium-divider"></div>
         </section>
 
         <section>
             <h2>color blindness</h2>
             <nav class="grid">
-                <div class="s4 m2 field fill round ratio-2-1">
-                    <span class="helper font-mono">normal</span>
-                    <button @click="setColor(color)" x-bind="getDisplayBind('color')" x-text="color.hex" class="responsive h-full m-0 font-mono text-medium smooth-color">#FFFFFF</button>
+                <div class="m4 l2 field">
+                    <button @click="setColor(color)" x-bind="getDisplayBind('color')" x-text="color.hex" class="extra border font-mono">#FFFFFF</button>
+                    <output class="font-mono">regular</output>
                 </div>
-                <div class="s4 m2 field fill round ratio-2-1">
-                    <span class="helper font-mono">deuteranopia</span>
-                    <button @click="setColor(deuteranopia)" x-bind="getDisplayBind('deuteranopia')" x-text="deuteranopia.hex" class="responsive h-full m-0 font-mono text-medium smooth-color">#FFFFFF</button>
+                <div class="m4 l2 field">
+                    <button @click="setColor(deuteranopia)" x-bind="getDisplayBind('deuteranopia')" x-text="deuteranopia.hex" class="extra border font-mono">#FFFFFF</button>
+                    <output class="font-mono">deuteranopia</output>
                 </div>
-                <div class="s4 m2 field fill round ratio-2-1">
-                    <span class="helper font-mono">protanopia</span>
-                    <button @click="setColor(protanopia)" x-bind="getDisplayBind('protanopia')" x-text="protanopia.hex" class="responsive h-full m-0 font-mono text-medium smooth-color">#FFFFFF</button>
+                <div class="m4 l2 field">
+                    <button @click="setColor(protanopia)" x-bind="getDisplayBind('protanopia')" x-text="protanopia.hex" class="extra border font-mono">#FFFFFF</button>
+                    <output class="font-mono">protanopia</output>
                 </div>
                 <div class="s m s12"></div>
-                <div class="s4 m2 field fill round ratio-2-1">
-                    <span class="helper font-mono">tritanopia</span>
-                    <button @click="setColor(tritanopia)" x-bind="getDisplayBind('tritanopia')" x-text="tritanopia.hex" class="responsive h-full m-0 font-mono text-medium smooth-color">#FFFFFF</button>
+                <div class="m4 l2 field">
+                    <button @click="setColor(tritanopia)" x-bind="getDisplayBind('tritanopia')" x-text="tritanopia.hex" class="extra border font-mono">#FFFFFF</button>
+                    <output class="font-mono">tritanopia</output>
                 </div>
-                <div class="s4 m2 field fill round ratio-2-1">
-                    <span class="helper font-mono">achromatomaly</span>
-                    <button @click="setColor(achromatomaly)" x-bind="getDisplayBind('achromatomaly')" x-text="achromatomaly.hex" class="responsive h-full m-0 font-mono text-medium smooth-color">#FFFFFF</button>
+                <div class="m4 l2 field">
+                    <button @click="setColor(achromatomaly)" x-bind="getDisplayBind('achromatomaly')" x-text="achromatomaly.hex" class="extra border font-mono">#FFFFFF</button>
+                    <output class="font-mono">achromatomaly</output>
                 </div>
-                <div class="s4 m2 field fill round ratio-2-1">
-                    <span class="helper font-mono">achromatopsia</span>
-                    <button @click="setColor(achromatopsia)" x-bind="getDisplayBind('achromatopsia')" x-text="achromatopsia.hex" class="responsive h-full m-0 font-mono text-medium smooth-color">#FFFFFF</button>
+                <div class="m4 l2 field">
+                    <button @click="setColor(achromatopsia)" x-bind="getDisplayBind('achromatopsia')" x-text="achromatopsia.hex" class="extra border font-mono">#FFFFFF</button>
+                    <output class="font-mono">achromatopsia</output>
                 </div>
             </nav>
-            <div class="medium-space"></div>
             <div class="medium-divider"></div>
         </section>
 
         <section>
-            <header class="transparent p-0">
-                <nav>
-                    <h2>accessibility</h2>
-                    <div class="max"></div>
-                    <button @click="enhanceContrast()" class="transparent small-round vertical">
-                        <i>flare</i>
-                        <span>enhance</span>
-                    </button>
-                </nav>
-            </header>
+            <h2>accessibility</h2>
             <nav class="grid">
-                <div class="s12 m6 field fill round ratio-3-1">
-                    <span class="helper font-mono">preview (click to swap)</span>
-                    <button @click="swapBackgroundForegroud()" class="responsive h-full font-mono smooth-color" :style="{'background-color': background.hex, color: foreground.hex}" style="--color: #CCCCCC; color: #333333; margin: 0">
-                        <i class="fill extra">change_history</i>
-                        <i class="extra">change_history</i>
-                        <i class="fill extra">square</i>
-                        <i class="extra">square</i>
-                        <i class="fill extra">circle</i>
-                        <i class="extra">circle</i>
+                <nav class="s12 group connected top-align">
+                    <div class="field flex-1">
+                        <button @click="setColor(background)" x-bind="getDisplayBind('background')" x-text="background.hex" class="left-round extra border font-mono">
+                            #FFFFFF
+                        </button>
+                        <output class="font-mono">Background</output>
+                    </div>
+                    <button @click="setBackgroundColor(enhancedBackground)" x-bind="getDisplayBind('enhancedBackground')" class="no-round extra border">
+                        <i>flare</i>
                     </button>
-                </div>
-                <div class="s m s12"></div>
-                <nav class="s8 m4 field ratio-2-1 no-space">
-                    <span class="helper font-mono">subject</span>
-                    <button @click="setForegroundColor()" x-bind="getDisplayBind('foreground')" class="responsive w-half h-full p-0 left-round text-medium smooth-color">foreground</button>
-                    <button @click="setBackgroundColor()" x-bind="getDisplayBind('background')" class="responsive  w-half h-full p-0 right-round text-medium smooth-color" style="position: relative;">background</button>
-                    <button @click="setColor(foreground)" x-bind="getDisplayBind('foreground')" class="circle absolute bottom left transparent margin smooth-color" style="z-index: 2;">
+                    <button @click="setBackgroundColor(color)" x-bind="getDisplayBind('color')" class="right-round extra border">
                         <i>colorize</i>
                     </button>
-                    <button @click="setColor(background)" x-bind="getDisplayBind('background')" class="circle absolute bottom right transparent margin smooth-color" style="z-index: 2;">
+                    <button @click="swapBackgroundForegroud()" class="extra circle transparent">
+                        <i>swap_horiz</i>
+                    </button>
+                    <div class="field flex-1">
+                        <button @click="setColor(foreground)" x-bind="getDisplayBind('foreground')" x-text="foreground.hex" class="left-round extra border font-mono">
+                            #FFFFFF
+                        </button>
+                        <output class="font-mono">Foreground</output>
+                    </div>
+                    <button @click="setForegroundColor(enhancedForeground)" x-bind="getDisplayBind('enhancedForeground')" class="no-round extra border">
+                        <i>flare</i>
+                    </button>
+                    <button @click="setForegroundColor(color)" x-bind="getDisplayBind('color')" class="right-round extra border">
                         <i>colorize</i>
                     </button>
                 </nav>
-                <div class="s4 m2 field fill round ratio-square">
-                    <span class="helper font-mono">grade <strong x-text="contrastDisplay">100:1</strong></span>
-                    <button x-bind="getDisplayBind('contrastGradeDisplay')" x-text="contrastGrade" class="responsive h-full m-0 font-mono text-extra center-text smooth-color">AAA</button>
-                </div>
+                <nav class="s12 w-full top-align">
+                    <div class="w-full field">
+                        <article :style="{'background-color': background.hex, color: foreground.hex}" style="--color: #CCCCCC; color: #333333; margin: 0" class="border center-align">
+                            <h3 class="small">
+                                Large <em>text</em> <b>example</b>
+                            </h3>
+                            <p>
+                                Small <em>text</em> <b>example</b>
+                            </p>
+                        </article>
+                        <output class="font-mono">
+                            contrast ratio: <strong x-text="contrastDisplay">100:1</strong><br/>
+                            WCAG2 grade: <strong :style="{'color': contrastGradeDisplay.hex}" x-text="contrastGrade">AAA</strong>
+                        </output>
+                    </div>
+                </nav>
             </nav>
-            <div class="medium-space"></div>
             <div class="medium-divider"></div>
         </section>
 
@@ -303,77 +340,84 @@
                     </button>
                 </nav>
             </header>
-            <nav class="scroll" style="gap: .5rem; justify-content: space-between;">
-                <template x-for="fade in fades">
-                    <button @click="navigator.clipboard.writeText(fade.hex)" data-ui="#snackbar-color-clipboard" x-text="fade.hex" class="border small-round writing-vertical font-mono" :class="getDisplayClass(fade)" :style="{backgroundColor: fade.hex}"></button>
+            <nav class="group connected scroll">
+                <template x-for="fade, index in fades">
+                    <button
+                        @click="navigator.clipboard.writeText(fade.hex)"
+                        data-ui="#snackbar-color-clipboard"
+                        x-text="fade.hex"
+                        class="border extra writing-vertical font-mono"
+                        :class="{'bottom-round': index === 0, 'no-round': index !== 0 && index !== fades.length-1, 'top-round': index === fades.length-1, ...getDisplayClass(fade)}"
+                        :style="{backgroundColor: fade.hex}"
+                    ></button>
                 </template>
             </nav>
             <nav class="grid">
-                <div class="s12 l6 field fill h-full round" style="min-height: 4rem;">
-                    <span class="helper font-mono">light colors amount:<b x-text="darkAmount">1</b></span>
-                    <label class="slider max" style="color: currentcolor;">
-                        <input x-model.number="darkAmount" type="range" min="0" max="12">
+                <div class="s12 l3 field middle-align" style="--primary: currentcolor">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="darkAmount" type="range" min="0" max="12">
                         <span></span>
-                    </label>
+                    </div>
+                    <output class="font-mono">dark colors amount:<b x-text="darkAmount">1</b></output>
                 </div>
                 <div class="s m s12"></div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">darken hue:<b x-text="Math.round(darkHue * 360)">0</b></span>
-                    <label class="slider max vertical" :style="{color: darkHueDisplay.hex}">
-                        <input x-model.number="darkHue" type="range" min="-1" max="1" :step="1/360">
+                <div class="s4 l3 field middle-align" :style="{'--primary': darkHueDisplay.hex}">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="darkHue" type="range" min="-1" max="1" :step="1/100">
+                        <span><i class="fill" :class="[darkHue < -.8 ? 'white-text' : 'black-text']">workspaces</i></span>
+                    </div>
+                    <output class="font-mono">darken hue:<b x-text="Math.round(darkHue * 360) + '°'">0°</b></output>
+                </div>
+                <div class="s4 l3 field middle-align" :style="{'--primary': darkChromaDisplay.hex}">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="darkChroma" type="range" min="-1" max="1" :step="1/360">
+                        <span><i class="fill" :class="[darkChroma < -.8 ? 'white-text' : 'black-text']">motion_mode</i></span>
+                    </div>
+                    <output class="font-mono">darken chroma:<b x-text="Math.round(darkChroma * 100)">0</b></output>
+                </div>
+                <div class="s4 l3 field middle-align" style="--primary: currentcolor">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="darkLevel" type="range" min="-1" max="1" :step="1/360">
+                        <span><i class="fill" class="material-icons-two-tone" :class="[darkLevel < -.8 ? 'white-text' : 'black-text']">light_mode</i></span>
+                    </div>
+                    <output class="font-mono">darkness:<b x-text="Math.round(darkLevel * 100)">100</b></output>
+                </div>
+                <div class="s12 l3 field middle-align" style="--primary: currentcolor">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="lightAmount" type="range" min="0" max="12">
                         <span></span>
-                    </label>
-                </div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">darken chroma:<b x-text="Math.round(darkChroma * 100)">100</b></span>
-                    <label class="slider max vertical" :style="{color: darkChromaDisplay.hex}">
-                        <input x-model.number="darkChroma" type="range" min="-1" max="1" :step="1/100">
-                        <span class="smooth-color"></span>
-                    </label>
-                </div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">darkness:<b x-text="Math.round(darkLevel * 100)">100</b></span>
-                    <label class="slider max vertical" style="color: currentcolor;">
-                        <input x-model.number="darkLevel" type="range" min="0" max="1" :step="1/100">
-                        <span class="smooth-color"></span>
-                    </label>
-                </div>
-                <div class="s12"></div>
-                <div class="s12 l6 field fill h-full round" style="min-height: 4rem;">
-                    <span class="helper font-mono">light colors amount:<b x-text="lightAmount">1</b></span>
-                    <label class="slider max" style="color: currentcolor;">
-                        <input x-model.number="lightAmount" type="range" min="0" max="12">
-                        <span></span>
-                    </label>
+                    </div>
+                    <output class="font-mono">light colors amount:<b x-text="lightAmount">1</b></output>
                 </div>
                 <div class="s m s12"></div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">lighten hue:<b x-text="Math.round(lightHue * 360)">0</b></span>
-                    <label class="slider max vertical" :style="{color: lightHueDisplay.hex}">
-                        <input x-model.number="lightHue" type="range" min="-1" max="1" :step="1/360">
-                        <span class="smooth-color"></span>
-                    </label>
+                
+                <div class="s4 l3 field middle-align" :style="{'--primary': lightHueDisplay.hex}">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="lightHue" type="range" min="-1" max="1" :step="1/100">
+                        <span><i class="fill" :class="[lightHue < -.8 ? 'white-text' : 'black-text']">workspaces</i></span>
+                    </div>
+                    <output class="font-mono">lighten hue:<b x-text="Math.round(lightHue * 360) + '°'">0°</b></output>
                 </div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">lighten chroma:<b x-text="Math.round(lightChroma * 100)">100</b></span>
-                    <label class="slider max vertical" :style="{color: lightChromaDisplay.hex}">
-                        <input x-model.number="lightChroma" type="range" min="-1" max="1" :step="1/100">
-                        <span class="smooth-color"></span>
-                    </label>
+                <div class="s4 l3 field middle-align" :style="{'--primary': lightChromaDisplay.hex}">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="lightChroma" type="range" min="-1" max="1" :step="1/360">
+                        <span><i class="fill" :class="[lightChroma < -.8 ? 'white-text' : 'black-text']">motion_mode</i></span>
+                    </div>
+                    <output class="font-mono">lighten chroma:<b x-text="Math.round(lightChroma * 100)">0</b></output>
                 </div>
-                <div class="s4 l2 field fill round ratio-square">
-                    <span class="helper font-mono">lightness:<b x-text="Math.round(lightLevel * 100)">100</b></span>
-                    <label class="slider max vertical" style="color: currentcolor;">
-                        <input x-model.number="lightLevel" type="range" min="0" max="1" :step="1/100">
-                        <span></span>
-                    </label>
+                <div class="s4 l3 field middle-align" style="--primary: currentcolor">
+                    <div class="slider large primary-text">
+                        <input  x-model.number="lightLevel" type="range" min="0" max="1" :step="1/360">
+                        <span><i class="fill" class="material-icons-two-tone" :class="[lightLevel < .2 ? 'white-text' : 'black-text']">light_mode</i></span>
+                    </div>
+                    <output class="font-mono">lightness:<b x-text="Math.round(lightLevel * 100)">100</b></output>
                 </div>
             </nav>
             <div class="large-space"></div>
         </section>
 
         <footer class="transparent p-0">
-            © 2024 Luciano Felix.
+            © 2026 Luciano Felix.
         </footer>
 
         <div id="snackbar-color-clipboard" class="snackbar green white-text">
@@ -401,22 +445,23 @@
                 <div class="space"></div>
                 <h2>
                     swatches
-                    <div class="badge primary none bold">From Tailwindcss</div>
+                    <span class="badge primary none bold">From Tailwindcss</span>
                 </h2>
                 <div class="medium-divider"></div>
             </header>
             <template x-for="[name, set] in Object.entries(swatches)" :key="name">
                 <div class="">
                     <h3 x-text="name" class="m-0"></h3>
-                    <nav class="scroll grid" style="grid-template-columns: repeat(11, 1fr);">
+                    <nav class="scroll grid group connected" style="grid-template-columns: repeat(11, 1fr);">
                         <template x-for="[tone, hex] in Object.entries(set)" :key="tone">
-                            <div class="">
-                                <button @click="setColor(createColor.fromHex(hex))" data-ui="#swatches" class="border responsive m-0 ratio-square" :style="{backgroundColor: hex}"></button>
-                                <p class="font-mono">
-                                    <strong x-text="tone">100</strong><br>
-                                    <span x-text="hex">#ffffff</span>
-                                </p>
-                            </div>
+                            <button
+                                @click="setColor(createColor.fromHex(hex))"
+                                data-ui="#swatches"
+                                class="left-round border extra"
+                                :class="{'left-round': tone === '50', 'no-round': tone !== '50' && tone !== '950', 'right-round': tone === '950', ...getDisplayClassfromHex(hex)}"
+                                :style="{backgroundColor: hex}"
+                                x-text="tone"
+                            >50</button>    
                         </template>
                     </nav>
                     <div class="space"></div>

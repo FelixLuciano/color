@@ -151,31 +151,22 @@ export function picker() {
 
     background: Color.fromHex('#333333'),
     foreground: Color.fromHex('#cccccc'),
-    setBackgroundColor() {
-      this.background = this.color.copy()
+    setBackgroundColor(color) {
+      this.background = color.copy()
     },
-    setForegroundColor() {
-      this.foreground = this.color
+    setForegroundColor(color) {
+      this.foreground = color.copy()
     },
     swapBackgroundForegroud() {
       [this.background, this.foreground] = [this.foreground, this.background]
     },
-    enhanceContrast() {
-      let target = 3
-      let step = 0.01
 
-      if (this.contrast >= target) target = 4.5
-      if (this.contrast >= target) target = 7
-      if (this.background.luminance > 0.5) step = -0.01
-
-      for (let light = this.foreground.light; this.contrast < target && light >= 0.0 && light <= 1.0; light += step) {
-        this.foreground = Color.fromHsv(this.foreground.hue, this.foreground.chroma, light)
-      }
-      for (let chroma = this.foreground.chroma; this.contrast < target && chroma >= 0.0 && chroma <= 1.0; chroma -= step) {
-        this.foreground = Color.fromHsv(this.foreground.hue, chroma, this.foreground.light)
-      }
+    get enhancedBackground() {
+      return this.background.enhanceContrastFrom(this.foreground)
     },
-
+    get enhancedForeground() {
+      return this.foreground.enhanceContrastFrom(this.background)
+    },
     get contrast() {
       return this.background.getContrast(this.foreground)
     },
@@ -192,10 +183,10 @@ export function picker() {
       else return 'FAIL'
     },
     get contrastGradeDisplay() {
-      if (this.contrast >= 7) return Color.fromHex('#22DD22')
-      else if (this.contrast >= 4.5) return Color.fromHex('#DDDD22')
-      else if (this.contrast >= 3) return Color.fromHex('#DD7722')
-      else return Color.fromHex('#DD2222')
+      if (this.contrast >= 7) return Color.fromHex('#05DF72')
+      else if (this.contrast >= 4.5) return Color.fromHex('#FDC700')
+      else if (this.contrast >= 3) return Color.fromHex('#F38326')
+      else return Color.fromHex('#FF8A87')
     },
 
     darkAmount: 6,
@@ -277,6 +268,9 @@ export function picker() {
         ':class': `getDisplayClass(${name})`,
         ':style': `getDisplayStyle(${name})`,
       }
+    },
+    getDisplayClassfromHex(hex) {
+      return this.getDisplayClass(Color.fromHex(hex))
     },
     getDisplayClass(color) {
       const inverse = color.luminance > 0.5

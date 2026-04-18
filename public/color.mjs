@@ -33,6 +33,10 @@ export default class Color {
     return color
   }
 
+  compare(color) {
+    return this.red == color.red && this.green == color.gren && this.blue == color.blue
+  }
+
   copy() {
     return new Color(this.red, this.green, this.blue)
   }
@@ -50,5 +54,28 @@ export default class Color {
     const l2 = color.luminance + 0.05
 
     return l1 > l2 ? l1 / l2 : l2 / l1
+  }
+
+  enhanceContrastFrom(color) {
+    let target = 3
+    let step = 0.01
+    let result = this.copy()
+    let contrast = result.getContrast(color)
+
+
+    if (contrast >= target) target = 4.5
+    if (contrast >= target) target = 7
+    if (color.luminance > 0.5) step = -0.01
+
+    for (let light = result.light; contrast < target && light >= 0.0 && light <= 1.0; light += step) {
+      result = Color.fromHsv(result.hue, result.chroma, light)
+      contrast = color.getContrast(result)
+    }
+    for (let chroma = result.chroma; contrast < target && chroma >= 0.0 && chroma <= 1.0; chroma -= step) {
+      result = Color.fromHsv(result.hue, chroma, result.light)
+      contrast = color.getContrast(result)
+    }
+
+    return result
   }
 }
