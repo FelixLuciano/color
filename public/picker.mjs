@@ -1,3 +1,4 @@
+import 'beercss'
 import Alpine from 'alpinejs'
 import ColorThief from 'colorthief'
 

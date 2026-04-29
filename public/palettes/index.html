@@ -26,7 +26,7 @@
     <link rel="preconnect" href="https://api.fontshare.com">
     <link rel="preconnect" href="https://unpkg.com">
     <link href="https://api.fontshare.com/v2/css?f[]=azeret-mono@1&f[]=chillax@1&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/beercss@4.0.20/dist/cdn/beer.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/beercss@4.0.20/dist/cdn/beer.min.css" integrity="sha384-9jNJuYchZKpYVWJWTtiEw+BAiioUOrcj7M1xTJvQjjoVVrFLx/WDb2DUD/4+ApRJ" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
 
     <script>
@@ -34,12 +34,18 @@
             window.addEventListener('load', () => navigator.serviceWorker.register('/service-worker.js'))
     </script>
     <script type="importmap">
-        { "imports": {
-            "alpinejs": "https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/module.esm.min.js"
-        } }
+        {
+            "imports": {
+                "alpinejs": "https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.15.0/module.esm.min.js",
+                "beercss": "https://cdn.jsdelivr.net/npm/beercss@4.0.21/dist/cdn/beer.min.js"
+            },
+            "integrity": {
+                "https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.15.0/module.esm.min.js": "sha256-8AWUzlBlVGPd/aDeKURX6MD6028YlhgvZvbOp9s2uTw=",
+                "https://cdn.jsdelivr.net/npm/beercss@4.0.21/dist/cdn/beer.min.js": "sha256-22hvLjYEZCT4blBpBY6hK8+w84cETJ5LEnVUxfFTmSw="
+            }
+        }
     </script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@4.0.20/dist/cdn/beer.min.js"></script>
-    <script type="module" src="./palettes.mjs"></script>
+    <script type="module" src="./palettes.mjs" data-cfasync="false"></script>
 </head>
 
 <body class="dark">
