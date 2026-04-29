@@ -1,6 +1,6 @@
 import 'beercss'
 import Alpine from 'alpinejs'
-import ColorThief from 'colorthief'
+import { getPaletteSync } from 'colorthief'
 
 import Color from '/color.mjs'
 import swatches from '/swatches/swatches.mjs'
@@ -337,8 +337,12 @@ export function picker() {
       this.imagePalette = this.getImagePalette()
     },
     getImagePalette() {
-      const palette = new ColorThief().getPalette(this.image, 6, 100).map((color) => {
-        const [r, g, b] = color.map((n) => n / 256)
+      const palette = getPaletteSync(this.image, {
+        colorCount: 6,
+        quality: 100,
+      }).map((color) => {
+        console.log(color)
+        const [r, g, b] = color.array().map((n) => n / 256)
 
         return new Color(r, g, b)
       })
